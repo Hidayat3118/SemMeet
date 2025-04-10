@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/tes', function () {
     return view('welcome');
 });
 
@@ -18,8 +18,8 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/tes', function (){
-    return view('tes');
+Route::get('/', function (){
+    return view('home');
 });
 
 require __DIR__.'/auth.php';
