@@ -1,4 +1,4 @@
-<nav class="bg-white shadow-md dark:bg-gray-900 border">
+<nav class="bg-white shadow-md dark:bg-gray-900 border fixed top-0 left-0 right-0 z-10">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
@@ -47,13 +47,13 @@
                 </a>
 
                 @if (Route::has('register'))
-                    <a class="group relative inline-block text-sm font-medium text-blue-500 focus:ring-3 focus:outline-hidden"
+                    <a class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden"
                         href="{{ route('register') }}">
                         <span
                             class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
 
                         <span
-                            class="relative block border border-current bg-white px-8 py-3">Registrasi</span>
+                            class="relative block border border-current bg-blue-500 px-8 py-3">Registrasi</span>
                     </a>
                 @endif
             @endauth

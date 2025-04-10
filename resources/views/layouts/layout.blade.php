@@ -13,10 +13,10 @@
     {{-- Swiper --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    {{-- font --}}
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
 </head>
-
-<body class="bg-gray-100 text-gray-800">
-
+<body  class="bg-gray-100 text-gray-800 ">
     <main>
         @yield('konten')
     </main>
