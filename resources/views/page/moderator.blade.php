@@ -4,33 +4,9 @@
     <main>
         <x-header></x-header>
             {{-- hero section --}}
-           <section  class=" mx-auto mt-10 md:mt-24 bg-blue-100 md:py-20">
-            <div class=" mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-10  max-w-2xl lg:max-w-7xl">
-                <div class="space-y-6 text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-blue-500">Selamat Datang Di WebSinar</h1>
-                    <p class=" text-xl mt-4">
-                        WebSinar platform informasi dan edukasi bantu Anda terhubung di berbagai
-                        seminar dan acara inspiratif. Temukan wawasan baru, kembangkan diri, dan jadilah bagian dari
-                        komunitas yang terus bersinar.
-                    </p>
-                    <div class="flex space-x-4 justify-center md:justify-start">
-                        <a
-                            class="group relative inline-block text-sm font-medium text-blue-400 focus:ring-3 focus:outline-hidden cursor-pointer">
-                            <span
-                                class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
-
-                            <span class="relative block border border-current bg-white px-8 py-3 rounded-lg">Lihat Seminar</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <img src="https://i.ytimg.com/vi/Lj1D5ykXIxQ/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGD4gVShlMA8=&rs=AOn4CLDb3z89h36iFZVal0XHdFG0QeVywA"
-                        alt="App Screenshot" class="rounded shadow-lg">
-                </div>
-            </div>
-        </section>
+         
         {{-- container max-w-7xl --}}
-            <div class="max-w-2xl lg:max-w-7xl mx-auto mt-10 md:mt-16">
+            <div class="max-w-2xl lg:max-w-7xl mx-auto mt-10 md:mt-32">
             {{-- card seminar --}}
             <section>
                 <div class="my-8 text-center">
@@ -41,8 +17,8 @@
                         Kami menghadirkan seminar-seminar menarik yang memberikan wawasan dan inspirasi terbaik untuk Anda
                     </p>
                 </div>
-                <div class="swiper mySwiper">
-                    <div class="swiper-wrapper">
+                <div class="grid grid-cols-3">
+                    <div class="">
                         @foreach (range(1, 5) as $i)
                             <div class="swiper-slide border-4 p-4">
                                 <x-card-seminar
@@ -53,10 +29,7 @@
                         @endforeach
                     </div>
 
-                    <!-- Swiper Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
+                
                 </div>
 
             </section>

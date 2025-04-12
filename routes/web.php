@@ -21,5 +21,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function (){
     return view('home');
 });
+Route::get('/pembicara', function (){
+    return view('page.pembicara');
+});
+Route::get('/moderator', function (){
+    return view('page.moderator');
+});
 
 require __DIR__.'/auth.php';

@@ -16,9 +16,7 @@
           <li>
             <a href="#" class=" py-2 px-3 text-gray-900 rounded-sm hidden hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
           </li>
-          <li>
-            <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm  hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
-          </li>
+          
           <li>
             <a href="#" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</a>
           </li>
@@ -38,22 +36,22 @@
                     Dashboard
                 </a>
             @else
-                <a class="group relative inline-block text-sm font-medium text-blue-500 focus:ring-3 focus:outline-hidden"
+                <a class="group relative inline-block text-sm font-medium text-blue-400 focus:ring-3 focus:outline-hidden"
                     href="{{ route('login') }}">
                     <span
-                        class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                        class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
 
-                    <span class="relative block border border-current bg-white px-8 py-3"> Login</span>
+                    <span class="relative block border border-current bg-white px-8 py-3 rounded-lg"> Login</span>
                 </a>
 
                 @if (Route::has('register'))
                     <a class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden"
                         href="{{ route('register') }}">
                         <span
-                            class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                            class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
 
                         <span
-                            class="relative block border border-current bg-blue-500 px-8 py-3">Registrasi</span>
+                            class="relative block border border-current bg-blue-500 px-8 py-3 rounded-lg">Registrasi</span>
                     </a>
                 @endif
             @endauth
