@@ -27,5 +27,9 @@ Route::get('/pembicara', function (){
 Route::get('/moderator', function (){
     return view('page.moderator');
 });
+Route::get('/seminar', function (){
+    return view('page.seminar');
+});
+
 
 require __DIR__.'/auth.php';
