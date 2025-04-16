@@ -7,9 +7,9 @@
         <section class=" mx-auto mt-10 md:mt-24 bg-blue-100 md:py-20">
             <div class=" mx-auto px-4 py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-10  max-w-2xl lg:max-w-7xl">
                 <div class="space-y-6 text-center md:text-left">
-                    <h1 class="text-4xl md:text-5xl font-bold text-blue-500">Selamat Datang Di WebSinar</h1>
+                    <h1 class="text-4xl md:text-5xl font-bold text-blue-400">Selamat Datang Di SemMet</h1>
                     <p class=" text-xl mt-4">
-                        WebSinar platform informasi dan edukasi bantu Anda terhubung di berbagai
+                        SemMet platform informasi dan edukasi bantu Anda terhubung di berbagai
                         seminar dan acara inspiratif. Temukan wawasan baru, kembangkan diri, dan jadilah bagian dari
                         komunitas yang terus bersinar.
                     </p>
@@ -25,8 +25,7 @@
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <img src="https://i.ytimg.com/vi/Lj1D5ykXIxQ/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGD4gVShlMA8=&rs=AOn4CLDb3z89h36iFZVal0XHdFG0QeVywA"
-                        alt="App Screenshot" class="rounded shadow-lg">
+                    <img src="{{ asset('img/people.png') }}" alt="App Screenshot" class="">
                 </div>
             </div>
         </section>
