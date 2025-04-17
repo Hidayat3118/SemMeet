@@ -32,4 +32,10 @@ Route::get('/seminar', function (){
 });
 
 
+// detail
+
+Route::get('/detail-seminar', function(){
+return view('page.detail-seminar');
+});
+
 require __DIR__.'/auth.php';

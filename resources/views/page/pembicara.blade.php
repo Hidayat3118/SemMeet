@@ -5,33 +5,33 @@
         {{-- header --}}
         <x-header></x-header>
         {{-- container max-w-7xl --}}
-        <div class="max-w-2xl lg:max-w-7xl mx-auto mt-10 md:mt-24 py-20">
+        <div class="max-w-2xl lg:max-w-7xl mx-auto md:mt-24 py-20">
             {{-- card pembicara --}}
             <section>
                 <div class="my-8 text-center">
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-400 ">
                         Pembicara Terbaru
                     </h1>
-                    <p class="text-gray-500 text-lg md:py-2">
+                    <p class="text-gray-600 text-lg md:py-2">
                         Dapatkan wawasan eksklusif dari para ahli dan tokoh inspiratif di bidangnya
                     </p>
                 </div>
                 {{-- tombol --}}
-                <div class="flex justify-between">
-                    <div class="flex space-x-2">
+                <div class="flex justify-between flex-col lg:flex-row gap-y-7">
+                    <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
                         <button
-                            class="px-4 py-2 bg-blue-500 text-white rounded-full border border-gray-300  shadow-sm">All</button>
+                            class="px-4 py-2 bg-blue-500 text-white rounded-full border border-gray-300 shadow-sm">All</button>
                         <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300  shadow-sm">Front
+                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Front
                             End Developer</button>
                         <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300  shadow-sm">Back
+                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Back
                             End Developer</button>
-                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300  shadow-sm">UI
+                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">UI
                             UX Design</button>
                     </div>
                     {{-- serch --}}
-                    <div class="flex gap-16 ">
+                    <div class="flex gap-6 lg:gap-10  mx-6">
                         <div class="flex items-center w-full mx-auto ">
                             <div class="relative w-full">
                                 <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
@@ -52,11 +52,11 @@
                             </select>
                         </div>
                     </div>
-                    {{-- card pembicara --}}
                 </div>
-                <div class="grid grid-cols-3 my-8 gap-10">
+                {{-- card pembicara --}}
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
                     @foreach (range(1, 6) as $i)
-                        <div class="swiper-slide">
+                        <div class="swiper-slide px-4">
                             <x-card-pembicara
                                 gambar="https://www.bizhare.id/media/wp-content/uploads/2023/12/1214_Thumbnail_Artikel-Media_Ciri-ciri-Orang-Sukses-Apakah-Anda-Salah-Satunya_.jpg"
                                 nama="Muhammad Anur" jabatan="Kepala Bidang" instansi="PT Mencari Cinta Sejati"

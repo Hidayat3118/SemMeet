@@ -41,19 +41,19 @@
                 <a class="group relative inline-block text-sm font-medium text-blue-400 focus:ring-3 focus:outline-hidden"
                     href="{{ route('login') }}">
                     <span
-                        class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
+                        class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-full"></span>
 
-                    <span class="relative block border border-current bg-white px-8 py-3 rounded-lg"> Login</span>
+                    <span class="relative block border border-current bg-white px-8 py-3 rounded-full"> Login</span>
                 </a>
 
                 @if (Route::has('register'))
                     <a class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden"
                         href="{{ route('register') }}">
                         <span
-                            class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-lg"></span>
+                            class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-full"></span>
 
                         <span
-                            class="relative block border border-current bg-blue-500 px-8 py-3 rounded-lg">Registrasi</span>
+                            class="relative block border border-current bg-blue-500 px-8 py-3 rounded-full">Registrasi</span>
                     </a>
                 @endif
             @endauth
