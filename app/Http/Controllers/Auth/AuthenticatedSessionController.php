@@ -33,9 +33,9 @@ class AuthenticatedSessionController extends Controller
         if ($user->hasRole('peserta')) {
             return redirect()->route('peserta');
         } elseif ($user->hasRole('pembicara')) {
-            return redirect()->route('pembicara');
+            return redirect()->route('pembicaraTes');
         } elseif ($user->hasRole('moderator')) {
-            return redirect()->route('moderator');
+            return redirect()->route('moderatorTes');
         } elseif ($user->hasRole('panitia')) {
             return redirect()->route('panitia');
         } elseif ($user->hasRole('keuangan')) {

@@ -42,14 +42,14 @@ Route::get('/peserta', function(){
 })->middleware(['auth', 'verified', 'role:peserta'])->name('peserta');
 
 // Pembicara
-Route::get('/pembicara', function(){
+Route::get('/pembicaraTes', function(){
     return '<h1>Halo Pembicara</h1>';
-})->middleware(['auth', 'verified', 'role:pembicara'])->name('pembicara');
+})->middleware(['auth', 'verified', 'role:pembicara'])->name('pembicaraTes');
 
 // Moderator
-Route::get('/moderator', function(){
+Route::get('/moderatorTes', function(){
     return '<h1>Hai Moderator</h1>';
-})->middleware(['auth', 'verified', 'role:moderator'])->name('moderator');
+})->middleware(['auth', 'verified', 'role:moderator'])->name('moderatorTes');
 
 // Panitia
 Route::get('/panitia', function(){

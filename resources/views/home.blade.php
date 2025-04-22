@@ -30,7 +30,7 @@
             </div>
         </section>
         {{-- pentingnya seminar --}}
-        <section class="text-center py-20 px-4 max-w-7xl mx-auto">
+        <section class="text-center py-20 px-4 md:px-0 max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-4xl font-bold mb-4 text-gray-800">
               Kenapa <span class="text-blue-400">Event Penting</span> bagi Jenjang Karirmu
             </h2>
@@ -82,11 +82,14 @@
                 <div class="swiper mySwiper">
                     <div class="swiper-wrapper">
                         @foreach (range(1, 5) as $i)
+                      
                             <div class="swiper-slide px-4 md:px-0">
+                                <a href="/detail-seminar">
                                 <x-card-seminar
                                     gambar="https://assets.cdn.dicoding.com/original/event/dos-elevaite_x_dicoding_live_1_unlocking_ai_kunci_teknologi_talenta_masa_depan_logo_170125170540.png"
                                     judul="Judul {{ $i }}" waktu="12 Juli 2025"
                                     deskripsi="Pelajari bagaimana kecerdasan buatan membentuk masa depan teknologi dan peran talenta digital dalam ekosistem AI. Seminar ini menghadirkan para ahli industri untuk membahas tren, tantangan, dan peluang karier di era AI." />
+                                </a>
                             </div>
                         @endforeach
                     </div>
