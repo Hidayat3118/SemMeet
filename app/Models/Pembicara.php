@@ -10,13 +10,7 @@ class Pembicara extends Model
 
     use HasFactory;
 
-    protected $fillable = [
-        'foto',
-        'instansi',
-        'bio',
-        'pengalaman',
-        'linkend',
-    ];
+    protected $guarded = ['id'];
     
     public function user(){
         return $this->hasOne(User::class);

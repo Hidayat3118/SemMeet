@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('seminars', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('judul')->nullable();
-            $table->text('deskripsi')->nullable(); 
-            $table->decimal('harga', 10, 2)->nullable(); 
-            $table->dateTime('waktu_mulai')->nullable();
-            $table->dateTime('waktu_selesai')->nullable();
-            $table->string('lokasi')->nullable(); 
-            $table->enum('status', ['draft', 'aktif', 'selesai'])->nullable();     
+            $table->enum('mode', ['online', 'offline']);
+            $table->string('judul');
+            $table->text('deskripsi'); 
+            $table->decimal('harga', 10, 2); 
+            $table->date('tanggal');
+            $table->enum('status', ['draft', 'aktif', 'selesai']);     
+            $table->dateTime('waktu_mulai');
+            $table->dateTime('waktu_selesai');
+            $table->decimal('harga', 10, 2); 
+            $table->string('lokasi'); 
+            $table->integer('kouta'); 
         });
     }
 

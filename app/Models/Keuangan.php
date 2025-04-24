@@ -8,9 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Keuangan extends Model
 {
    use HasFactory;
-   protected $fillable = [
-    'foto',
-   ];
+   
+   protected $guarded = ['id'];
 
     public function user(){
         return $this->hasOne(User::class);

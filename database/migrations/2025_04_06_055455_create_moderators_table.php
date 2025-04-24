@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('moderators', function (Blueprint $table) {
             $table->id();
+            $table->string('instansi')->nullable();
             $table->string('bio')->nullable();
             $table->string('pengalaman')->nullable();
-            $table->string('instansi')->nullable();
             $table->string('foto')->nullable();
+            $table->string('linkend')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
         });

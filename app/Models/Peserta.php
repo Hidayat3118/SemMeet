@@ -8,11 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Peserta extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'alamat',
-        'instansi',
-        
-    ];
+    protected $guarded = ['id'];
+    
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -9,9 +9,8 @@ class Panitia extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'foto',
-    ];
+    protected $guarded = ['id'];
+    
     public function user(){
         return $this->hasOne(User::class);
     }
