@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sertifikats', function (Blueprint $table) {
+        Schema::create('moderator_kategori', function (Blueprint $table) {
             $table->id();
-            $table->string('tanda_tangan');
             $table->timestamps();
-            $table->foreignId('pendaftaran_id')->constrained()->onDelete('cascade');
+            $table->foreignId('moderator_id')->constrained()->onDelete('cascade');
+            $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
         });
     }
 
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sertifikats');
+        Schema::dropIfExists('moderator_kategori');
     }
 };

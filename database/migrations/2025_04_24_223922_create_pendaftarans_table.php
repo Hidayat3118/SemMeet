@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('jumlah');
             $table->enum('status', ['pending', 'pain', 'attenden']);
+            $table->foreignId('voucher_id')->constrained()->onDelete('cascade');
+            $table->foreignId('seminar_id')->constrained()->onDelete('cascade');
+            $table->foreignId('peserta_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('pengalaman')->nullable();
             $table->string('foto')->nullable();
             $table->string('linkend')->nullable();
-            $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

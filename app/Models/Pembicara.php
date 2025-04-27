@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Seminar;
+use App\Models\Kategori;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pembicara extends Model
 {
@@ -14,5 +16,13 @@ class Pembicara extends Model
     
     public function user(){
         return $this->hasOne(User::class);
+    }
+
+    public function seminar(){
+        return $this->belongsToMany(Seminar::class);
+    }
+
+    public function kategori(){
+        return $this->belongsToMany(Kategori::class);
     }
 }

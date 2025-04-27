@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->text('deskripsi');
             $table->char('code_voucher')->unique();
-            $table->timestamps('tanggal_mulai');
-            $table->timestamps('tanggal_berakhir');
+            $table->timestamp('tanggal_mulai')->nullable();
+            $table->timestamp('tanggal_berakhir')->nullable();
             $table->integer('penggunaan_voucher');
             $table->integer('maksimal_pemakaian');
             $table->integer('diskon_harga')->default(0);
             $table->integer('diskon_persen');
             $table->enum('status', ['active', 'expired', 'used'])->default('active');
+            $table->foreignId('seminar_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

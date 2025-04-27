@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->text('komen');
             $table->integer('rating')->default(0);
+            $table->foreignId('seminar_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

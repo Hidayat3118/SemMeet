@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Pendaftaran;
 use Illuminate\Database\Eloquent\Model;
 
 class Sertifikat extends Model
 {
     protected $guarded = ['id'];
+
+    public function payment (){
+        return $this->belongsTo(Pendaftaran::class);
+    }
 }

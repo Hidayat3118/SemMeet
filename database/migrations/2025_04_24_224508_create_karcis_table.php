@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('karcis', function (Blueprint $table) {
             $table->id();
             $table->char('qr_code');
-            $table->timestamps('waktu_sqan'); //kehadiran
+            $table->timestamp('waktu_sqan')->nullabel(); 
             $table->enum('status', ['active', 'used']);
+            $table->foreignId('pendaftaran_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

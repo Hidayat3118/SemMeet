@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('seminars', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id();  
             $table->enum('mode', ['online', 'offline']);
             $table->string('judul');
             $table->text('deskripsi'); 
@@ -22,9 +21,12 @@ return new class extends Migration
             $table->enum('status', ['draft', 'aktif', 'selesai']);     
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
-            $table->decimal('harga', 10, 2); 
             $table->string('lokasi'); 
             $table->integer('kouta'); 
+            $table->foreignId('keuangan_id')->constrained()->onDelete('cascade');
+            $table->foreignId('panitia_id')->constrained()->onDelete('cascade');
+            $table->foreignId('moderator_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
