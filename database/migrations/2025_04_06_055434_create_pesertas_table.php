@@ -14,8 +14,9 @@ return new class extends Migration
         
             Schema::create('pesertas', function (Blueprint $table) {
                 $table->id();
-                $table->string('alamat')->nullable();;
+                $table->string('alamat')->nullable();
                 $table->string('foto')->nullable();
+                $table->string('instansi')->nullabel();
                 $table->timestamps();
                 $table->foreignId('user_id')->constrained()->onDelete('cascade');
             });
