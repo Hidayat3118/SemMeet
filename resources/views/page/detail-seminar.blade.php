@@ -68,7 +68,7 @@
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Harga</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>Gratis</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>Rp. 75.000.00</span></div>
                         </div>
 
                         <div class="flex">
@@ -87,8 +87,14 @@
                     {{-- Kouta --}}
                     <div class="font-semibold">
                         <h3 class="text-xl md:text-2xl lg:text-3xl my-4 font-semibold">Kouta Peserta</h3>
-                        <p><span class="">Kouta :</span> 100</p>
-                        <p><span class="">Sisa Kouta :</span> 50</p>
+                        <div class="flex">
+                            <div class="w-28 font-medium text-gray-700">Kouta</div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>100</span></div>
+                        </div>
+                        <div class="flex">
+                            <div class="w-28 font-medium text-gray-700">Sisa Kouta</div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>50</span></div>
+                        </div>
                     </div>
                     {{-- Keikutsertaan --}}
                     <div class="">
@@ -106,8 +112,14 @@
                     <div class="">
                         <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-4">Jadwal Pelaksanaan</h3>
                         <div class="text-sm text-gray-700 space-y-1 font-semibold">
-                            <p><strong>Mulai:</strong>15:30</p>
-                            <p><strong>Selesai:</strong>17:00</p>
+                            <div class="flex">
+                                <div class="w-28 font-medium text-gray-700">Waktu Mulai</div>
+                                <div class="flex items-baseline"><span class="mr-2">:</span> <span>13.30 Wita</span></div>
+                            </div>
+                            <div class="flex">
+                                <div class="w-28 font-medium text-gray-700">Waktu Selesai</div>
+                                <div class="flex items-baseline"><span class="mr-2">:</span> <span>15.00 Wita</span></div>
+                            </div>
                         </div>
                     </div>
 

@@ -30,9 +30,9 @@ class VerifyEmailController extends Controller
         } elseif ($user->hasRole('moderator')) {
             return redirect()->route('moderatorTes');
         } elseif ($user->hasRole('panitia')) {
-            return redirect()->route('panitia.dashboard');
+            return redirect()->intended('/panitia');
         } elseif ($user->hasRole('keuangan')) {
-            return redirect()->route('keuangan.dashboard');
+            return redirect()->intended('/keuangan');
         }
     
         // Fallback

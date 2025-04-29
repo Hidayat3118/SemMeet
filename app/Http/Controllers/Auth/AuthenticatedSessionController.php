@@ -37,9 +37,9 @@ class AuthenticatedSessionController extends Controller
         } elseif ($user->hasRole('moderator')) {
             return redirect()->route('moderatorTes');
         } elseif ($user->hasRole('panitia')) {
-            return redirect()->route('panitia');
+            return redirect()->intended('/panitia');
         } elseif ($user->hasRole('keuangan')) {
-            return redirect()->route('keuangan');
+            return redirect()->intended('/keuangan');
         }
     
         // fallback kalau tidak ada role cocok
