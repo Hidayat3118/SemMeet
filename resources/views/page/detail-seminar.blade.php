@@ -14,10 +14,10 @@
                     </div>
                     {{-- judul + deskripsi --}}
                     <div>
-                        <h3 class="text-3xl font-bold text-blue-400 mb-2">
+                        <h3 class="text-2xl md:text-3xl font-bold text-blue-400 mb-2">
                             Data Driven Future: Kuasai Data Science dengan Platform Azure
                         </h3>
-                        <h2 class="text-2xl font-semibold text-gray-800 my-4">Deskripsi</h2>
+                        <h2 class="text-xl md:text-2xl  font-semibold text-gray-800 my-4">Deskripsi</h2>
                         <p class="text-gray-700 mb-4">
                             Seminar ini akan membawa kamu menjelajahi dunia Data Science secara mendalam, mulai dari
                             pengenalan
@@ -43,7 +43,7 @@
                 <div class="space-y-6">
 
                     <div class="space-y-2 text-sm text-gray-800">
-                        <h3 class="text-xl md:text-2xl lg:text-3xl my-4 font-semibold">Informasi Seminar</h3>
+                        <h3 class="text-xl md:text-2xl  my-4 font-semibold">Informasi Seminar</h3>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Tanggal</div>
@@ -86,7 +86,7 @@
 
                     {{-- Kouta --}}
                     <div class="font-semibold">
-                        <h3 class="text-xl md:text-2xl lg:text-3xl my-4 font-semibold">Kouta Peserta</h3>
+                        <h3 class="text-xl md:text-2xl  my-4 font-semibold">Kouta Peserta</h3>
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-700">Kouta</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span> <span>100</span></div>
@@ -98,7 +98,7 @@
                     </div>
                     {{-- Keikutsertaan --}}
                     <div class="">
-                        <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-2">Keikutsertaan</h3>
+                        <h3 class="text-xl md:text-2xl  font-semibold text-gray-800 mb-2">Keikutsertaan</h3>
                         <p class="text-sm text-gray-600 mb-4">Silakan daftar ke acara seminar untuk mendapatkan pengalaman
                             belajar yang berharga.</p>
                         <button
@@ -110,7 +110,7 @@
                     </div>
                     {{-- jadwal --}}
                     <div class="">
-                        <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-4">Jadwal Pelaksanaan</h3>
+                        <h3 class="text-xl md:text-2xl  font-semibold text-gray-800 mb-4">Jadwal Pelaksanaan</h3>
                         <div class="text-sm text-gray-700 space-y-1 font-semibold">
                             <div class="flex">
                                 <div class="w-28 font-medium text-gray-700">Waktu Mulai</div>
@@ -124,7 +124,7 @@
                     </div>
 
                     <div class="">
-                        <h3 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800 mb-4">Lokasi</h3>
+                        <h3 class="text-xl md:text-2xl  font-semibold text-gray-800 mb-4">Lokasi</h3>
                         <p class="text-sm text-gray-700">
                             📍 LIVE at <span class="text-pink-500 font-semibold">Zoom</span><br>
                             <span class="text-sm text-gray-500">Online</span>

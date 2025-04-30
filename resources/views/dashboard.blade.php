@@ -13,13 +13,15 @@
                 </div>
             </div>
         </div> --}}
-        <section class="max-w-7xl mx-auto">
-            <div class='flex justify-between max-w-xl font-semibold md:text-lg  mx-auto'>
-                <div class="cursor-pointer hover:text-blue-400">Riwayat Event</div>
-                <div class="cursor-pointer hover:text-blue-400">Riwayat Transaksi</div>
-                <div class="cursor-pointer hover:text-blue-400">Sertifikat</div>
-               
-            </div>
-        </section>
+    
+            <section class="max-w-7xl mx-auto">
+                <div class='flex justify-between max-w-xl font-semibold md:text-lg  mx-auto'>
+                    <div class="cursor-pointer hover:text-blue-400"><a href="">Profile</a></div>
+                    <div class="cursor-pointer hover:text-blue-400"><a href="">Riwayat Seminar</a></div>
+                    <div class="cursor-pointer hover:text-blue-400"><a href="">Riwayat Transaksi</a></div>
+                    <div class="cursor-pointer hover:text-blue-400"><a href="">Sertifikat</a></div>           
+                </div>
+            </section>
+    
     </main>
 </x-app-layout>

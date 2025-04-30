@@ -31,54 +31,57 @@ class VoucherResource extends Resource
         return $form
             ->schema([
                 Textarea::make('deskripsi')
-                ->label('Deskripsi')
-                ->required(),
+                    ->label('Deskripsi')
+                    ->required(),
 
-            TextInput::make('code_voucher')
-                ->label('Kode Voucher')
-                ->unique()
-                ->required(),
+                TextInput::make('code_voucher')
+                    ->label('Kode Voucher')
+                    ->unique()
+                    ->required(),
 
-            DateTimePicker::make('tanggal_mulai')
-                ->label('Tanggal Mulai')
-                ->nullable(),
+                DateTimePicker::make('tanggal_mulai')
+                    ->label('Tanggal Mulai')
+                    ->nullable(),
 
-            DateTimePicker::make('tanggal_berakhir')
-                ->label('Tanggal Berakhir')
-                ->nullable(),
+                DateTimePicker::make('tanggal_berakhir')
+                    ->label('Tanggal Berakhir')
+                    ->nullable(),
 
-            TextInput::make('penggunaan_voucher')
-                ->label('Penggunaan Voucher')
-                ->numeric()
-                ->required(),
+                TextInput::make('penggunaan_voucher')
+                    ->label('Penggunaan Voucher')
+                    ->numeric()
+                    ->required(),
 
-            TextInput::make('maksimal_pemakaian')
-                ->label('Maksimal Pemakaian')
-                ->numeric()
-                ->required(),
+                TextInput::make('maksimal_pemakaian')
+                    ->label('Maksimal Pemakaian')
+                    ->numeric()
+                    ->required(),
 
-            TextInput::make('diskon_harga')
-                ->label('Diskon Harga (Rp)')
-                ->numeric()
-                ->default(0),
+                TextInput::make('diskon_harga')
+                    ->label('Diskon Harga (Rp)')
+                    ->numeric()
+                    ->default(0),
 
-            TextInput::make('diskon_persen')
-                ->label('Diskon Persen (%)')
-                ->numeric()
-                ->required(),
+                TextInput::make('diskon_persen')
+                    ->label('Diskon Persen (%)')
+                    ->numeric()
+                    ->required(),
 
-            Select::make('status')
-                ->label('Status')
-                ->options([
-                    'active' => 'Aktif',
-                    'expired' => 'Expired',
-                    'used' => 'Terpakai',
-                ])
-                ->default('active')
-                ->required(),
+                Select::make('status')
+                    ->label('Status')
+                    ->options([
+                        'active' => 'Aktif',
+                        'expired' => 'Expired',
+                        'used' => 'Terpakai',
+                    ])
+                    ->default('active')
+                    
+                    ->disabled()
+                    ->required(),
             ]);
     }
 
+    
     public static function table(Table $table): Table
     {
         return $table

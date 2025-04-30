@@ -18,6 +18,8 @@ use App\Filament\Resources\SeminarResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\SeminarResource\RelationManagers;
 
+use function Laravel\Prompts\select;
+
 class SeminarResource extends Resource
 {
     protected static ?string $model = Seminar::class;
@@ -28,32 +30,44 @@ class SeminarResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-                DatePicker::make('tanggal'),
-                TimePicker::make('waktu_mulai'),
-                TimePicker::make('waktu_selesai'),
+                TextInput::make('nama')->required(),
+                DatePicker::make('tanggal')->required(),
+                TimePicker::make('waktu_mulai')->required(),
+                TimePicker::make('waktu_selesai')->required(),
                 TextInput::make('kuota')
                     ->label('Kuota')
-                    ->numeric(),
+                    ->numeric()->required(),
                 Select::make('status')
                     ->label('Status Seminar')
                     ->options([
                         'draft' => 'Draft',
                         'aktif' => 'aktif',
                         'selesai' => 'Selesai',
-                    ]),
+                    ])->required()->default('draft')->disabled(),
+                Textarea::make('description')->required(),
+                Textarea::make('lokasi')
+                    ->label('Lokasi')
+                    ->rows(2)
+                    ->required(),
+
                 Select::make('mode')
                     ->label('Mode Seminar')
                     ->options([
                         'online' => 'Online',
                         'offline' => 'Offline',
                     ]),
-                Textarea::make('lokasi')
-                    ->label('Alamat Lengkap')
-                    ->rows(2)
-                    ->required(),
 
-                Textarea::make('description'),
+                Select::make('moderator_id')
+                    ->label('Moderator')
+                    ->relationship(
+                        'moderator',  // Nama relasi di model User
+                        'user.name',  // Mengambil nama dari user yang terkait
+                        modifyQueryUsing: fn($query) => $query->whereHas('user.roles', fn($q) => $q->where('name', 'moderator'))
+                    )
+                    ->getOptionLabelFromRecordUsing(fn($record) => $record->user->name ?? '-')
+                    // ->searchable()
+                    ->required(),
+                    
             ]);
     }
 
