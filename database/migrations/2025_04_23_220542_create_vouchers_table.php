@@ -17,8 +17,8 @@ return new class extends Migration
             $table->char('code_voucher')->unique();
             $table->timestamp('tanggal_mulai')->nullable();
             $table->timestamp('tanggal_berakhir')->nullable();
-            $table->integer('penggunaan_voucher');
-            $table->integer('maksimal_pemakaian');
+            $table->integer('penggunaan_voucher')->nullable();
+            $table->integer('maksimal_pemakaian')->nullable();
             $table->integer('diskon_harga')->default(0);
             $table->integer('diskon_persen');
             $table->enum('status', ['active', 'expired', 'used'])->default('active');

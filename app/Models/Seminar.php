@@ -27,9 +27,9 @@ class Seminar extends Model
     public function voucher (){
         return $this->hasMany(Voucher::class);
     }
-
+// perubahan
     public function kategori(){
-        return $this->belongsToMany(Kategori::class);
+        return $this->belongsTo(Kategori::class);
     }
 
     public function keuangan(){
@@ -43,9 +43,9 @@ class Seminar extends Model
     public function moderator(){
         return $this->belongsTo(Moderator::class);
     }
-
+// perubahan
     public function pembicara(){
-        return $this->belongsToMany(Pembicara::class);
+        return $this->belongsTo(Pembicara::class);
     }
     
 }

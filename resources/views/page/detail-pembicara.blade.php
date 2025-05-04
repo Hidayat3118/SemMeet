@@ -24,8 +24,11 @@
                     <div class="">
                         {{-- Media Sosial --}}
                         <div class="mb-2 pb-4">
-                            <h3 class="text-xl md:text-2xl font-semibold mb-4">Pembicara</h3>
-                            <div class="flex space-x-2">
+                            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2 md:mb-3 relative inline-block">
+                                Pembicara
+                                <span class="absolute left-0 bottom-0 translate-y-2 w-20 h-[3px] bg-blue-500 rounded-full"></span>
+                              </h3>
+                            <div class="flex space-x-2 mt-2 md:mt-3 text-xs">
                                 <button class="bg-blue-500 py-2 px-4 rounded-full hover:bg-blue-600 font-semibold border-slate-400 border">
                                     <a href="https://linkedin.com/in/agussuparno" target="_blank"
                                         class="text-white  flex items-center gap-1">
@@ -44,8 +47,11 @@
 
                         {{-- Bio --}}
                         <div class="pb-4 text-justify">
-                            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Bio Saya</h3>
-                            <p class="text-gray-700 leading-relaxed">
+                            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2 md:mb-3 relative inline-block">
+                                Bio Saya
+                                <span class="absolute left-0 bottom-0 translate-y-2 w-20 h-[3px] bg-blue-500 rounded-full"></span>
+                              </h3>
+                            <p class="text-gray-700 mt-2 md:mt-3">
                                 Agus Suparno adalah seorang profesional di bidang data science dengan pengalaman lebih dari
                                 10
                                 tahun
@@ -57,8 +63,12 @@
 
                         {{-- Pengalaman --}}
                         <div class="text-justify">
-                            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2">Pengalaman Saya</h3>
-                            <p class=" text-gray-700">
+                            <h3 class="text-xl md:text-2xl font-semibold text-gray-800 mb-2 md:mb-3 relative inline-block">
+                                Pengalaman Saya
+                                <span class="absolute left-0 bottom-0 translate-y-2 w-20 h-[3px] bg-blue-500 rounded-full"></span>
+                              </h3>
+                                             
+                            <p class=" text-gray-700 mt-2 md:mt-3">
                                 Agus Suparno adalah seorang profesional di bidang data science dengan pengalaman lebih dari
                                 10
                                 tahun

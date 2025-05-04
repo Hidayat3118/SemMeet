@@ -11,21 +11,25 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // 14 atribut id dan timestamps tidak di hitung
         Schema::create('seminars', function (Blueprint $table) {
             $table->id();  
+            $table->string('foto')->nullable(); 
             $table->enum('mode', ['online', 'offline']);
             $table->string('judul');
             $table->text('deskripsi'); 
             $table->decimal('harga', 10, 2); 
-            $table->date('tanggal');
             $table->enum('status', ['draft', 'aktif', 'selesai']);     
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
-            $table->string('lokasi'); 
+            $table->string('lokasi')->nullable(); 
+            $table->string('metting_link')->nullable(); 
             $table->integer('kouta'); 
             $table->foreignId('keuangan_id')->constrained()->onDelete('cascade');
-            $table->foreignId('panitia_id')->constrained()->onDelete('cascade');
+            $table->foreignId('panitia_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('moderator_id')->constrained()->onDelete('cascade');
+            $table->foreignId('pembicara_id')->constrained()->onDelete('cascade');
+            $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

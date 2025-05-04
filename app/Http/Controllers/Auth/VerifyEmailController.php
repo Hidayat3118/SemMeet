@@ -24,15 +24,15 @@ class VerifyEmailController extends Controller
     
         // Redirect berdasarkan role
         if ($user->hasRole('peserta')) {
-            return redirect()->route('peserta');
+            return redirect()->route('dashboard');
         } elseif ($user->hasRole('pembicara')) {
-            return redirect()->route('pembicaraTes');
+            return redirect()->route('dashboard');
         } elseif ($user->hasRole('moderator')) {
-            return redirect()->route('moderatorTes');
+            return redirect()->route('dashboard');
         } elseif ($user->hasRole('panitia')) {
-            return redirect()->intended('/panitia');
+            return redirect()->route('filament.panitia.pages.dashboard');
         } elseif ($user->hasRole('keuangan')) {
-            return redirect()->intended('/keuangan');
+            return redirect()->route('filament.keuangan.pages.dashboard');
         }
     
         // Fallback

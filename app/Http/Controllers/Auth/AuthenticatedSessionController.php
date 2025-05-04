@@ -31,11 +31,11 @@ class AuthenticatedSessionController extends Controller
         $user = auth()->user();
     
         if ($user->hasRole('peserta')) {
-            return redirect()->route('peserta');
-        } elseif ($user->hasRole('pembicara')) {
-            return redirect()->route('pembicaraTes');
+            return redirect()->route('dashboard');
+        } elseif ($user->hasRole('dashboard')) {
+            return redirect()->route('dashboard');
         } elseif ($user->hasRole('moderator')) {
-            return redirect()->route('moderatorTes');
+            return redirect()->route('dashboard');
         } elseif ($user->hasRole('panitia')) {
             return redirect()->route('filament.panitia.pages.dashboard');
         } elseif ($user->hasRole('keuangan')) {

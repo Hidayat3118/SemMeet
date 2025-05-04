@@ -14,12 +14,13 @@ class Pembicara extends Model
 
     protected $guarded = ['id'];
     
-    public function user(){
-        return $this->hasOne(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function seminar(){
-        return $this->belongsToMany(Seminar::class);
+        return $this->hasOne(Seminar::class);
     }
 
     public function kategori(){

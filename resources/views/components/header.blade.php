@@ -51,7 +51,7 @@
                             @endphp
 
                             @if ($user->hasRole('panitia'))
-                                <a href="{{ url('/panitia') }}"
+                                <a href="{{ route('filament.panitia.pages.dashboard') }}"
                                     class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden">
                                     <span
                                         class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-full"></span>
@@ -60,7 +60,7 @@
                                         Panitia</span>
                                 </a>
                             @elseif ($user->hasRole('keuangan'))
-                                <a href="{{ url('/keuangan') }}"
+                                <a href="{{ route('filament.keuangan.pages.dashboard') }}"
                                     class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden">
                                     <span
                                         class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-full"></span>
@@ -69,6 +69,7 @@
                                         Keuangan</span>
                                 </a>
                             @else
+                            {{-- dashboard  --}}
                                 <a href="{{ url('/dashboard') }}"
                                     class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden">
                                     <span

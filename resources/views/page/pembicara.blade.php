@@ -6,7 +6,7 @@
         <x-header></x-header>
         {{-- container max-w-7xl --}}
         <div class="max-w-2xl lg:max-w-7xl mx-auto md:mt-24 py-20">
-            {{-- card pembicara --}}
+            {{-- container --}}
             <section>
                 <div class="my-8 text-center">
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-400 ">

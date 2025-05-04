@@ -6,7 +6,7 @@
         <x-header></x-header>
         {{-- container max-w-7xl --}}
         <div class="max-w-2xl lg:max-w-7xl mx-auto md:mt-24 py-20">
-            {{-- card seminar --}}
+            {{-- container --}}
             <section>
                 <div class="my-8 text-center">
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-400 ">
@@ -16,7 +16,7 @@
                         Kami menghadirkan seminar-seminar menarik yang memberikan wawasan dan inspirasi terbaik untuk Anda
                     </p>
                 </div>
-                {{-- tombol --}}
+                {{-- tombol kategori--}}
                 <div class="flex justify-between flex-col lg:flex-row gap-y-7">
                     <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
                         <button

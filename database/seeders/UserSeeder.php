@@ -50,14 +50,14 @@ class UserSeeder extends Seeder
             'pengalaman' => '5 tahun aktif menjadi moderator di berbagai event besar.',
         ]);
 
-        // Keuangan
-        $keuangan = User::create([
+         // Keuangan
+         $keuangan = User::create([
             'name' => 'Rina Putri',
             'email' => 'rina.keuangan@gmail.com',
             'password' => bcrypt('keuangan123'),
         ]);
         $keuangan->assignRole('keuangan');
-        
+        $keuangan->keuangan()->create(); // Relasi Keuangan
 
         // Panitia
         $panitia = User::create([
@@ -66,6 +66,7 @@ class UserSeeder extends Seeder
             'password' => bcrypt('panitia123'),
         ]);
         $panitia->assignRole('panitia');
+        $panitia->panitia()->create(); // Relasi Panitia
         
     }
 }

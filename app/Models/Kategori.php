@@ -13,7 +13,7 @@ class Kategori extends Model
 
     public function seminar()
     {
-        return $this->belongsToMany(Seminar::class);
+        return $this->hasOne(Seminar::class);
     }
 
     public function moderator(){

@@ -31,7 +31,7 @@ Route::get('/seminar', function () {
     return view('page.seminar');
 });
 
-// detail pembicara
+// detail seminar
 Route::get('/detail-seminar', function () {
     return view('page.detail-seminar');
 });
@@ -47,30 +47,19 @@ Route::get('/detail-moderator', function () {
 
 
 
-// Peserta
-Route::get('/peserta', function () {
-    return view('home');
-})->middleware(['auth', 'verified', 'role:peserta'])->name('peserta');
+// riwayat seminar
 
-// Pembicara
-Route::get('/pembicaraTes', function () {
-    return '<h1>Halo Pembicara</h1>';
-})->middleware(['auth', 'verified', 'role:pembicara'])->name('pembicaraTes');
+Route::get('/riwayat-seminar', function (){
+    return view('page.riwayat-seminar');
+})->name('riwayat-seminar');
 
-// Moderator
-Route::get('/moderatorTes', function () {
-    return '<h1>Hai Moderator</h1>';
-})->middleware(['auth', 'verified', 'role:moderator'])->name('moderatorTes');
+Route::get('/riwayat-transaksi', function (){
+    return view('page.riwayat-transaksi');
+})->name('riwayat-transaksi');
 
-// // Panitia
-// Route::get('/panitia', function(){
-//     return '<h1>Halo Panitia</h1>';
-// })->middleware(['auth', 'verified', 'role:panitia']);
-
-// // Keuangan
-// Route::get('/keuangan', function(){
-//     return '<h1>Bagian Keuangan</h1>';
-// })->middleware(['auth', 'verified', 'role:keuangan']);
+Route::get('/sertifikat', function (){
+    return view('page.sertifikat');
+})->name('sertifikat');
 
 
 require __DIR__ . '/auth.php';
