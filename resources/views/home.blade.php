@@ -90,16 +90,13 @@
                     </div>
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                             @foreach (range(1, 5) as $i)
-                            <div class="swiper-slide px-4 md:px-0">
-                                <a href="/detail-seminar">
-                                    <x-card-seminar
-                                        gambar="https://assets.cdn.dicoding.com/original/event/dos-elevaite_x_dicoding_live_1_unlocking_ai_kunci_teknologi_talenta_masa_depan_logo_170125170540.png"
-                                        judul="Judul {{ $i }}" waktu="12 Juli 2025"
-                                        deskripsi="Pelajari bagaimana kecerdasan buatan membentuk masa depan teknologi dan peran talenta digital dalam ekosistem AI. Seminar ini menghadirkan para ahli industri untuk membahas tren, tantangan, dan peluang karier di era AI." />
-                                </a>
-                            </div>
-                            @endforeach
+                        @forelse ($seminars as $seminar)
+                        <div class="swiper-slide px-4">
+                            <x-card-seminar :seminar="$seminar"/>
+                        </div>
+                    @empty
+                    <p class="text-center col-span-3 text-gray-500">Belum ada data seminar.</p>
+                    @endforelse
                     </div>
 
                     <!-- Swiper Navigation -->

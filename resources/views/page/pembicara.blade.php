@@ -55,15 +55,16 @@
                 </div>
                 {{-- card pembicara --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
-                    @foreach (range(1, 6) as $i)
+                    @forelse ($pembicaras as $pembicara)
                         <div class="swiper-slide px-4">
                             <x-card-pembicara
-                                gambar="https://www.bizhare.id/media/wp-content/uploads/2023/12/1214_Thumbnail_Artikel-Media_Ciri-ciri-Orang-Sukses-Apakah-Anda-Salah-Satunya_.jpg"
-                                nama="Muhammad Anur" jabatan="Kepala Bidang" instansi="PT Mencari Cinta Sejati"
-                                bio="Senior UI/UX Designer di PT Mencari Cinta Sejati dengan 7+ tahun pengalaman merancang produk digital yang berfokus pada user experience. Aktif membagikan insight tentang desain inklusif dan usability." />
+                                gambar="{{ $pembicara->foto ?? 'default.jpg' }}"
+                                nama="{{ $pembicara->nama }}" jabatan="{{ $pembicara->jabatan }}" instansi="{{ $pembicara->instansi }}"
+                                bio="{{ $pembicara->bio }}" />
                         </div>
-                    @endforeach
-
+                        @empty
+                    <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>
+                    @endforelse
                 </div>
             </section>
         </div>

@@ -11,9 +11,9 @@ class Kategori extends Model
 {
     protected $guarded = ['id'];
 
-    public function seminar()
+    public function seminars()
     {
-        return $this->hasOne(Seminar::class);
+        return $this->hasMany(Seminar::class);
     }
 
     public function moderator(){

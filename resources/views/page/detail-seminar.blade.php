@@ -9,32 +9,17 @@
                 {{-- Kiri: Deskripsi --}}
                 <div class="lg:col-span-2 space-y-6">
                     <div class="">
-                        <img src="https://assets.cdn.dicoding.com/original/event/dos-elevaite_x_dicoding_live_1_unlocking_ai_kunci_teknologi_talenta_masa_depan_logo_170125170540.png"
+                        <img src="{{ $seminar->foto }}"
                             alt="Poster" class="w-full h-[400px] md:h-[700px] rounded-lg mb-6 overflow-hidden object-cover">
                     </div>
                     {{-- judul + deskripsi --}}
                     <div>
                         <h3 class="text-2xl md:text-3xl font-bold text-blue-400 mb-2">
-                            Data Driven Future: Kuasai Data Science dengan Platform Azure
+                        {{ $seminar->judul }}   
                         </h3>
                         <h2 class="text-xl md:text-2xl  font-semibold text-gray-800 my-4">Deskripsi</h2>
                         <p class="text-gray-700 mb-4">
-                            Seminar ini akan membawa kamu menjelajahi dunia Data Science secara mendalam, mulai dari
-                            pengenalan
-                            konsep dasar hingga implementasi nyata dalam dunia industri. Kamu akan memahami bagaimana data
-                            dapat
-                            menjadi aset penting dalam pengambilan keputusan serta bagaimana teknologi cloud seperti
-                            Microsoft
-                            Azure mampu mempercepat proses analisis dan visualisasi data secara efektif.
-                            <br><br>
-                            Bersama para ahli di bidangnya, seminar ini juga akan membahas berbagai tools dan layanan Azure
-                            yang
-                            mendukung pengembangan solusi berbasis data. Tidak hanya itu, kamu juga akan mendapatkan insight
-                            mengenai peluang karier di era digital saat ini, khususnya di bidang Data Science yang semakin
-                            dibutuhkan oleh berbagai sektor industri.
-                            <br><br>
-                            Cocok bagi mahasiswa, profesional muda, atau siapa saja yang ingin meningkatkan pemahaman mereka
-                            terhadap teknologi data modern dan mempersiapkan diri untuk tantangan dunia kerja masa depan.
+                        {{ $seminar->deskripsi }}
                         </p>
 
                     </div>
@@ -47,38 +32,39 @@
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Tanggal</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>21 Maret 2025</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ \Carbon\Carbon::parse($seminar->tanggal)->format('d M Y') }}</span></div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Waktu</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>15:30 - 17:00 WIB</span>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ \Carbon\Carbon::parse($seminar->waktu_mulai)->format('H:i') }} - 
+                            {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }}</span>
                             </div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Moderator</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>ilmi.barokah</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->moderator->name ?? '-' }}</span></div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Pembicara</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>agus.suparno</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->pembicara->name ?? '-' }}</span></div>
                         </div>
 
-                        <div class="flex">
-                            <div class="w-28 font-medium text-gray-600">Harga</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>Rp. 75.000.00</span></div>
+                        <div class="flex">  
+                            <div class="w-28 font-medium text-gray-600">Biaya</div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>Rp. {{ number_format($seminar->harga, 0, ',', '.') }}</span></div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Status</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>Online</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->status }}</span></div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Lokasi</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>Online (Zoom)</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->lokasi }}</span></div>
                         </div>
                     </div>
 
@@ -89,7 +75,7 @@
                         <h3 class="text-xl md:text-2xl  my-4 font-semibold">Kouta Peserta</h3>
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-700">Kouta</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>100</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->kouta }}</span></div>
                         </div>
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-700">Sisa Kouta</div>
@@ -114,11 +100,11 @@
                         <div class="text-sm text-gray-700 space-y-1 font-semibold">
                             <div class="flex">
                                 <div class="w-28 font-medium text-gray-700">Waktu Mulai</div>
-                                <div class="flex items-baseline"><span class="mr-2">:</span> <span>13.30 Wita</span></div>
+                                <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ \Carbon\Carbon::parse($seminar->waktu_mulai)->format('H:i') }}</span></div>
                             </div>
                             <div class="flex">
                                 <div class="w-28 font-medium text-gray-700">Waktu Selesai</div>
-                                <div class="flex items-baseline"><span class="mr-2">:</span> <span>15.00 Wita</span></div>
+                                <div class="flex items-baseline"><span class="mr-2">:</span> <span> {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }}</span></div>
                             </div>
                         </div>
                     </div>
@@ -126,8 +112,8 @@
                     <div class="">
                         <h3 class="text-xl md:text-2xl  font-semibold text-gray-800 mb-4">Lokasi</h3>
                         <p class="text-sm text-gray-700">
-                            📍 LIVE at <span class="text-pink-500 font-semibold">Zoom</span><br>
-                            <span class="text-sm text-gray-500">Online</span>
+                            📍 LIVE at <span class="text-pink-500 font-semibold">{{ $seminar->lokasi }} </span><br>
+                            <span class="text-sm text-gray-500">{{ $seminar->mode }}</span>
                         </p>
                     </div>
                 </div>

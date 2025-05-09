@@ -19,16 +19,20 @@
                 {{-- tombol kategori--}}
                 <div class="flex justify-between flex-col lg:flex-row gap-y-7">
                     <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
-                        <button
-                            class="px-4 py-2 bg-blue-500 text-white rounded-full border border-gray-300 shadow-sm">All</button>
-                        <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Front
-                            End Developer</button>
-                        <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Back
-                            End Developer</button>
-                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">UI
-                            UX Design</button>
+                    {{-- Tombol All --}}
+                        <a href="{{ route('seminar.index') }}">
+                            <button class="px-4 py-2 {{ request()->routeIs('seminar.index') ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full border border-gray-300 shadow-sm">
+                                All
+                            </button>
+                        </a>
+                        {{-- Tombol per kategori --}}
+                        @foreach ($kategoris as $kategori)
+                        <a href="{{ route('seminar.kategori', $kategori->id) }}">
+                            <button class="px-4 py-2 {{ request()->is('seminar/kategori/'.$kategori->id) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full border border-gray-300 shadow-sm">
+                                {{ $kategori->nama }}
+                            </button>
+                        </a>
+                        @endforeach
                     </div>
                     {{-- serch --}}
                     <div class="flex gap-6 lg:gap-10 mx-6">
@@ -55,14 +59,13 @@
                 </div>
                 {{-- card seminar --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
-                    @foreach (range(1, 6) as $i)
+                @forelse ($seminars as $seminar)
                         <div class="swiper-slide px-4">
-                            <x-card-seminar
-                                gambar="https://assets.cdn.dicoding.com/original/event/dos-elevaite_x_dicoding_live_1_unlocking_ai_kunci_teknologi_talenta_masa_depan_logo_170125170540.png"
-                                judul="Judul {{ $i }}" waktu="12 Juli 2025"
-                                deskripsi="Pelajari bagaimana kecerdasan buatan membentuk masa depan teknologi dan peran talenta digital dalam ekosistem AI. Seminar ini menghadirkan para ahli industri untuk membahas tren, tantangan, dan peluang karier di era AI." />
+                            <x-card-seminar :seminar="$seminar"/>
                         </div>
-                    @endforeach
+                    @empty
+                    <p class="text-center col-span-3 text-gray-500">Belum ada data seminar.</p>
+                    @endforelse
 
                 </div>
             </section>

@@ -41,7 +41,7 @@ class Seminar extends Model
     }
 
     public function moderator(){
-        return $this->belongsTo(Moderator::class);
+        return $this->belongsTo(Moderator::class,);
     }
 // perubahan
     public function pembicara(){

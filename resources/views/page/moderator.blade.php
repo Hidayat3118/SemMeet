@@ -55,15 +55,16 @@
                 </div>
                 {{-- card pembicara --}}
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
-                    @foreach (range(1, 6) as $i)
+                    @forelse ($moderators as $moderator)
                         <div class="swiper-slide px-4">
                             <x-card-moderator
-                                gambar="https://cdn1-production-images-kly.akamaized.net/DWnBe8PTM828LOmQYXTgeal7wZc=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4187379/original/051148000_1665460757-talking-audience.jpg"
-                                nama="Muhammad Rizqi Ramadan" jabatan='Sekertaris' instansi='PT Bongkar Turet'
-                                bio="Senior Front End Developer di PT Bongkar Turet dengan 7+ tahun pengalaman membangun antarmuka web yang responsif dan ramah pengguna. Fokus pada performa, aksesibilitas, dan kolaborasi lintas tim" />
+                                gambar="{{ $moderator->foto ?? 'default.jpg' }}"
+                                nama="{{ $moderator->nama }}" jabatan='{{ $moderator->jabatan }}' instansi='{{ $moderator->instansi }}'
+                                bio="{{ $moderator->bio }}" />
                         </div>
-                    @endforeach
-
+                        @empty
+                        <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>
+                        @endforelse
                 </div>
             </section>
         </div>
