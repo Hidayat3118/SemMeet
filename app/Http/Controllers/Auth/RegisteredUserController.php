@@ -33,7 +33,7 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'in:peserta,pembicara,moderator,penitia,keuangan'], 
+            'role' => ['required', 'in:peserta,pembicara,moderator,penitia,keuangan'],
         ]);
 
         $user = User::create([
@@ -44,6 +44,25 @@ class RegisteredUserController extends Controller
 
         // Assign role dari input
         $user->assignRole($request->role);
+
+        // Isi tabel relasi berdasarkan role
+        switch ($request->role) {
+            case 'keuangan':
+                $user->keuangan()->create();
+                break;
+            case 'peserta':
+                $user->peserta()->create();
+                break;
+            case 'pembicara':
+                $user->pembicara()->create();
+                break;
+            case 'moderator':
+                $user->moderator()->create();
+                break;
+            case 'penitia':
+                $user->penitia()->create();
+                break;
+        }
 
         event(new Registered($user));
 

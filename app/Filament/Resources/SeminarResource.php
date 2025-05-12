@@ -80,12 +80,13 @@ class SeminarResource extends Resource
                         'online' => 'Online',
                         'offline' => 'Offline',
                     ])
+                    ->default('offline')
                     ->required()
                     ->reactive(), 
 
                     // perubahan
-                TextInput::make('zoom_link')
-                    ->label('Link Zoom')
+                TextInput::make('metting_link')
+                    ->label('Metting Link')
                     ->visible(fn($get) => $get('mode') === 'online') // hanya muncul jika online
                     ->url()
                     ->required(fn($get) => $get('mode') === 'online'),
@@ -170,6 +171,9 @@ class SeminarResource extends Resource
                 TextColumn::make('lokasi')
                     ->label('Lokasi'),
 
+                TextColumn::make('metting_link')
+                    ->label('Metting Link'),
+
                 TextColumn::make('mode')
                     ->label('Mode'),
 
@@ -192,8 +196,8 @@ class SeminarResource extends Resource
 
                 ImageColumn::make('foto')
                     ->disk('public')
-                    ->label('Foto')
-                    ->circular(), // opsional agar tampil bulat
+                    ->label('Foto'),
+                    // ->circular(), // opsional agar tampil bulat
 
 
                 // Tables\Columns\Badge::make('status')

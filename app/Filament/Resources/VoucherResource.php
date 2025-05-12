@@ -107,7 +107,8 @@ class VoucherResource extends Resource
                     ->label('Deskripsi'),
 
                 TextColumn::make('code_voucher')
-                    ->label('Kode Voucher'),
+                    ->label('Kode Voucher')
+                    ->copyable(),
 
                 TextColumn::make('tanggal_mulai')
                     ->label('Tanggal Mulai')

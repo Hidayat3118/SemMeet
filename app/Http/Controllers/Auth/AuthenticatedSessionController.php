@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
     
         if ($user->hasRole('peserta')) {
             return redirect()->route('dashboard');
-        } elseif ($user->hasRole('dashboard')) {
+        } elseif ($user->hasRole('pembicara')) {
             return redirect()->route('dashboard');
         } elseif ($user->hasRole('moderator')) {
             return redirect()->route('dashboard');
@@ -42,7 +42,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('filament.keuangan.pages.dashboard');
         }
     
-        // fallback kalau tidak ada role cocok
+      
         return redirect('/'); // atau abort(403);
     }
     
