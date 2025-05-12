@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeminarController;
@@ -64,12 +65,11 @@ Route::get('/sertifikat', function (){
     return view('page.sertifikat');
 })->name('sertifikat');
 
+//home
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //seminar
 Route::get('/seminar', [SeminarController::class, 'index'])->name('seminar.index');
-
-// home seminar
-Route::get('/', [SeminarController::class, 'home'])->name('home');
 
 //detail-seminar
 Route::get('/seminar/{id}', [SeminarController::class, 'show'])->name('seminar.show');
@@ -78,9 +78,15 @@ Route::get('/seminar/{id}', [SeminarController::class, 'show'])->name('seminar.s
 Route::get('/seminar/kategori/{id}', [SeminarController::class, 'byKategori'])->name('seminar.kategori');
 
 //moderator
-Route::get('/moderator', [ModeratorController::class, 'index']);
+Route::get('/moderator', [ModeratorController::class, 'index'])->name('moderator.index');
+
+//detail-moderator
+Route::get('/moderator/{id}', [ModeratorController::class, 'show'])->name('moderator.show');
 
 //pembicara
-Route::get('/pembicara', [PembicaraController::class, 'index']);
+Route::get('/pembicara', [PembicaraController::class, 'index'])->name('pembicara.index');
+
+//detail-pembicara
+Route::get('/pembicara/{id}', [PembicaraController::class, 'show'])->name('pembicara.show');
 
 require __DIR__ . '/auth.php';

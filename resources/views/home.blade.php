@@ -119,14 +119,13 @@
             </div>
             <div class="swiper mySwiper2">
                 <div class="swiper-wrapper">
-                    @foreach (range(1, 5) as $i)
-                        <div class="swiper-slide px-4 md:px-0">
-                            <x-card-pembicara
-                                gambar="https://www.bizhare.id/media/wp-content/uploads/2023/12/1214_Thumbnail_Artikel-Media_Ciri-ciri-Orang-Sukses-Apakah-Anda-Salah-Satunya_.jpg"
-                                nama="Anur" jabatan="Kepala Bidang" instansi="PT Mencari Cinta Sejati"
-                                bio="Senior UI/UX Designer di PT Mencari Cinta Sejati dengan 7+ tahun pengalaman merancang produk digital yang berfokus pada user experience. Aktif membagikan insight tentang desain inklusif dan usability." />
+                   @forelse ($pembicaras as $pembicara)
+                        <div class="swiper-slide px-4">
+                            <x-card-pembicara :pembicara="$pembicara"/>
                         </div>
-                    @endforeach
+                        @empty
+                    <p class="text-center col-span-3 text-gray-500">Belum ada data pembicara.</p>
+                    @endforelse
                 </div>
 
                 <!-- Swiper Navigation -->
@@ -148,14 +147,13 @@
             </div>
             <div class="swiper mySwiper3 ">
                 <div class="swiper-wrapper">
-                    @foreach (range(1, 5) as $i)
-                        <div class="swiper-slide px-4 md:px-0">
-                            <x-card-moderator
-                                gambar="https://cdn1-production-images-kly.akamaized.net/DWnBe8PTM828LOmQYXTgeal7wZc=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4187379/original/051148000_1665460757-talking-audience.jpg"
-                                nama="Muhammad Rizqi Ramadan" jabatan='Sekertaris' instansi='PT Bongkar Turet'
-                                bio="Senior Front End Developer di PT Bongkar Turet dengan 7+ tahun pengalaman membangun antarmuka web yang responsif dan ramah pengguna. Fokus pada performa, aksesibilitas, dan kolaborasi lintas tim" />
+                   @forelse ($moderators as $moderator)
+                        <div class="swiper-slide px-4">
+                            <x-card-moderator :moderator="$moderator" />
                         </div>
-                    @endforeach
+                        @empty
+                        <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>
+                        @endforelse
                 </div>
 
                 <!-- Swiper Navigation -->

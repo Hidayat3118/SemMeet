@@ -57,10 +57,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
                     @forelse ($moderators as $moderator)
                         <div class="swiper-slide px-4">
-                            <x-card-moderator
-                                gambar="{{ $moderator->foto ?? 'default.jpg' }}"
-                                nama="{{ $moderator->nama }}" jabatan='{{ $moderator->jabatan }}' instansi='{{ $moderator->instansi }}'
-                                bio="{{ $moderator->bio }}" />
+                            <x-card-moderator :moderator="$moderator" />
                         </div>
                         @empty
                         <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>

@@ -12,4 +12,11 @@ class ModeratorController extends Controller
         $moderators = Moderator::latest()->get();
         return view('page.moderator', compact('moderators'));
     }
+    
+     public function show($id)
+    {
+        $moderator = Moderator::findOrFail($id);
+        return view('page.detail-moderator', compact('moderator'));
+    }
+
 }

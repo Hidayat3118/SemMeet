@@ -12,4 +12,11 @@ class PembicaraController extends Controller
         $pembicaras = Pembicara::latest()->get();
         return view('page.pembicara', compact('pembicaras'));
     }
+
+     public function show($id)
+    {
+        $pembicara = Pembicara::findOrFail($id);
+        return view('page.detail-pembicara', compact('pembicara'));
+    }
+
 }
