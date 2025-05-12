@@ -57,7 +57,6 @@ class VoucherResource extends Resource
                 TextInput::make('penggunan_voucher')
                     ->label('Penggunan Voucher')
                     ->numeric()
-                    ->nullable()
                     ->disabled(),
 
                 TextInput::make('diskon_harga')

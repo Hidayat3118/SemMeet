@@ -13,7 +13,8 @@ use App\Http\Controllers\PembicaraController;
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    // , 'verified'
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,9 +45,15 @@ Route::get('/detail-seminar', function () {
 Route::get('/detail-pembicara', function () {
     return view('page.detail-pembicara');
 });
+
 // detail moderator
 Route::get('/detail-moderator', function () {
     return view('page.detail-moderator');
+});
+
+// detail pendaftaran
+Route::get('/detail-pendaftaran', function () {
+    return view('page.detail-pendaftaran');
 });
 
 
@@ -56,6 +63,10 @@ Route::get('/detail-moderator', function () {
 Route::get('/riwayat-seminar', function (){
     return view('page.riwayat-seminar');
 })->name('riwayat-seminar');
+
+Route::get('/riwayat-pendaftaran', function (){
+    return view('page.riwayat-pendaftaran');
+})->name('riwayat-pendaftaran');
 
 Route::get('/riwayat-transaksi', function (){
     return view('page.riwayat-transaksi');

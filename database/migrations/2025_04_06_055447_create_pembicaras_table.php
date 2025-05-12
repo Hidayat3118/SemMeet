@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('linkend')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('kategori_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 

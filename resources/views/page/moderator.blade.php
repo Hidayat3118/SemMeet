@@ -19,16 +19,7 @@
                 {{-- tombol --}}
                 <div class="flex justify-between flex-col lg:flex-row gap-y-7">
                     <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
-                        <button
-                            class="px-4 py-2 bg-blue-500 text-white rounded-full border border-gray-300 shadow-sm">All</button>
-                        <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Front
-                            End Developer</button>
-                        <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Back
-                            End Developer</button>
-                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">UI
-                            UX Design</button>
+                       
                     </div>
                     {{-- serch --}}
                     <div class="flex gap-6 lg:gap-10  mx-6">

@@ -197,6 +197,8 @@ class SeminarResource extends Resource
                 ImageColumn::make('foto')
                     ->disk('public')
                     ->label('Foto'),
+
+                    
                     // ->circular(), // opsional agar tampil bulat
 
 

@@ -3,9 +3,10 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Seminar; // Model Seminar
-use Illuminate\Support\Str; // Untuk generate string random
-use Carbon\Carbon; // Untuk manipulasi waktu
+use App\Models\Seminar;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
+use Faker\Factory as Faker;
 
 class SeminarSeeder extends Seeder
 {
@@ -14,9 +15,10 @@ class SeminarSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 1; $i <= 20; $i++) {
+        $faker = Faker::create();
+        for ($i = 1; $i <= 5; $i++) {
             Seminar::create([
-                'foto' => null,
+                'foto' => null, 
                 'mode' => ['online', 'offline'][rand(0, 1)],
                 'judul' => 'Seminar ke-' . $i,
                 'deskripsi' => 'Deskripsi lengkap untuk seminar ke-' . $i,
