@@ -43,6 +43,7 @@ class UserSeeder extends Seeder
                 'instansi' => $faker->company,
                 'bio' => $faker->paragraph,
                 'pengalaman' => $faker->sentence,
+                'kategori_id' => rand(1, 5),
             ]);
         }
 
