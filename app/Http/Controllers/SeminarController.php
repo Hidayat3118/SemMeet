@@ -19,14 +19,6 @@ class SeminarController extends Controller
         return view('page.seminar', compact('seminars', 'kategoris'));
     }
 
-    public function home()
-    {
-        // Mengambil 3 seminar terbaru, bisa kamu sesuaikan jumlahnya
-        $seminars = Seminar::latest()->take(3)->get();
-
-        return view('home', compact('seminars'));
-    }
-
     public function show($id)
     {
         $seminar = Seminar::with(['moderator', 'pembicara'])->where('id', $id)->firstOrFail();

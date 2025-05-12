@@ -9,12 +9,12 @@
                 {{-- Foto Pembicara --}}
                 <div class="md:col-span-1 flex flex-col justify-center">
                     <div class="flex justify-center">
-                        <img src="https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg" alt="Foto Pembicara"
+                        <img src="{{ $pembicara->foto ?? 'default.jpg' }}" alt="Foto Pembicara"
                             class="w-60 h-60 object-cover rounded-full border-4 border-blue-300 shadow-lg">
                     </div>
                     <div class="flex justify-center flex-col text-center mt-8">
-                        <h2 class="text-3xl font-bold">Anur Tambang</h2>
-                        <p class="text-gray-600 text-lg font-medium"> <span class="text-blue-500">Microsoft Indonesia</span>
+                        <h2 class="text-3xl font-bold">{{ $pembicara->user->name ?? '-' }}</h2>
+                        <p class="text-gray-600 text-lg font-medium"> <span class="text-blue-500">{{ $pembicara->instansi }}</span>
                         </p>
                     </div>
                 </div>
@@ -52,12 +52,7 @@
                                 <span class="absolute left-0 bottom-0 translate-y-2 w-20 h-[3px] bg-blue-500 rounded-full"></span>
                               </h3>
                             <p class="text-gray-700 mt-2 md:mt-3">
-                                Agus Suparno adalah seorang profesional di bidang data science dengan pengalaman lebih dari
-                                10
-                                tahun
-                                di industri teknologi. Ia telah bekerja di berbagai proyek transformasi digital, serta aktif
-                                menjadi
-                                pembicara dalam konferensi teknologi nasional dan internasional.
+                                {{ $pembicara->bio }}
                             </p>
                         </div>
 

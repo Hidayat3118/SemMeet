@@ -57,14 +57,12 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
                     @forelse ($pembicaras as $pembicara)
                         <div class="swiper-slide px-4">
-                            <x-card-pembicara
-                                gambar="{{ $pembicara->foto ?? 'default.jpg' }}"
-                                nama="{{ $pembicara->nama }}" jabatan="{{ $pembicara->jabatan }}" instansi="{{ $pembicara->instansi }}"
-                                bio="{{ $pembicara->bio }}" />
+                            <x-card-pembicara :pembicara="$pembicara"/>
                         </div>
                         @empty
                     <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>
                     @endforelse
+                    
                 </div>
             </section>
         </div>
