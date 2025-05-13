@@ -192,7 +192,7 @@ class SeminarResource extends Resource
                     ->label('Kuota'),
 
                 TextColumn::make('harga')
-                    ->label('Harga'),
+                    ->label('Biaya'),
 
                 ImageColumn::make('foto')
                     ->disk('public')
