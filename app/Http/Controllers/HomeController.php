@@ -11,9 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $seminars = Seminar::latest()->take(3)->get(); // 3 seminar terbaru
-        $pembicaras = Pembicara::with('user')->latest()->take(3)->get(); // 3 pembicara terbaru
-        $moderators = Moderator::with('user')->latest()->take(3)->get(); // 3 pembicara terbaru
+        $seminars = Seminar::latest()->take(10)->get(); // 3 seminar terbaru
+        $pembicaras = Pembicara::with('user')->latest()->take(10)->get(); // 3 pembicara terbaru
+        $moderators = Moderator::with('user')->latest()->take(10)->get(); // 3 pembicara terbaru
 
         return view('home', compact('seminars', 'pembicaras', 'moderators'));
     }

@@ -31,7 +31,7 @@ class SeminarResource extends Resource
 {
     protected static ?string $model = Seminar::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form
     {
@@ -150,6 +150,7 @@ class SeminarResource extends Resource
 
                 FileUpload::make('foto')
                     ->image()
+                    ->disk('public') // WAJIB
                     ->imagePreviewHeight('100')
                     ->directory('foto-seminar')
                     ->required(false)

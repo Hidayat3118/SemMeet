@@ -27,7 +27,9 @@ class KeuanganPanelProvider extends PanelProvider
             ->path('keuangan')
             // ->homeUrl('/keuangan') 
             ->colors([
-                'primary' => Color::Amber,
+                'gray' => Color::Stone,
+                'info' => Color::Blue,
+                'primary' => Color::Blue,
             ])
             ->discoverResources(in: app_path('Filament/Keuangan/Resources'), for: 'App\\Filament\\Keuangan\\Resources')
             ->discoverPages(in: app_path('Filament/Keuangan/Pages'), for: 'App\\Filament\\Keuangan\\Pages')
