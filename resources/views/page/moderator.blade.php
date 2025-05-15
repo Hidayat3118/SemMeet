@@ -10,7 +10,7 @@
             <section>
                 <div class="my-8 text-center">
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-400 ">
-                        Pembicara Terbaru
+                        Moderator Terbaru
                     </h1>
                     <p class="text-gray-600 text-lg md:py-2">
                         Dapatkan wawasan eksklusif dari para ahli dan tokoh inspiratif di bidangnya

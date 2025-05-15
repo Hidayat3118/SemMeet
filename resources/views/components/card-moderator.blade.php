@@ -4,7 +4,8 @@
     <article
         class="overflow-hidden rounded-xl shadow-md transition-all duration-300 ease-in-out hover:shadow-xl bg-white border border-slate-300 cursor-pointer">
         <div class="flex flex-col items-center p-6 space-y-4">
-            <img alt="Foto {{ $moderator->user->name ?? '-' }}" src="{{ $moderator->foto ?? 'default.jpg' }}"
+            <img alt="Foto {{ $moderator->user->name ?? '-' }}"
+                src="{{ $moderator->foto ? asset('storage/' . $moderator->foto) : asset('img/profil.png') }}"
                 class="w-32 h-32 object-cover rounded-full border-4 border-blue-100 shadow-sm transition duration-300 hover:scale-105" />
 
             <div class="text-center space-y-1">
@@ -36,4 +37,3 @@
         </p>
     </div>
 </article> --}}
-

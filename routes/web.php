@@ -57,6 +57,11 @@ Route::get('/detail-pendaftaran', function () {
     return view('page.detail-pendaftaran');
 });
 
+// tiket
+Route::get('/tiket', function () {
+    return view('page.tiket');
+});
+
 
 
 // riwayat seminar

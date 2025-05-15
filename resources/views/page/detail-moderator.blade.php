@@ -9,7 +9,7 @@
                 {{-- Foto Moderator --}}
                 <div class="md:col-span-1 flex flex-col justify-center">
                     <div class="flex justify-center">
-                        <img src="{{ $moderator->foto ?? 'default.jpg' }}" alt="Foto Moderator"
+                        <img src="{{ $moderator->foto ? asset('storage/' . $moderator->foto) : asset('img/profil.png') }}"
                             class="w-60 h-60 object-cover rounded-full border-4 border-blue-300 shadow-lg">
                     </div>
                     <div class="flex justify-center flex-col text-center mt-8">

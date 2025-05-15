@@ -9,7 +9,8 @@
             <div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded-xl border border-slate-200 shadow-lg shadow-blue-200">
                 <div class="max-w-lg flex justify-center flex-col mx-auto">
                     <h2 class="text-2xl md:text-3xl font-bold text-blue-400 text-center mb-2">Pendaftaran Kamu</h2>
-                    <p class="text-center text-gray-500 mb-8 md:mb-12 text-lg md:text-xl md:mt-4 mt-2">Berikut adalah informasi pembayaran
+                    <p class="text-center text-gray-500 mb-8 md:mb-12 text-lg md:text-xl md:mt-4 mt-2">Berikut adalah
+                        informasi pembayaran
                         yang telah terdaftar atas nama
                         Anda.</p>
                 </div>
@@ -81,12 +82,21 @@
                     </div>
                 </div>
 
-                <!-- Tombol Kembali -->
-                <div class="mt-10 flex justify-end font-bold">
-                    <a href="{{ route('home') }}"
-                        class="inline-flex items-center bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
-                        <i class="fa-solid fa-arrow-left mr-2 "></i> Kembali
-                    </a>
+                <div class="flex justify-between md:px-24 pt-4">
+                    <!-- Tombol Kembali -->
+                    <div class="mt-10 flex justify-start font-bold">
+                        <a href="{{ route('home') }}"
+                            class="inline-flex items-center bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
+                            <i class="fa-solid fa-arrow-left mr-2 "></i> Kembali
+                        </a>
+                    </div>
+
+                    <div
+                        class="mt-10 flex items-center justify-center bg-blue-500 py-2 px-4 rounded-full text-white font-bold w-32  cursor-pointer hover:bg-blue-600">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span class="pl-2">Daftar</span>
+                    </div>
+
                 </div>
             </div>
 

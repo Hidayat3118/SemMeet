@@ -162,6 +162,7 @@ class SeminarResource extends Resource
     {
         return $table
             ->columns([
+                
                 TextColumn::make('judul')
                     ->label('Judul')
                     ->searchable(),

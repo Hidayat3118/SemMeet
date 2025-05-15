@@ -9,7 +9,7 @@
                 {{-- Foto Pembicara --}}
                 <div class="md:col-span-1 flex flex-col justify-center">
                     <div class="flex justify-center">
-                        <img src="{{ $pembicara->foto ?? 'default.jpg' }}" alt="Foto Pembicara"
+                        <img src="{{ $pembicara->foto ? asset('storage/' . $pembicara->foto) : asset('img/profil.png') }}"
                             class="w-60 h-60 object-cover rounded-full border-4 border-blue-300 shadow-lg">
                     </div>
                     <div class="flex justify-center flex-col text-center mt-8">

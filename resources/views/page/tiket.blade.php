@@ -29,18 +29,18 @@
 
                         <div class=" grid grid-cols-2">
                             <div>
-                                <div class="text-xs font-bold text-gray-500 uppercase">Tanggal</div>
-                                <div class="text-base font-semibold text-gray-800 tracking-wide">James Doe</div>
+                                <div class="text-xs font-bold text-gray-500 uppercase">Lokasi</div>
+                                <div class="text-base font-semibold text-gray-800 tracking-wide">Banjarmasin, Handil Bakti</div>
                             </div>
-                            <div class="">
+                            {{-- <div class="">
                                 <div class="text-xs font-bold text-gray-500 uppercase">Name of Passenger</div>
                                 <div class="text-base font-semibold text-gray-800 tracking-wide">James Doe</div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <div class="grid grid-cols-2 ">
                             <div>
-                                <div class="text-xs font-bold text-gray-500 uppercase">Tanggal</div>
+                                <div class="text-xs font-bold text-gray-500 uppercase">Tanggal Seminar</div>
                                 <div class="text-sm font-semibold text-gray-800">4 Juni 2025</div>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
 
-                        <div class="text-xs  mt-6 tracking-wider">
+                        <div class="text-xs  mt-6 tracking-wider mt-10">
                            Datang Ke Seminar 15 Menit Sebelum Mulai
                         </div>
                     </div>

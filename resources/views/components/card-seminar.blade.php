@@ -3,7 +3,8 @@
 <a href="{{ route('seminar.show', $seminar->id) }}"
    class="block overflow-hidden rounded-2xl shadow-md bg-white transition duration-300 hover:shadow-xl group border border-slate-300">
     <div class="relative overflow-hidden">
-        <img src="{{ $seminar->foto ?? asset('images/default.jpg') }}" alt="{{ $seminar->judul }}"
+        {{-- ini yang ubah --}}
+        <img src="{{ $seminar->foto ? asset('storage/' . $seminar->foto) : asset('images/default.jpg') }}"
             class="h-72 w-full object-cover transition-transform duration-300 group-hover:scale-105" />
     </div>
 
