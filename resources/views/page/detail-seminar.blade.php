@@ -44,12 +44,12 @@
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Moderator</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->moderator->name ?? '-' }}</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->moderator->user->name ?? '-' }}</span></div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Pembicara</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->pembicara->name ?? '-' }}</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $seminar->pembicara->user->name ?? '-' }}</span></div>
                         </div>
 
                         <div class="flex">  
@@ -87,12 +87,25 @@
                         <h3 class="text-xl md:text-2xl  font-semibold text-gray-800 mb-2">Keikutsertaan</h3>
                         <p class="text-sm text-gray-600 mb-4">Silakan daftar ke acara seminar untuk mendapatkan pengalaman
                             belajar yang berharga.</p>
-                        <button
-                            class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600"
-                            disabled>
-                            <i class="fa-solid fa-cart-shopping "></i>
-                            <p>Daftar</p>
-                        </button>
+                            @auth
+    <a href="/detail-pendaftaran">
+        <button
+            class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p>Daftar</p>
+        </button>
+    </a>
+@else
+    <a href="{{ route('login') }}">
+        <button
+            class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
+            <i class="fa-solid fa-right-to-bracket"></i>
+            <p>Login untuk Daftar</p>
+        </button>
+    </a>
+@endauth
+
+                                             
                     </div>
                     {{-- jadwal --}}
                     <div class="">

@@ -20,8 +20,8 @@ class Kategori extends Model
     //     return $this->belongsToMany(Moderator::class);
     // }
 
-    public function pembicara(){
-        return $this->belongsToMany(Pembicara::class);
+    public function pembicaras(){
+        return $this->hasMany(Pembicara::class);
     }
 
 

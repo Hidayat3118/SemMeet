@@ -21,7 +21,7 @@
                         <i class="fa-regular fa-user text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Nama</p>
-                            <p>Ahmad Biawak Ramadan</p>
+                            <p>{{ $peserta->user->name }}</p>
                         </div>
                     </div>
 
@@ -30,7 +30,7 @@
                         <i class="fa-solid fa-chalkboard text-xl text-gray-700 mr-3"></i>
                         <div class=" w-full">
                             <p class="text-blue-400 font-semibold">Judul Seminar</p>
-                            <p>Cara Membuat Tampilan web yang Modern</p>
+                            <p>a</p>
                         </div>
                     </div>
 
@@ -39,7 +39,7 @@
                         <i class="fa-regular fa-envelope text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Email</p>
-                            <p>anurchan@gmail.com</p>
+                            <p>{{ $peserta->user->email }}</p>
                         </div>
                     </div>
 
@@ -67,7 +67,7 @@
                         <i class="fa-solid fa-dollar-sign text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Jumlah Biaya</p>
-                            <p>Rp 50.000,00</p>
+                            <p>a</p>
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@
 
                 <!-- Tombol Kembali -->
                 <div class="mt-10 flex justify-end font-bold">
-                    <a href="#"
+                    <a href="{{ route('home') }}"
                         class="inline-flex items-center bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
                         <i class="fa-solid fa-arrow-left mr-2 "></i> Kembali
                     </a>

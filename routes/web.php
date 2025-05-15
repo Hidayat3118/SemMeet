@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\ModeratorController;
 use App\Http\Controllers\PembicaraController;
+use App\Http\Controllers\PendaftaranController;
 
 // Route::get('/tes', function () {
 //     return view('welcome');
@@ -97,7 +98,13 @@ Route::get('/moderator/{id}', [ModeratorController::class, 'show'])->name('moder
 //pembicara
 Route::get('/pembicara', [PembicaraController::class, 'index'])->name('pembicara.index');
 
+//kategori pembicara
+Route::get('/pembicara/kategori/{id}', [PembicaraController::class, 'byKategori'])->name('pembicara.kategori');
+
 //detail-pembicara
 Route::get('/pembicara/{id}', [PembicaraController::class, 'show'])->name('pembicara.show');
+
+//pendaftaran
+Route::get('/detail-pendaftaran', [PendaftaranController::class, 'showPendaftaran'])->middleware('auth');
 
 require __DIR__ . '/auth.php';

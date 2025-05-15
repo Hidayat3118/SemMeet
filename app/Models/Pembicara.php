@@ -24,6 +24,6 @@ class Pembicara extends Model
     }
 
     public function kategori(){
-        return $this->belongsToMany(Kategori::class);
+        return $this->belongsTo(Kategori::class);
     }
 }

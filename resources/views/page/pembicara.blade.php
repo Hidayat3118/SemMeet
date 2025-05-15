@@ -19,16 +19,20 @@
                 {{-- tombol --}}
                 <div class="flex justify-between flex-col lg:flex-row gap-y-7">
                     <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
-                        <button
-                            class="px-4 py-2 bg-blue-500 text-white rounded-full border border-gray-300 shadow-sm">All</button>
-                        <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Front
-                            End Developer</button>
-                        <button
-                            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">Back
-                            End Developer</button>
-                        <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full border border-gray-300 shadow-sm">UI
-                            UX Design</button>
+                        {{-- Tombol All --}}
+                        <a href="{{ route('pembicara.index') }}">
+                            <button class="px-4 py-2 {{ request()->routeIs('pembicara.index') ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full border border-gray-300 shadow-sm">
+                                All
+                            </button>
+                        </a>
+                        {{-- Tombol per kategori --}}
+                        @foreach ($kategoris as $kategori)
+                        <a href="{{ route('pembicara.kategori', $kategori->id) }}">
+                            <button class="px-4 py-2 {{ request()->is('pembicara/kategori/'.$kategori->id) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full border border-gray-300 shadow-sm">
+                                {{ $kategori->nama }}
+                            </button>
+                        </a>
+                        @endforeach
                     </div>
                     {{-- serch --}}
                     <div class="flex gap-6 lg:gap-10 mx-6">

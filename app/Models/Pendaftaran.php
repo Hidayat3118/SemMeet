@@ -24,7 +24,7 @@ class Pendaftaran extends Model
         return $this->belongsTo(Voucher::class);
     }
 
-    public Function payment(){
+    public function payment(){
         return $this->hasMany(Payment::class);
     }
 
