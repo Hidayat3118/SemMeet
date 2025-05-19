@@ -22,7 +22,7 @@
                         <i class="fa-regular fa-user text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Nama</p>
-                            <p>{{ $peserta->user->name }}</p>
+                            <p>{{ $peserta->peserta->user->name }}</p>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                         <i class="fa-solid fa-chalkboard text-xl text-gray-700 mr-3"></i>
                         <div class=" w-full">
                             <p class="text-blue-400 font-semibold">Judul Seminar</p>
-                            <p>a</p>
+                            <p>{{ $peserta->seminar->judul }}</p>
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@
                         <i class="fa-regular fa-envelope text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Email</p>
-                            <p>{{ $peserta->user->email }}</p>
+                            <p>{{ $peserta->peserta->user->email }}</p>
                         </div>
                     </div>
 
@@ -68,7 +68,7 @@
                         <i class="fa-solid fa-dollar-sign text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Jumlah Biaya</p>
-                            <p>a</p>
+                            <p>Rp.{{ number_format($peserta->seminar->harga, 0, ',', '.') }}</p>
                         </div>
                     </div>
 
@@ -77,7 +77,7 @@
                         <i class="fa-regular fa-clock  text-gray-700 text-xl mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Waktu Pendaftaran</p>
-                            <p>23 Juni 2025 08.00</p>
+                            <p>{{ \Carbon\Carbon::parse($peserta->created_at)->translatedFormat('d F Y H.i') }}</p>
                         </div>
                     </div>
                 </div>

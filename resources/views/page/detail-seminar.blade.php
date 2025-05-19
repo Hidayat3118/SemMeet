@@ -53,14 +53,26 @@
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Moderator</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span>
-                                <span>{{ $seminar->moderator->user->name ?? '-' }}</span>
+                                @if ($seminar->moderator && $seminar->moderator->user)
+                                    <a href="{{ route('moderator.show', $seminar->moderator->id) }}" class="text-blue-600 hover:underline">
+                                        {{ $seminar->moderator->user->name }}
+                                    </a>
+                                @else
+                                    <span>-</span>
+                                @endif
                             </div>
                         </div>
 
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Pembicara</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span>
-                                <span>{{ $seminar->pembicara->user->name ?? '-' }}</span>
+                                @if ($seminar->pembicara && $seminar->pembicara->user)
+                                    <a href="{{ route('pembicara.show', $seminar->pembicara->id) }}" class="text-blue-600 hover:underline">
+                                        {{ $seminar->pembicara->user->name }}
+                                    </a>
+                                @else
+                                    <span>-</span>
+                                @endif
                             </div>
                         </div>
 
@@ -119,14 +131,14 @@
                         <p class="text-sm text-gray-600 mb-4">Silakan daftar ke acara seminar untuk mendapatkan pengalaman
                             belajar yang berharga.</p>
                         @auth
-                            <a href="/detail-pendaftaran">
-                                <button
-                                    class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <p>Daftar</p>
-                                    {{-- <span>Rp. {{ number_format($seminar->harga, 0, ',', '.') }}</span> --}}
-                                </button>
-                            </a>
+                           <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
+                                @csrf
+                             <button type="submit"
+                                 class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                     <p>Daftar</p>
+                             </button>
+                            </form>
                         @else
                             <a href="{{ route('login') }}">
                                 <button

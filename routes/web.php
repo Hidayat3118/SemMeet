@@ -109,7 +109,19 @@ Route::get('/pembicara/kategori/{id}', [PembicaraController::class, 'byKategori'
 //detail-pembicara
 Route::get('/pembicara/{id}', [PembicaraController::class, 'show'])->name('pembicara.show');
 
-//pendaftaran
-Route::get('/detail-pendaftaran', [PendaftaranController::class, 'showPendaftaran'])->middleware('auth');
+// // Proses mendaftar seminar
+// Route::post('/seminar/{id}/daftar', [PendaftaranController::class, 'daftar'])->name('pendaftaran.daftar');
+
+// // Menampilkan halaman detail pendaftaran
+// Route::get('/pendaftaran/{id}', [PendaftaranController::class, 'show'])->name('pendaftaran.detail');
+
+Route::middleware(['auth'])->group(function () {
+    // POST daftar seminar
+    Route::post('/daftar/{seminar}', [PendaftaranController::class, 'daftar'])->name('pendaftaran.daftar');
+
+    // GET detail pendaftaran user
+    Route::get('/detail-pendaftaran', [PendaftaranController::class, 'show'])->name('pendaftaran.show');
+});
+
 
 require __DIR__ . '/auth.php';
