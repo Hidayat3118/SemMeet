@@ -1,12 +1,15 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KarcisController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\ModeratorController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembicaraController;
 use App\Http\Controllers\PendaftaranController;
+use App\Http\Controllers\PesertaController;
 
 // Route::get('/tes', function () {
 //     return view('welcome');
@@ -120,8 +123,42 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/daftar/{seminar}', [PendaftaranController::class, 'daftar'])->name('pendaftaran.daftar');
 
     // GET detail pendaftaran user
-    Route::get('/detail-pendaftaran', [PendaftaranController::class, 'show'])->name('pendaftaran.show');
+    Route::get('/detail-pendaftaran/{id}', [PendaftaranController::class, 'show'])->name('pendaftaran.show');
 });
+
+// Route::get('/bayar/{id}', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+// Route::get('/bayar/sukses/{id}', [PaymentController::class, 'sukses'])->name('pembayaran.sukses');
+// Route::get('/pembayaran/bayar/{id}', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+// Route::get('/pembayaran/sukses/{id}', [PaymentController::class, 'sukses'])->name('pembayaran.sukses');
+// Route::get('/pembayaran/gagal/{id}', [PaymentController::class, 'gagal'])->name('pembayaran.gagal');
+// Halaman untuk mulai bayar (setelah daftar)
+Route::get('/bayar/{id}', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+
+// Redirect setelah sukses bayar (sementara pakai ini, nanti akan disempurnakan dengan webhook)
+Route::get('/pembayaran/sukses/{id}', [PaymentController::class, 'sukses'])->name('pembayaran.sukses');
+
+// Redirect jika gagal atau dibatalkan
+Route::get('/pembayaran/gagal/{id}', [PaymentController::class, 'gagal'])->name('pembayaran.gagal');
+
+// Generate tiket setelah bayar
+Route::get('/generate-tiket/{pendaftaran_id}', [KarcisController::class, 'generate'])->name('karcis.generate');
+
+// Scan QR oleh panitia
+Route::post('/scan-qr', [KarcisController::class, 'scan'])->name('karcis.scan');
+
+//Show tiket
+Route::get('/tiket/{karcis_id}', [KarcisController::class, 'show'])->name('karcis.show');
+
+//Unduh tiket
+// Route::get('/tiket/{id}/download-pdf', [KarcisController::class, 'downloadPDF'])->name('karcis.downloadPDF');
+
+//Riwayat Pendaftaran Peserta
+Route::middleware(['auth'])->group(function () {
+    Route::get('/riwayat-pendaftaran', [PesertaController::class, 'riwayatPendaftaran'])->name('riwayat-pendaftaran');
+});
+
+
+
 
 
 require __DIR__ . '/auth.php';
