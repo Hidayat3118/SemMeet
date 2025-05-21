@@ -22,7 +22,7 @@
                         <i class="fa-regular fa-user text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Nama</p>
-                            <p>{{ $peserta->peserta->user->name }}</p>
+                            <p>{{ $pendaftaran->peserta->user->name }}</p>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                         <i class="fa-solid fa-chalkboard text-xl text-gray-700 mr-3"></i>
                         <div class=" w-full">
                             <p class="text-blue-400 font-semibold">Judul Seminar</p>
-                            <p>{{ $peserta->seminar->judul }}</p>
+                            <p>{{ $pendaftaran->seminar->judul }}</p>
                         </div>
                     </div>
 
@@ -40,7 +40,7 @@
                         <i class="fa-regular fa-envelope text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Email</p>
-                            <p>{{ $peserta->peserta->user->email }}</p>
+                            <p>{{ $pendaftaran->peserta->user->email }}</p>
                         </div>
                     </div>
 
@@ -49,8 +49,20 @@
                         <i class="fa-solid fa-clock-rotate-left text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Status Pendaftaran</p>
+                            @php
+                                $status = $pendaftaran->status;
+                                $statusClass =
+                                    [
+                                        'pending' => 'bg-yellow-200 text-yellow-800',
+                                        'pain' => 'bg-green-200 text-green-800',
+                                        'attended' => 'bg-blue-200 text-blue-800',
+                                    ][$status] ?? 'bg-gray-200 text-gray-800';
+                            @endphp
+
                             <span
-                                class="inline-block px-4 py-1 mt-1 text-sm font-medium bg-yellow-200 rounded shadow">Pending</span>
+                                class="inline-block px-4 py-1 mt-1 text-sm font-medium rounded shadow {{ $statusClass }}">
+                                {{ ucfirst($status) }}
+                            </span>
                         </div>
                     </div>
 
@@ -68,7 +80,7 @@
                         <i class="fa-solid fa-dollar-sign text-xl text-gray-700 mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Jumlah Biaya</p>
-                            <p>Rp.{{ number_format($peserta->seminar->harga, 0, ',', '.') }}</p>
+                            <p>Rp.{{ number_format($pendaftaran->seminar->harga, 0, ',', '.') }}</p>
                         </div>
                     </div>
 
@@ -77,7 +89,7 @@
                         <i class="fa-regular fa-clock  text-gray-700 text-xl mr-3"></i>
                         <div>
                             <p class="text-blue-400 font-semibold">Waktu Pendaftaran</p>
-                            <p>{{ \Carbon\Carbon::parse($peserta->created_at)->translatedFormat('d F Y H.i') }}</p>
+                            <p>{{ \Carbon\Carbon::parse($pendaftaran->created_at)->translatedFormat('d F Y H.i') }}</p>
                         </div>
                     </div>
                 </div>
@@ -91,11 +103,27 @@
                         </a>
                     </div>
 
-                    <div
-                        class="mt-10 flex items-center justify-center bg-blue-500 py-2 px-4 rounded-full text-white font-bold w-32  cursor-pointer hover:bg-blue-600">
+
+                    @if ($pendaftaran->status === 'pending')
+                        <a href="{{ route('pembayaran.bayar', $pendaftaran->id) }}"
+                            class="mt-10 flex items-center justify-center bg-blue-500 py-2 px-4 rounded-full text-white font-bold w-32  cursor-pointer hover:bg-blue-600">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="pl-2">Bayar</span>
+                        </a>
+                    @elseif ($pendaftaran->status === 'pain')
+                        <div class="mt-10 text-green-600 font-semibold text-lg">
+                            <i class="fa-solid fa-circle-check"></i><span class="pl-2">Sudah dibayar</span>
+                        </div>
+                    @elseif ($pendaftaran->status === 'attended')
+                        <div class="mt-10 text-blue-600 font-semibold text-lg">
+                            <i class="fa-solid fa-user-check"></i><span class="pl-2">Sudah hadir & lunas</span>
+                        </div>
+                    @endif
+                    {{-- <a href="{{ route('pembayaran.bayar', $pendaftaran->id) }}">
                         <i class="fa-solid fa-cart-shopping"></i>
                         <span class="pl-2">Daftar</span>
-                    </div>
+                        </a> --}}
+
 
                 </div>
             </div>

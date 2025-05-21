@@ -45,8 +45,8 @@
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Waktu</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span>
-                                <span>{{ \Carbon\Carbon::parse($seminar->waktu_mulai)->format('H:i') }} -
-                                    {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($seminar->waktu_mulai)->format('H:i') }} WITA -
+                                    {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }} WITA</span>
                             </div>
                         </div>
 
@@ -54,7 +54,8 @@
                             <div class="w-28 font-medium text-gray-600">Moderator</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span>
                                 @if ($seminar->moderator && $seminar->moderator->user)
-                                    <a href="{{ route('moderator.show', $seminar->moderator->id) }}" class="text-blue-600 hover:underline">
+                                    <a href="{{ route('moderator.show', $seminar->moderator->id) }}"
+                                        class="text-blue-600 hover:underline">
                                         {{ $seminar->moderator->user->name }}
                                     </a>
                                 @else
@@ -67,7 +68,8 @@
                             <div class="w-28 font-medium text-gray-600">Pembicara</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span>
                                 @if ($seminar->pembicara && $seminar->pembicara->user)
-                                    <a href="{{ route('pembicara.show', $seminar->pembicara->id) }}" class="text-blue-600 hover:underline">
+                                    <a href="{{ route('pembicara.show', $seminar->pembicara->id) }}"
+                                        class="text-blue-600 hover:underline">
                                         {{ $seminar->pembicara->user->name }}
                                     </a>
                                 @else
@@ -131,13 +133,13 @@
                         <p class="text-sm text-gray-600 mb-4">Silakan daftar ke acara seminar untuk mendapatkan pengalaman
                             belajar yang berharga.</p>
                         @auth
-                           <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
+                            <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
                                 @csrf
-                             <button type="submit"
-                                 class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                     <p>Daftar</p>
-                             </button>
+                                <button type="submit"
+                                    class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
+                                    <i class="fa-solid fa-cart-shopping"></i>
+                                    <p>Daftar</p>
+                                </button>
                             </form>
                         @else
                             <a href="{{ route('login') }}">
@@ -184,7 +186,7 @@
                             <span>{{ $seminar->lokasi }}</span>
                         </div>
                         <div class="flex items-center text-gray-700 text-sm space-x-2">
-                           <i class="fa-solid fa-circle-half-stroke text-blue-500"></i>
+                            <i class="fa-solid fa-circle-half-stroke text-blue-500"></i>
                             <span class="font-semibold text-blue-500">Mode:</span>
                             <span>{{ $seminar->mode }}</span>
                         </div>

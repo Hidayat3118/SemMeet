@@ -19,18 +19,21 @@
                         <div class=" grid grid-cols-2">
                             <div>
                                 <div class="text-xs font-bold text-gray-500 uppercase">Judul Seminar</div>
-                                <div class="text-base font-semibold text-gray-800 tracking-wide">Belajar Laravel 11 Dengan Husein</div>
+                                <div class="text-base font-semibold text-gray-800 tracking-wide">
+                                    {{ $pendaftaran->seminar->judul }}</div>
                             </div>
                             <div class="">
                                 <div class="text-xs font-bold text-gray-500 uppercase">Nama Peserta</div>
-                                <div class="text-base font-semibold text-gray-800 tracking-wide">James Doe</div>
+                                <div class="text-base font-semibold text-gray-800 tracking-wide">
+                                    {{ $pendaftaran->peserta->user->name }}</div>
                             </div>
                         </div>
 
                         <div class=" grid grid-cols-2">
                             <div>
                                 <div class="text-xs font-bold text-gray-500 uppercase">Lokasi</div>
-                                <div class="text-base font-semibold text-gray-800 tracking-wide">Banjarmasin, Handil Bakti</div>
+                                <div class="text-base font-semibold text-gray-800 tracking-wide">
+                                    {{ $pendaftaran->seminar->lokasi }}</div>
                             </div>
                             {{-- <div class="">
                                 <div class="text-xs font-bold text-gray-500 uppercase">Name of Passenger</div>
@@ -41,28 +44,35 @@
                         <div class="grid grid-cols-2 ">
                             <div>
                                 <div class="text-xs font-bold text-gray-500 uppercase">Tanggal Seminar</div>
-                                <div class="text-sm font-semibold text-gray-800">4 Juni 2025</div>
+                                <div class="text-sm font-semibold text-gray-800">
+                                    {{ \Carbon\Carbon::parse($pendaftaran->seminar->tanggal)->translatedFormat('d F Y') }}
+                                </div>
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <div>
                                     <div class="text-xs font-bold text-gray-500 uppercase">Waktu Mulai</div>
-                                    <div class="text-sm font-semibold text-gray-800">08.00</div>
+                                    <div class="text-sm font-semibold text-gray-800">
+                                        {{ \Carbon\Carbon::parse($pendaftaran->seminar->waktu_mulai)->format('H:i') }} WITA
+                                    </div>
                                 </div>
                                 <div>
                                     <div class="text-xs font-bold text-gray-500 uppercase">Waktu Selesai</div>
-                                    <div class="text-sm font-semibold text-gray-800">09.00</div>
+                                    <div class="text-sm font-semibold text-gray-800">
+                                        {{ \Carbon\Carbon::parse($pendaftaran->seminar->waktu_selesai)->format('H:i') }}
+                                        WITA
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="text-xs  mt-6 tracking-wider mt-10">
-                           Datang Ke Seminar 15 Menit Sebelum Mulai
+                            Datang Ke Seminar 15 Menit Sebelum Mulai
                         </div>
                     </div>
 
                     {{-- QR Code --}}
                     <div class="flex justify-center items-center">
-                        <img src="https://qrtor.net/qrbg.png" alt="Boarding Pass QR Code" class="h-32  object-contain" />
+                        {!! QrCode::format('svg')->size(300)->generate($karcis->qr_code) !!}
                     </div>
                 </div>
             </div>
