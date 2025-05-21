@@ -2,30 +2,21 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Forms;
-use App\Models\User;
+
 use Filament\Tables;
 use App\Models\Seminar;
 use Filament\Forms\Form;
-use Tables\Columns\Text;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use function Laravel\Prompts\select;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TimePicker;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Forms\Components\MultiSelect;
-use Filament\Forms\Components\CheckboxList;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\SeminarResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\SeminarResource\RelationManagers;
+
 
 class SeminarResource extends Resource
 {
@@ -74,7 +65,7 @@ class SeminarResource extends Resource
                     ->default('draft')
                     ->disabled(),
 
-                    Select::make('mode')
+                Select::make('mode')
                     ->label('Mode Seminar')
                     ->options([
                         'online' => 'Online',
@@ -82,9 +73,9 @@ class SeminarResource extends Resource
                     ])
                     ->default('offline')
                     ->required()
-                    ->reactive(), 
+                    ->reactive(),
 
-                    // perubahan
+                // perubahan
                 TextInput::make('metting_link')
                     ->label('Metting Link')
                     ->visible(fn($get) => $get('mode') === 'online') // hanya muncul jika online
@@ -101,7 +92,7 @@ class SeminarResource extends Resource
                     ->required(),
 
                 Select::make('pembicara_id')
-                    ->label('Moderator')
+                    ->label('Pembicara')
                     ->options(function () {
                         return \App\Models\User::role('moderator')
                             ->with('moderator')
@@ -150,7 +141,7 @@ class SeminarResource extends Resource
 
                 FileUpload::make('foto')
                     ->image()
-                    ->disk('public') // WAJIB
+                    ->disk('public')
                     ->imagePreviewHeight('100')
                     ->directory('foto-seminar')
                     ->required(false)
@@ -162,13 +153,19 @@ class SeminarResource extends Resource
     {
         return $table
             ->columns([
-                
+
                 TextColumn::make('judul')
                     ->label('Judul')
                     ->searchable(),
 
                 TextColumn::make('deskripsi')
                     ->label('deskripsi'),
+
+                TextColumn::make('moderator.user.name')
+                    ->label('Moderator'),
+
+                TextColumn::make('pembicara.user.name')
+                    ->label('Pembicara'),
 
                 TextColumn::make('lokasi')
                     ->label('Lokasi'),
@@ -200,8 +197,8 @@ class SeminarResource extends Resource
                     ->disk('public')
                     ->label('Foto'),
 
-                    
-                    // ->circular(), // opsional agar tampil bulat
+
+                // ->circular(), // opsional agar tampil bulat
 
 
                 // Tables\Columns\Badge::make('status')

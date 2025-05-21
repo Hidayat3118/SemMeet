@@ -1,18 +1,15 @@
 <?php
 
 namespace App\Filament\Resources;
-
-use Filament\Forms;
-use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use App\Models\Pendaftaran;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
-use Illuminate\Database\Eloquent\Model; // Tambahkan import Model
+use Illuminate\Database\Eloquent\Model; 
 use App\Filament\Resources\PendaftaranResource\Pages;
-use App\Filament\Resources\PendaftaranResource\RelationManagers;
+
 
 class PendaftaranResource extends Resource
 {
@@ -32,14 +29,14 @@ class PendaftaranResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('id')
-                    ->label('ID')
-                    ->sortable()
-                    ->searchable(),
+                // TextColumn::make('id')
+                //     ->label('ID')
+                //     ->sortable()
+                //     ->searchable(),
 
                 TextColumn::make('jumlah')
                     ->label('Jumlah')
-                    ->sortable()
+                    // ->sortable()
                     ->searchable(),
 
                 BadgeColumn::make('status')
@@ -48,34 +45,34 @@ class PendaftaranResource extends Resource
                         'warning' => 'pending',
                         'danger' => 'pain',
                         'success' => 'attenden',
-                    ])
-                    ->sortable(),
+                    ]),
+                    // ->sortable(),
 
                 TextColumn::make('voucher.nama') // asumsi relasi voucher punya kolom 'nama'
                     ->label('Voucher')
-                    ->sortable()
+                    // ->sortable()
                     ->searchable()
                     ->toggleable(),
 
                 TextColumn::make('seminar.judul') // asumsi relasi seminar punya kolom 'judul'
                     ->label('Seminar')
-                    ->sortable()
+                    // ->sortable()
                     ->searchable(),
 
-                TextColumn::make('peserta.nama') // asumsi relasi peserta punya kolom 'nama'
+                TextColumn::make('peserta.user.name') // asumsi relasi peserta punya kolom 'nama'
                     ->label('Peserta')
-                    ->sortable()
+                    // ->sortable()
                     ->searchable(),
 
                 TextColumn::make('created_at')
                     ->label('Dibuat')
-                    ->dateTime()
-                    ->sortable(),
+                    ->dateTime(),
+                    // ->sortable(),
 
                 TextColumn::make('updated_at')
                     ->label('Diubah')
-                    ->dateTime()
-                    ->sortable(),
+                    ->dateTime(),
+                    // ->sortable(),
             ])
             ->filters([
                 //

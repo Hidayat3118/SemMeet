@@ -24,9 +24,6 @@
     {{-- alpine js --}}
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
 
-
-
-
 </head>
 
 <body class="bg-gray-100 text-gray-800 ">
