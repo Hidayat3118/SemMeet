@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('pendaftarans', function (Blueprint $table) {
             $table->id();
             $table->integer('jumlah')->default(1);
-            $table->enum('status', ['pending', 'pain', 'attenden'])->default('pending');
-            $table->foreignId('voucher_id')->nullable()->constrained()->onDelete('cascade');
+            $table->enum('status', ['pending', 'paid', 'attended'])->default('pending');
+            $table->foreignId('voucher_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignId('seminar_id')->constrained()->onDelete('cascade');
             $table->foreignId('peserta_id')->constrained()->onDelete('cascade');
             $table->timestamps();
