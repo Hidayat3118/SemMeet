@@ -18,7 +18,7 @@
                             {{ $seminar->judul }}
                         </h3>
                         <h2 class="text-xl md:text-2xl  font-semibold text-gray-800 my-4">Deskripsi</h2>
-                        <p class="text-gray-700 mb-4">
+                        <p class="text-gray-700 mb-4 text-justify">
                             {{ $seminar->deskripsi }}
                         </p>
 
@@ -91,9 +91,9 @@
                             </div>
                         </div>
 
-                        <div class="flex">
-                            <div class="w-28 font-medium text-gray-600">Lokasi</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span>
+                        <div class="flex ">
+                            <div class="w-52 font-medium text-gray-600 ">Lokasi</div>
+                            <div class="flex items-baseline"><span class="mr-2 ">:</span>
                                 <span>{{ $seminar->lokasi }}</span>
                             </div>
                         </div>
@@ -180,7 +180,7 @@
                     {{-- Lokasi --}}
                     <div class="space-y-3">
                         <h3 class="text-2xl font-semibold  mb-2 text-blue-500">Lokasi</h3>
-                        <div class="flex items-center text-gray-700 text-sm space-x-2">
+                        <div class="flex text-gray-700 text-sm space-x-2">
                             <i class="fa-solid fa-location-dot text-blue-500"></i>
                             <span class="font-semibold text-blue-500">Lokasi:</span>
                             <span>{{ $seminar->lokasi }}</span>

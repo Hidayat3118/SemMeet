@@ -9,7 +9,7 @@
                 <div class="space-y-6 text-center md:text-left">
                     <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-700">Selamat Datang Di <span
                             class="text-blue-400">SemMeet</span></h1>
-                    <p class="text-md md:text-xl mt-4">
+                    <p class="text-md md:text-xl mt-4 text-justify">
                         SemMet platform informasi dan edukasi bantu Anda terhubung di berbagai
                         seminar dan acara inspiratif. Temukan wawasan baru, kembangkan diri, dan jadilah bagian dari
                         komunitas yang terus bersinar.
@@ -41,7 +41,7 @@
             {{-- pentingnya seminar --}}
             <section class="text-center py-20 px-4 md:px-0 max-w-7xl mx-auto">
                 <h2 class="text-xl md:text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
-                  Kenapa <span class="text-blue-400">Event Penting</span> bagi Jenjang Karirmu
+                  Kenapa <span class="text-blue-400">Event Penting</span> bagi Jenjang<span class="text-blue-400"> Karirmu</span>  
                 </h2>
                 <p class="text-gray-600 mb-16  md:text-lg mx-auto">
                   Berikut ini adalah manfaat yang akan kamu dapatkan jika aktif bergabung dalam Seminar Metting.
@@ -50,8 +50,8 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                   <!-- Card 1 -->
                   <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl border border-gray-300 transition-shadow duration-300 group">
-                    <img src="https://cdn-icons-png.flaticon.com/512/158/158737.png" alt="Upgrade" class="w-20 h-20 mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Upgrade Kemampuan Teknis</h3>
+                    <img src="{{ asset('img/satu.png') }}" alt="Upgrade" class="w-20 h-20 mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-400">Upgrade Kemampuan Teknis</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">
                       Banyak pembicara yang sudah lama di dunia IT dari berbagai bidang, sehingga Anda dapat memilih event yang sesuai dengan kemampuan/minat anda.
                     </p>
@@ -59,8 +59,8 @@
             
                   <!-- Card 2 -->
                   <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl border border-gray-300 transition-shadow duration-300 group">
-                    <img src="https://cdn-icons-png.flaticon.com/512/25/25363.png" alt="Jaringan" class="w-20 h-20 mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Bangun Jaringan</h3>
+                    <img src="{{ asset('img/dua.png') }}" alt="Jaringan" class="w-20 h-20 mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-400">Bangun Jaringan</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">
                       Event dihadiri oleh pembicara yang top dan peserta dari berbagai daerah, sehingga Anda bisa membangun relasi dengan mereka.
                     </p>
@@ -68,8 +68,8 @@
             
                   <!-- Card 3 -->
                   <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl border border-gray-300 transition-shadow duration-300 group">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828673.png" alt="Update" class="w-20 h-20 mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Up-to-Date Perkembangan Teknologi</h3>
+                    <img src="{{ asset('img/tiga.png') }}" alt="Update" class="w-20 h-20 mx-auto mb-6 transition-transform duration-300 group-hover:scale-110">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-400">Up-to-Date Perkembangan Teknologi</h3>
                     <p class="text-gray-600 text-sm leading-relaxed">
                       Materi yang dibawakan sesuai perkembangan IT saat ini, sehingga Anda tidak ketinggalan perkembangan teknologi terkini.
                     </p>

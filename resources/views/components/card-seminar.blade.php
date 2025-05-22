@@ -20,7 +20,7 @@
         </div>
 
         {{-- Judul --}}
-        <h3 class="text-lg md:text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+        <h3 class="text-lg md:text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1">
             {{ $seminar->judul }}
         </h3>
 

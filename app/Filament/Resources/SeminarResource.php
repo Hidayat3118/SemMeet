@@ -158,8 +158,8 @@ class SeminarResource extends Resource
                     ->label('Judul')
                     ->searchable(),
 
-                TextColumn::make('deskripsi')
-                    ->label('deskripsi'),
+                // TextColumn::make('deskripsi')
+                //     ->label('deskripsi'),
 
                 TextColumn::make('moderator.user.name')
                     ->label('Moderator'),

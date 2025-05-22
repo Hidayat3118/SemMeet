@@ -6,13 +6,13 @@
     <h2 class="text-xl font-semibold mb-2">Profil Pengguna</h2>
     <p class="text-gray-600 mb-6 text-sm">Edit Profil Anda sesuai dengan yang anda inginkan</p>
 
-    <form action="#" method="POST" class="space-y-6" enctype="multipart/form-data">
+    <form action="#" method="POST" class="space-y-6 " enctype="multipart/form-data">
         @csrf
 
-      
-            <div class="w-full max-w-sm bg-white p-6 rounded-2xl text-center">
+      {{-- foto profil --}}
+            <div class="w-full max-w-sm p-6 rounded-2xl text-center mx-auto">
                 <div class="relative w-32 h-32 mx-auto mb-4">
-                    <img id="preview" src="https://via.placeholder.com/150" alt="Foto Profil"
+                    <img id="preview" src="" alt="Foto Profil"
                         class="w-full h-full object-cover rounded-full border-2 border-blue-400 transition duration-300 ease-in-out">
                     <label for="profilePhoto"
                         class="absolute bottom-0 right-0 bg-blue-400 hover:bg-blue-400 p-2 rounded-full text-white cursor-pointer transition">
@@ -34,7 +34,7 @@
             <div>
                 <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
                 <input type="text" id="alamat" name="alamat"
-                    class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
         @endif
 
@@ -42,7 +42,7 @@
         <div>
             <label for="instansi" class="block text-sm font-medium text-gray-700 mb-1">Instansi</label>
             <input type="text" id="instansi" name="instansi"
-                class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         {{-- Hanya moderator dan pembicara --}}
@@ -50,25 +50,25 @@
             <div>
                 <label for="pengalaman" class="block text-sm font-medium text-gray-700 mb-1">Pengalaman</label>
                 <input type="text" id="pengalaman" name="pengalaman"
-                    class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div>
                 <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">LinkedIn</label>
                 <input type="url" id="linkedin" name="linkedin"
-                    class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div>
                 <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
                 <textarea id="bio" name="bio" rows="4"
-                    class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
             </div>
         @endif
 
         <div>
             <button type="submit"
-                class="px-5 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700 focus:outline-none text-xs font-semibold">
+                class="px-5 py-3 w-full rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none text-xs font-semibold">
                 SAVE
             </button>
         </div>
