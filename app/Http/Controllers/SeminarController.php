@@ -21,8 +21,18 @@ class SeminarController extends Controller
 
     public function show($id)
     {
-        $seminar = Seminar::with(['moderator', 'pembicara'])->where('id', $id)->firstOrFail();
-        return view('page.detail-seminar', compact('seminar'));
+        $seminar = Seminar::with(['moderator', 'pembicara', 'pendaftaran.payment'])->where('id', $id)->firstOrFail();
+         // Hitung jumlah pendaftar yang sudah bayar sukses
+        $jumlahTerisi = 0;
+        foreach ($seminar->pendaftaran as $pendaftaran) {
+            $latestPayment = $pendaftaran->payment->sortByDesc('created_at')->first();
+            if ($latestPayment && $latestPayment->status_pembayaran === 'pain') {
+                $jumlahTerisi++;
+            }
+        }
+
+        $sisa_kouta = $seminar->kouta - $jumlahTerisi;
+        return view('page.detail-seminar', compact('seminar', 'sisa_kouta'));
     }
 
     public function byKategori($id)

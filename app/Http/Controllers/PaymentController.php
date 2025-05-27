@@ -71,6 +71,10 @@ class PaymentController extends Controller
             return redirect()->route('pembayaran.sukses', $existingPayment->id);
         }
 
+        if ($existingPayment->status_pembayaran === 'pending' && $existingPayment->invoice_url) {
+            return redirect($existingPayment->invoice_url);
+        }
+
         return redirect()->route('pembayaran.gagal', $existingPayment->id)
             ->with('info', 'Kamu masih memiliki pembayaran yang belum selesai.');
     }
@@ -92,12 +96,17 @@ class PaymentController extends Controller
     ];
 
     try {
-        $invoice = $this->xendit->createInvoice($params);
-        return redirect($invoice['invoice_url']);
-    } catch (Exception $e) {
-        return back()->withErrors(['xendit' => 'Gagal membuat invoice: ' . $e->getMessage()]);
+            $invoice = $this->xendit->createInvoice($params);
+
+            // Simpan invoice_url ke database
+            $payment->invoice_url = $invoice['invoice_url'];
+            $payment->save();
+
+            return redirect($invoice['invoice_url']);
+        } catch (Exception $e) {
+            return back()->withErrors(['xendit' => 'Gagal membuat invoice: ' . $e->getMessage()]);
+        }
     }
-}
 
     public function sukses($id)
     {
@@ -122,7 +131,7 @@ class PaymentController extends Controller
             ]);
         }
 
-         // Reload karcis setelah generate karena mungkin baru dibuat
+        // Reload karcis setelah generate karena mungkin baru dibuat
         $karcis = $payment->pendaftaran->karcis()->latest()->first();
 
          return redirect()->route('karcis.show', $karcis->id)
