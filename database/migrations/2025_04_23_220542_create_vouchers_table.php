@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->text('deskripsi');
+            $table->text('deskripsi')->nullable();
             $table->char('code_voucher', 12)->unique();
             $table->timestamp('tanggal_mulai')->nullable();
             $table->timestamp('tanggal_berakhir')->nullable();

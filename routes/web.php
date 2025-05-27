@@ -69,7 +69,6 @@ Route::get('/tiket', function () {
 });
 
 
-
 // riwayat seminar
 
 Route::get('/riwayat-seminar', function (){
@@ -92,6 +91,11 @@ Route::get('/riwayat-tiket', function (){
 Route::get('/sertifikat', function (){
     return view('page.sertifikat');
 })->name('sertifikat');
+
+Route::get('/sqan', function (){
+    return view('page.sqan');
+})->name('sqan');
+
 
 //home
 Route::get('/', [HomeController::class, 'index'])->name('home');

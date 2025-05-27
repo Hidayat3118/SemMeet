@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('bio')->nullable();
             $table->string('pengalaman')->nullable();
             $table->string('foto')->nullable();
-            $table->string('linkend')->nullable();
+            $table->string('linkedin')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('kategori_id')->nullable()->constrained()->onDelete('cascade');

@@ -92,7 +92,7 @@
                         </div>
 
                         <div class="flex ">
-                            <div class="w-52 font-medium text-gray-600 ">Lokasi</div>
+                            <div class="w-28 font-medium text-gray-600 ">Lokasi</div>
                             <div class="flex items-baseline"><span class="mr-2 ">:</span>
                                 <span>{{ $seminar->lokasi }}</span>
                             </div>

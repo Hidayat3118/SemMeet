@@ -5,7 +5,7 @@
         <option value="peserta">Peserta</option>
         <option value="pembicara">Pembicara</option>
         <option value="moderator">Moderator</option>
-        <option value="penitia">panitia</option>
-        <option value="keuangan">keuangan</option>
+        {{-- <option value="penitia">panitia</option>
+        <option value="keuangan">keuangan</option> --}}
     </select>
 </div>

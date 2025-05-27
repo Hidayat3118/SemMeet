@@ -21,7 +21,7 @@
                 </div>
 
                 {{-- Informasi Pembicara --}}
-                <div class="md:col-span-2 space-y-4 shadow-lg py-10 px-4 md:py-10 bg-white rounded-xl">
+                <div class="md:col-span-2 space-y-4 shadow-lg py-10 px-6 md:px-12 md:py-12 bg-white rounded-xl border border-blue-300">
                     <div class="">
                         {{-- Media Sosial --}}
                         <div class="mb-2 pb-4">
@@ -114,12 +114,12 @@
                 @endif --}}
             </div>
 
-            @if ($moderator->seminar && $moderator->seminar->count() > 0)
+            @if ($pembicara->seminar && $pembicara->seminar->count() > 0)
                 <div class="mt-12 bg-white p-6 rounded-xl shadow-lg">
                     <h3 class="text-2xl font-semibold mb-4 border-b pb-2 border-blue-500">Seminar yang Dibawakan</h3>
 
                     <div class="flex space-x-4 overflow-x-auto pb-2">
-                        @foreach ($moderator->seminar as $seminar)
+                        @foreach ($pembicara->seminar as $seminar)
                             <div
                                 class="min-w-[300px] max-w-sm border rounded-lg p-4 bg-gray-50 hover:shadow-md transition flex-shrink-0">
                                 <a href="{{ route('seminar.show', $seminar->id) }}"

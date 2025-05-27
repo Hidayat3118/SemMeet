@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('sertifikats', function (Blueprint $table) {
             $table->id();
-            $table->string('tanda_tangan');
+            $table->string('tanda_tangan')->nullable();
             $table->timestamps();
             $table->foreignId('pendaftaran_id')->constrained()->onDelete('cascade');
         });

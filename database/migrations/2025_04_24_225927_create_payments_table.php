@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('jumlah_pembayaran');
+            $table->integer('jumlah_pembayaran')->nullable();
             $table->enum('status_pembayaran', ['pending', 'completed', 'failed', 'cenceled', 'refunden']);
-            $table->string('invoice_url');
+            $table->string('invoice_url')->nullable();
             $table->foreignId('pendaftaran_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

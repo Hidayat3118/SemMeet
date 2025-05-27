@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('testimonis', function (Blueprint $table) {
             $table->id();
-            $table->text('komen');
+            $table->text('komen')->nullable();
             $table->integer('rating')->default(0);
             $table->foreignId('seminar_id')->constrained()->onDelete('cascade');
             $table->timestamps();

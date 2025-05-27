@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\KarcisResource\Pages;
-use App\Models\Karcis;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Karcis;
+use App\Models\Seminar;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
+use App\Filament\Resources\KarcisResource\Pages;
 
 
 class KarcisResource extends Resource
@@ -15,12 +18,21 @@ class KarcisResource extends Resource
     protected static ?string $model = Karcis::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationLabel = 'Kehadiran';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                //
+                TextColumn::make('qr_code')->label('QR Code'),
+                TextColumn::make('waktu_sqan')->label('Waktu Scan')->dateTime(),
+                TextColumn::make('status')->label('Status')->badge(),
+                TextColumn::make('pendaftaran.nama')->label('Nama Peserta'), // sesuaikan relasi jika ada
+                TextColumn::make('pendaftaran.seminar.judul')
+                    ->label('Seminar')
+                    ->sortable()
+                    ->searchable(),
+
             ]);
     }
 
@@ -31,7 +43,10 @@ class KarcisResource extends Resource
                 //
             ])
             ->filters([
-                //
+                SelectFilter::make('seminar_id')
+                    ->label('Pilih Seminar')
+                    ->options(Seminar::all()->pluck('judul', 'id'))
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

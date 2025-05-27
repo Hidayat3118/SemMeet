@@ -21,7 +21,7 @@
                 </div>
 
                 {{-- Informasi Moderator --}}
-                <div class="md:col-span-2 space-y-4 shadow-lg py-10 px-4 md:py-10 bg-white rounded-xl">
+                <div class="md:col-span-2 space-y-4 shadow-lg py-10 px-6 md:px-12 md:py-12 bg-white rounded-xl border border-blue-300">
                     <div class="">
                         {{-- Media Sosial --}}
                         <div class="mb-2 pb-4">

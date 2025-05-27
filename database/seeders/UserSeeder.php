@@ -4,81 +4,96 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        $faker = Faker::create();
+        // ===== PESERTA =====
+        $pesertaData = [
+            ['name' => 'Rizky Maulana', 'email' => 'rizky.peserta@gmail.com'],
+            ['name' => 'Siti Nurhaliza', 'email' => 'siti.peserta@gmail.com'],
+            ['name' => 'Andi Saputra', 'email' => 'andi.peserta@gmail.com'],
+            ['name' => 'Dewi Lestari', 'email' => 'dewi.peserta@gmail.com'],
+            ['name' => 'Teguh Prabowo', 'email' => 'teguh.peserta@gmail.com'],
+        ];
 
-        // 5 peserta
-        for ($i = 1; $i <= 5; $i++) {
-            $peserta = User::create([
-                'name' => $faker->name,
-                'email' => $faker->email,
+        foreach ($pesertaData as $data) {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
                 'password' => bcrypt('peserta123'),
             ]);
-            $peserta->assignRole('peserta');
-            $peserta->peserta()->create([
-                // 'foto' => $faker->imageUrl(300, 300, 'people'), // Menambahkan gambar acak
-                'alamat' => $faker->address,
-                'instansi' => $faker->company,
+            $user->assignRole('peserta');
+            $user->peserta()->create([
+                'alamat' => 'Jl. Contoh Alamat No. 1',
+                'instansi' => 'Poli Teknik Negeri Banjarmasin',
             ]);
         }
 
-        // 5 pembicara
-        for ($i = 1; $i <= 5; $i++) {
-            $pembicara = User::create([
-                'name' => 'Dr. ' . $faker->name,
-                'email' => 'pembicara' . $i . '@gmail.com',
+        // ===== PEMBICARA =====
+        $pembicaraData = [
+            ['name' => 'Dr. Hendra Saputra', 'email' => 'hendra.pembicara@gmail.com'],
+            ['name' => 'Dr. Maya Sari', 'email' => 'maya.pembicara@gmail.com'],
+            ['name' => 'Dr. Anton Wijaya', 'email' => 'anton.pembicara@gmail.com'],
+            ['name' => 'Dr. Nia Ramadhani', 'email' => 'nia.pembicara@gmail.com'],
+            ['name' => 'Dr. Budi Santoso', 'email' => 'budi.pembicara@gmail.com'],
+        ];
+
+        foreach ($pembicaraData as $index => $data) {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
                 'password' => bcrypt('pembicara123'),
             ]);
-            $pembicara->assignRole('pembicara');
-            $pembicara->pembicara()->create([
-                // 'foto' => $faker->imageUrl(300, 300, 'people'), // Menambahkan gambar acak
-                'instansi' => $faker->company,
-                'bio' => $faker->paragraph,
-                'pengalaman' => $faker->sentence,
-                'kategori_id' => rand(1, 5),
+            $user->assignRole('pembicara');
+            $user->pembicara()->create([
+                'instansi' => 'PT Bank Central Asia Tbk',
+                'bio' => 'Seorang ahli di bidang Teknologi Informasi dengan keahlian dalam pengembangan sistem, keamanan data.',
+                'pengalaman' => 'Berpengalaman lebih dari 10 tahun di bidangnya.',
+                'kategori_id' => $index + 1, // asumsi kategori_id dari 1 sampai 5
             ]);
         }
 
-        // 5 moderator
-        for ($i = 1; $i <= 5; $i++) {
-            $moderator = User::create([
-                'name' => 'Ayu Rahmawati ' . $i,
-                'email' => 'moderator' . $i . '@gmail.com',
+        // ===== MODERATOR =====
+        $moderatorData = [
+            ['name' => 'Ayu Rahmawati', 'email' => 'ayu.rahmawati@gmail.com'],
+            ['name' => 'Dedi Prasetyo', 'email' => 'dedi.prasetyo@gmail.com'],
+            ['name' => 'Fitria Handayani', 'email' => 'fitria.handayani@gmail.com'],
+            ['name' => 'Gilang Ramadhan', 'email' => 'gilang.ramadhan@gmail.com'],
+            ['name' => 'Hana Putri', 'email' => 'hana.putri@gmail.com'],
+        ];
+
+        foreach ($moderatorData as $data) {
+            $user = User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
                 'password' => bcrypt('moderator123'),
             ]);
-            $moderator->assignRole('moderator');
-            $moderator->moderator()->create([
-                // 'foto' => $faker->imageUrl(300, 300, 'people'), // Menambahkan gambar acak
+            $user->assignRole('moderator');
+            $user->moderator()->create([
                 'instansi' => 'Event Organizer Nasional',
-                'bio' => 'Berpengalaman menjadi moderator acara nasional dan internasional.',
+                'bio' => 'Berpengalaman menjadi moderator acara nasional dan internasional di berbagai bidang dan juga wawasan.',
                 'pengalaman' => '5 tahun aktif menjadi moderator di berbagai event besar.',
             ]);
         }
 
-        // Keuangan - 1 
+        // ===== KEUANGAN =====
         $keuangan = User::create([
             'name' => 'Rina Putri',
             'email' => 'rina.keuangan@gmail.com',
             'password' => bcrypt('keuangan123'),
         ]);
         $keuangan->assignRole('keuangan');
-        $keuangan->keuangan()->create(); // Relasi Keuangan
+        $keuangan->keuangan()->create();
 
-        // Panitia - 1 
+        // ===== PANITIA =====
         $panitia = User::create([
             'name' => 'Doni Saputra',
             'email' => 'doni.panitia@gmail.com',
             'password' => bcrypt('panitia123'),
         ]);
         $panitia->assignRole('panitia');
-        $panitia->panitia()->create(); // Relasi Panitia
+        $panitia->panitia()->create();
     }
 }

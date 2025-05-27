@@ -10,7 +10,7 @@
         <div class="container mx-auto p-6">
             <div class="overflow-x-auto bg-white rounded-xl shadow-lg">
                 <table class="min-w-full text-left border border-gray-200">
-                    <thead class="bg-blue-100 text-blue-400">
+                    <thead class="bg-blue-500 text-white">
                         <tr>
                             <th class="py-3 px-4 border-b">No.</th>
                             <th class="py-3 px-4 border-b">Nama</th>
@@ -20,6 +20,7 @@
                             <th class="py-3 px-4 border-b">Metode Pembayaran</th>
                             <th class="py-3 px-4 border-b">Jumlah Biaya</th>
                             <th class="py-3 px-4 border-b">Waktu Pendaftaran</th>
+                            <th class="py-3 px-4 border-b">Aksi</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
@@ -36,6 +37,7 @@
                                 </td>
                                 <td class="py-3 px-4 border-b">{{ $item->seminar->harga }}</td>
                                 <td class="py-3 px-4 border-b">{{ $item->created_at->format('d M Y H:i') }} WITA</td>
+                                 <td class="py-3 px-4 border-b"> <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a></td>
                             </tr>
 
                         @empty

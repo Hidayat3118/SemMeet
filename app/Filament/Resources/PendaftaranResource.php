@@ -1,15 +1,17 @@
 <?php
 
 namespace App\Filament\Resources;
-use Filament\Forms\Form;
-use Filament\Tables\Table;
+
 use App\Models\Pendaftaran;
+use App\Models\Seminar;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Tables\Filters\SelectFilter;
+use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
-use Illuminate\Database\Eloquent\Model; 
+use Illuminate\Database\Eloquent\Model;
 use App\Filament\Resources\PendaftaranResource\Pages;
-
 
 class PendaftaranResource extends Resource
 {
@@ -21,7 +23,7 @@ class PendaftaranResource extends Resource
     {
         return $form
             ->schema([
-                //
+                // Jika perlu form, isi di sini
             ]);
     }
 
@@ -29,14 +31,8 @@ class PendaftaranResource extends Resource
     {
         return $table
             ->columns([
-                // TextColumn::make('id')
-                //     ->label('ID')
-                //     ->sortable()
-                //     ->searchable(),
-
                 TextColumn::make('jumlah')
                     ->label('Jumlah')
-                    // ->sortable()
                     ->searchable(),
 
                 BadgeColumn::make('status')
@@ -46,40 +42,39 @@ class PendaftaranResource extends Resource
                         'danger' => 'pain',
                         'success' => 'attenden',
                     ]),
-                    // ->sortable(),
 
-                TextColumn::make('voucher.nama') // asumsi relasi voucher punya kolom 'nama'
+                TextColumn::make('voucher.nama')
                     ->label('Voucher')
-                    // ->sortable()
                     ->searchable()
                     ->toggleable(),
 
-                TextColumn::make('seminar.judul') // asumsi relasi seminar punya kolom 'judul'
+                TextColumn::make('seminar.judul')
                     ->label('Seminar')
-                    // ->sortable()
                     ->searchable(),
 
-                TextColumn::make('peserta.user.name') // asumsi relasi peserta punya kolom 'nama'
+                TextColumn::make('peserta.user.name')
                     ->label('Peserta')
-                    // ->sortable()
                     ->searchable(),
 
                 TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime(),
-                    // ->sortable(),
 
                 TextColumn::make('updated_at')
                     ->label('Diubah')
                     ->dateTime(),
-                    // ->sortable(),
             ])
             ->filters([
-                //
+                SelectFilter::make('seminar_id')
+                    ->label('Pilih Seminar')
+                    ->options(Seminar::all()->pluck('judul', 'id'))
+                    ->searchable(),
             ])
             ->actions([
+                // Tidak ada aksi individual
             ])
             ->bulkActions([
+                // Tidak ada bulk action
             ]);
     }
 
@@ -97,19 +92,16 @@ class PendaftaranResource extends Resource
         ];
     }
 
-    // Menambahkan method untuk menghilangkan tombol "Create"
     public static function canCreate(): bool
     {
         return false;
     }
 
-    // Menghilangkan tombol "Edit"
     public static function canEdit(Model $record): bool
     {
         return false;
     }
 
-    // Menghilangkan tombol "Delete"
     public static function canDelete(Model $record): bool
     {
         return false;

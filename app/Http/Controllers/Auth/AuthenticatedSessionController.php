@@ -36,11 +36,13 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('dashboard');
         } elseif ($user->hasRole('moderator')) {
             return redirect()->route('dashboard');
-        } elseif ($user->hasRole('panitia')) {
-            return redirect()->route('filament.panitia.pages.dashboard');
-        } elseif ($user->hasRole('keuangan')) {
-            return redirect()->route('filament.keuangan.pages.dashboard');
-        }
+        } 
+        
+        // elseif ($user->hasRole('panitia')) {
+        //     return redirect()->route('filament.panitia.pages.dashboard');
+        // } elseif ($user->hasRole('keuangan')) {
+        //     return redirect()->route('filament.keuangan.pages.dashboard');
+        // }
     
       
         return redirect('/'); // atau abort(403);

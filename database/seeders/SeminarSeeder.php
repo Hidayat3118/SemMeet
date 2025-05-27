@@ -12,59 +12,31 @@ class SeminarSeeder extends Seeder
     public function run(): void
     {
         $data = [
+            // OFFLINE 3
             [
                 'judul' => 'Teknologi Cloud Computing',
                 'deskripsi' => 'Memahami dasar-dasar dan implementasi cloud di industri.',
                 'mode' => 'offline',
-                'lokasi' => 'Universitas Lambung Mangkurat, Banjarmasin',
-            ],
-            [
-                'judul' => 'AI dan Machine Learning',
-                'deskripsi' => 'Penerapan AI dalam kehidupan sehari-hari.',
-                'mode' => 'online',
-                'metting_link' => 'https://zoom.us/' . Str::random(10),
+                'lokasi' => 'Swiss-Belhotel Borneo Banjarmasin - Jl. Pangeran Antasari No.86A, Banjarmasin.',
             ],
             [
                 'judul' => 'Cybersecurity Awareness',
                 'deskripsi' => 'Tips dan teknik melindungi data pribadi dan organisasi.',
                 'mode' => 'offline',
-                'lokasi' => 'STMIK Indonesia Banjarmasin',
-            ],
-            [
-                'judul' => 'UI/UX Design Modern',
-                'deskripsi' => 'Tren desain antarmuka terkini untuk web dan mobile.',
-                'mode' => 'online',
-                'metting_link' => 'https://zoom.us/' . Str::random(10),
+                'lokasi' => 'FUGO Hotel Banjarmasin - Jl. Ahmad Yani Km 2, Banjarmasin.',
             ],
             [
                 'judul' => 'Digital Marketing Strategy',
                 'deskripsi' => 'Strategi pemasaran digital yang efektif.',
                 'mode' => 'offline',
-                'lokasi' => 'Balai Kota Banjarmasin',
+                'lokasi' => 'Gedung Serbaguna Raya - Jl. Pangeran Hidayatullah No.01 RT.15, Kel. Benua Anyar, Banjarmasin.',
             ],
+            // ONLINE 2
             [
-                'judul' => 'Pengembangan Aplikasi Mobile',
-                'deskripsi' => 'Langkah awal membuat aplikasi Android/iOS.',
+                'judul' => 'AI dan Machine Learning',
+                'deskripsi' => 'Penerapan AI dalam kehidupan sehari-hari.',
                 'mode' => 'online',
                 'metting_link' => 'https://zoom.us/' . Str::random(10),
-            ],
-            [
-                'judul' => 'IoT dan Smart Home',
-                'deskripsi' => 'Penerapan IoT dalam kehidupan rumah tangga.',
-                'mode' => 'offline',
-                'lokasi' => 'SMK Negeri 1 Banjarmasin',
-            ],
-            [
-                'judul' => 'Pengenalan Data Science',
-                'deskripsi' => 'Dasar-dasar analisis data dan visualisasi.',
-                'mode' => 'online',
-                'metting_link' => 'https://zoom.us/' . Str::random(10),
-            ],
-            [
-                'judul' => 'Etika Profesi IT',
-                'deskripsi' => 'Tanggung jawab etis seorang profesional TI.',
-                'mode' => 'offline',
-                'lokasi' => 'Politeknik Negeri Banjarmasin',
             ],
             [
                 'judul' => 'Workshop Laravel Dasar',
@@ -86,11 +58,11 @@ class SeminarSeeder extends Seeder
                 'waktu_selesai' => Carbon::now()->addDays($i + 1)->addHours(2),
                 'lokasi' => $item['mode'] === 'offline' ? $item['lokasi'] : null,
                 'metting_link' => $item['mode'] === 'online' ? $item['metting_link'] : null,
-                'kouta' => rand(20, 100),
+                'kouta' => rand(50, 100),
                 'keuangan_id' => 1,
                 'panitia_id' => null,
-                'moderator_id' => 1,
-                'pembicara_id' => 1,
+                'moderator_id' => rand(1, 5),
+                'pembicara_id' => rand(1, 5),
                 'kategori_id' => rand(1, 5),
             ]);
         }

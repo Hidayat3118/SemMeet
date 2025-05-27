@@ -15,7 +15,7 @@
                 <i class="fas fa-ticket-alt"></i>
             </div>
             <div>
-                <h2 class="text-sm text-gray-600 font-semibold uppercase">Tiket Terjual</h2>
+                <h2 class="text-sm text-gray-600 font-semibold uppercase">Kehadiran Peserta</h2>
                 <p class="text-3xl font-bold text-green-700">{{ \App\Models\Karcis::count() }}</p>
             </div>
         </div>
