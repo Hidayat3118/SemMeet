@@ -20,7 +20,7 @@ class Pembicara extends Model
     }
 
     public function seminar(){
-        return $this->hasOne(Seminar::class);
+        return $this->hasMany(Seminar::class);
     }
 
     public function kategori(){

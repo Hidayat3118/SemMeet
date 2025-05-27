@@ -22,7 +22,8 @@ class PembicaraController extends Controller
 
      public function show($id)
     {
-        $pembicara = Pembicara::findOrFail($id);
+        // $pembicara = Pembicara::findOrFail($id);
+        $pembicara = Pembicara::with('seminar')->findOrFail($id);
         return view('page.detail-pembicara', compact('pembicara'));
     }
 

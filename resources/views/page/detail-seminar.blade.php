@@ -118,7 +118,8 @@
                         </div>
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-700">Sisa Kouta</div>
-                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>50</span></div>
+                            <div class="flex items-baseline"><span class="mr-2">:</span> <span>{{ $sisa_kouta }}</span>
+                            </div>
                         </div>
                     </div>
                     {{-- Keikutsertaan --}}

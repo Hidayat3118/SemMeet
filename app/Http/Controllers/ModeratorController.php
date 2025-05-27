@@ -15,7 +15,9 @@ class ModeratorController extends Controller
     
      public function show($id)
     {
-        $moderator = Moderator::findOrFail($id);
+        // $moderator = Moderator::findOrFail($id);
+        $moderator = Moderator::with('seminar')->findOrFail($id);
+
         return view('page.detail-moderator', compact('moderator'));
     }
 
