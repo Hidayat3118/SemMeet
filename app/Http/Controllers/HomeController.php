@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $seminars = Seminar::latest()->take(10)->get(); // 3 seminar terbaru
+        $seminars = Seminar::latest()->take(5)->get(); // 3 seminar terbaru
         $pembicaras = Pembicara::with('user')->latest()->take(10)->get(); // 3 pembicara terbaru
         $moderators = Moderator::with('user')->latest()->take(10)->get(); // 3 pembicara terbaru
 

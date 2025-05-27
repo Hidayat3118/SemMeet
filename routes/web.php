@@ -81,6 +81,11 @@ Route::get('/riwayat-transaksi', function (){
     return view('page.riwayat-transaksi');
 })->name('riwayat-transaksi');
 
+// ku tambahi
+Route::get('/riwayat-tiket', function (){
+    return view('page.riwayat-tiket');
+})->name('riwayat-tiket');
+
 Route::get('/sertifikat', function (){
     return view('page.sertifikat');
 })->name('sertifikat');

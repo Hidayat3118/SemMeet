@@ -7,7 +7,8 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
                         {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200 text-2xl" /> --}}
-                        <h2 class="text-2xl text-blue-500 font-semibold">SemMeet</h2>
+                        {{-- <h2 class="text-2xl text-blue-500 font-semibold">SemMeet</h2> --}}
+                         <img src="{{ asset('img/icon.jpg') }}" class="h-10" alt="Flowbite Logo" />
                     </a>
                 </div>
 
@@ -35,6 +36,11 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('sertifikat')" :active="request()->routeIs('sertifikat')">
                         {{ __('Sertifikat') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('riwayat-tiket')" :active="request()->routeIs('riwayat-tiket')">
+                        {{ __('Riwayat Tiket') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -107,6 +113,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('sertifikat')" :active="request()->routeIs('sertifikat')">
                 {{ __('Sertifikat') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('riwayat-tiket')" :active="request()->routeIs('riwayat-tiket')">
+                {{ __('Riwayat Tiket') }}
             </x-responsive-nav-link>
         </div>
 
