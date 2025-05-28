@@ -22,7 +22,7 @@
                             <th class="py-3 px-4 border-b">Lokasi</th>
                             <th class="py-3 px-4 border-b">Moderator</th>
                             <th class="py-3 px-4 border-b">Pembicara</th>
-                            <th class="py-3 px-4 border-b">Aksi</th>
+                            <th class="py-3 px-4 border-b">Detail</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">

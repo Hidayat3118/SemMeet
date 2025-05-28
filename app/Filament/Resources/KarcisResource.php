@@ -2,45 +2,40 @@
 
 namespace App\Filament\Resources;
 
-use Filament\Tables;
 use App\Models\Karcis;
 use App\Models\Seminar;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Resources\KarcisResource\Pages;
 
-
 class KarcisResource extends Resource
 {
     protected static ?string $model = Karcis::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
     protected static ?string $navigationLabel = 'Kehadiran';
+    protected static ?string $pluralLabel = 'Kehadiran';
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                TextColumn::make('qr_code')->label('QR Code'),
-                TextColumn::make('waktu_sqan')->label('Waktu Scan')->dateTime(),
-                TextColumn::make('status')->label('Status')->badge(),
-                TextColumn::make('pendaftaran.nama')->label('Nama Peserta'), // sesuaikan relasi jika ada
-                TextColumn::make('pendaftaran.seminar.judul')
-                    ->label('Seminar')
-                    ->sortable()
-                    ->searchable(),
-
-            ]);
+        return $form->schema([]); // Tidak ada form karena create/edit dinonaktifkan
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('waktu_sqan')->label('Waktu Kehadiran')->dateTime(),
+                TextColumn::make('status')->label('Status')->badge(),
+                TextColumn::make('pendaftaran.nama')->label('Nama Peserta'),
+                TextColumn::make('pendaftaran.seminar.judul')
+                    ->label('Seminar')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 SelectFilter::make('seminar_id')
@@ -49,28 +44,37 @@ class KarcisResource extends Resource
                     ->searchable(),
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                // Tidak ada edit action karena dinonaktifkan
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                // Tidak ada bulk action karena delete dinonaktifkan
             ]);
     }
 
     public static function getRelations(): array
     {
-        return [
-            //
-        ];
+        return [];
     }
 
     public static function getPages(): array
     {
         return [
             'index' => Pages\ListKarcis::route('/'),
-            'create' => Pages\CreateKarcis::route('/create'),
-            'edit' => Pages\EditKarcis::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return false;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return false;
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
     }
 }

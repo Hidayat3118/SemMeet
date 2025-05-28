@@ -63,6 +63,7 @@ Route::get('/detail-pendaftaran', function () {
     return view('page.detail-pendaftaran');
 });
 
+
 // tiket
 Route::get('/tiket', function () {
     return view('page.tiket');
@@ -91,6 +92,10 @@ Route::get('/riwayat-tiket', function (){
 Route::get('/sertifikat', function (){
     return view('page.sertifikat');
 })->name('sertifikat');
+
+Route::get('/tanda-tangan', function (){
+    return view('page.tanda-tangan');
+})->name('tanda-tangan');
 
 Route::get('/sqan', function (){
     return view('page.sqan');

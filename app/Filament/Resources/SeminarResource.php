@@ -143,6 +143,7 @@ class SeminarResource extends Resource
                     ->image()
                     ->disk('public')
                     ->imagePreviewHeight('100')
+                     ->previewable(false) // ini akan nonaktifkan preview muter terus
                     ->directory('foto-seminar')
                     ->required(false)
                     ->maxSize(2048),

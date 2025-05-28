@@ -39,11 +39,11 @@ class VoucherResource extends Resource
                     ->required(),
 
                 DateTimePicker::make('tanggal_mulai')
-                    ->label('Tanggal Mulai')
+                    ->label('Waktu Mulai')
                     ->nullable(),
 
                 DateTimePicker::make('tanggal_berakhir')
-                    ->label('Tanggal Berakhir')
+                    ->label('Waktu Kadaluarsa')
                     ->nullable(),
 
 
@@ -80,6 +80,7 @@ class VoucherResource extends Resource
                 Select::make('seminar_id')
                     ->label('Seminar')
                     ->relationship('seminar', 'judul')
+                    ->searchable()
                     ->required(),
 
             ]);

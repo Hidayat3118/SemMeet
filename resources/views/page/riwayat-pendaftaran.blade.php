@@ -20,7 +20,7 @@
                             <th class="py-3 px-4 border-b">Metode Pembayaran</th>
                             <th class="py-3 px-4 border-b">Jumlah Biaya</th>
                             <th class="py-3 px-4 border-b">Waktu Pendaftaran</th>
-                            <th class="py-3 px-4 border-b">Aksi</th>
+                            <th class="py-3 px-4 border-b">Detail</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">

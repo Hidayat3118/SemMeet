@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
                 KategoriSeeder::class,
                 UserSeeder::class,
                 SeminarSeeder::class,
+                VoucherSeeder::class,
             ]
         );
     }

@@ -2,11 +2,12 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Dashboard;
+use App\Filament\Pages\Kehadiran;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -28,22 +29,27 @@ class PanitiaPanelProvider extends PanelProvider
             ->path('panitia')
 
             ->colors([
-                
                 'gray' => Color::Stone,
                 'info' => Color::Blue,
                 'primary' => Color::Blue,
-               
             ])
+
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
+
             ->pages([
-                Pages\Dashboard::class,
+                Dashboard::class,
+                Kehadiran::class,
             ])
+
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
             ])
+
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -56,6 +62,7 @@ class PanitiaPanelProvider extends PanelProvider
                 DispatchServingFilamentEvent::class,
                 'role:panitia',
             ])
+
             ->authMiddleware([
                 Authenticate::class,
             ]);

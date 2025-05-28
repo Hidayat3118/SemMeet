@@ -23,7 +23,7 @@ return new class extends Migration
             $table->dateTime('waktu_mulai')->nullable();
             $table->dateTime('waktu_selesai')->nullable();
             $table->string('lokasi')->nullable(); 
-            $table->string('meeting_link')->nullable();
+            $table->string('metting_link')->nullable();
             $table->integer('kouta'); 
             $table->foreignId('keuangan_id')->constrained()->onDelete('cascade');
             $table->foreignId('panitia_id')->nullable()->constrained()->onDelete('set null');
