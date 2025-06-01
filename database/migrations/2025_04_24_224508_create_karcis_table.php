@@ -16,6 +16,7 @@ return new class extends Migration
             $table->char('qr_code')->nullable();
             $table->timestamp('waktu_sqan')->nullabel(); 
             $table->enum('status', ['active', 'used']);
+            $table->string('token')->nullable();
             $table->foreignId('pendaftaran_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

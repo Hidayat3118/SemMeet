@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('pengalaman')->nullable();
             $table->string('foto')->nullable();
             $table->string('linkedin')->nullable();
+            $table->string('tanda_tangan')->nullable();
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('kategori_id')->nullable()->constrained()->onDelete('cascade');

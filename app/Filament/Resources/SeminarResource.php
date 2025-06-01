@@ -12,6 +12,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DateTimePicker;
@@ -143,7 +144,7 @@ class SeminarResource extends Resource
                     ->image()
                     ->disk('public')
                     ->imagePreviewHeight('100')
-                     ->previewable(false) // ini akan nonaktifkan preview muter terus
+                    //  ->previewable(false) // ini akan nonaktifkan preview muter terus
                     ->directory('foto-seminar')
                     ->required(false)
                     ->maxSize(2048),
@@ -169,16 +170,24 @@ class SeminarResource extends Resource
                     ->label('Pembicara'),
 
                 TextColumn::make('lokasi')
-                    ->label('Lokasi'),
+                    ->label('Lokasi')
+                    ->limit(30),
 
                 TextColumn::make('metting_link')
-                    ->label('Metting Link'),
+                    ->label('Metting Link')
+                    ->limit(30)
+                    ->copyable(),
 
                 TextColumn::make('mode')
                     ->label('Mode'),
 
-                TextColumn::make('status')
-                    ->label('Status'),
+                BadgeColumn::make('status')
+                    ->label('Status')
+                    ->colors([
+                        'success' => 'selesai',
+                        'warning' => 'aktif',
+                        'danger' => 'draft',
+                    ]),
 
                 TextColumn::make('waktu_mulai')
                     ->label('Waktu Mulai')

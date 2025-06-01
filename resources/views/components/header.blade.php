@@ -51,6 +51,10 @@
                             @endphp
 
                             @if ($user->hasRole('panitia'))
+                                {{-- Sqan Kehadiran --}}
+                                <a href="/sqan"
+                                    class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('sqan') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Sqan Kehadiran</a>
+                                {{-- dashboard --}}
                                 <a href="{{ route('filament.panitia.pages.dashboard') }}"
                                     class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden">
                                     <span
@@ -69,7 +73,7 @@
                                         Keuangan</span>
                                 </a>
                             @else
-                            {{-- dashboard  --}}
+                                {{-- dashboard  --}}
                                 <a href="{{ url('/dashboard') }}"
                                     class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden">
                                     <span

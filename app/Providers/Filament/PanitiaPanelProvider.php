@@ -40,7 +40,7 @@ class PanitiaPanelProvider extends PanelProvider
 
             ->pages([
                 Dashboard::class,
-                Kehadiran::class,
+                // Kehadiran::class,
             ])
 
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
