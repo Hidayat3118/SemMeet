@@ -8,7 +8,7 @@ class Sertifikat extends Model
 {
     protected $guarded = ['id'];
 
-    public function payment (){
+    public function pendaftaran(){
         return $this->belongsTo(Pendaftaran::class);
     }
 }

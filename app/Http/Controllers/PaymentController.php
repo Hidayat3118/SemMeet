@@ -116,7 +116,7 @@ class PaymentController extends Controller
 
         // Update status pendaftaran juga
         $payment->pendaftaran->update([
-            'status' => 'pain'
+            'status' => 'paid'
         ]);
 
         // Generate tiket (karcis) jika belum ada

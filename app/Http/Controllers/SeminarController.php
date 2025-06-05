@@ -26,7 +26,7 @@ class SeminarController extends Controller
         $jumlahTerisi = 0;
         foreach ($seminar->pendaftaran as $pendaftaran) {
             $latestPayment = $pendaftaran->payment->sortByDesc('created_at')->first();
-            if ($latestPayment && $latestPayment->status_pembayaran === 'pain') {
+            if ($latestPayment && $latestPayment->status_pembayaran === 'completed') {
                 $jumlahTerisi++;
             }
         }

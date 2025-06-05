@@ -11,6 +11,9 @@ use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Resources\KarcisResource\Pages;
+use Filament\Tables\Actions\Action;
+use Filament\Notifications\Notification;
+use App\Models\Sertifikat;
 
 class KarcisResource extends Resource
 {
@@ -31,23 +34,51 @@ class KarcisResource extends Resource
             ->columns([
                 TextColumn::make('waktu_sqan')->label('Waktu Kehadiran')->dateTime(),
                 TextColumn::make('status')->label('Status')->badge(),
-                TextColumn::make('pendaftaran.nama')->label('Nama Peserta'),
+                TextColumn::make('pendaftaran.peserta.user.name')->label('Nama Peserta'),
                 TextColumn::make('pendaftaran.seminar.judul')
                     ->label('Seminar')
                     ->sortable()
                     ->searchable(),
             ])
             ->filters([
-                SelectFilter::make('seminar_id')
-                    ->label('Pilih Seminar')
-                    ->options(Seminar::all()->pluck('judul', 'id'))
-                    ->searchable(),
+                SelectFilter::make('pendaftaran.seminar')
+                        ->relationship('pendaftaran.seminar', 'judul')
+                        ->label('Pilih Seminar')
+                        ->searchable(),
+                    // ->label('Pilih Seminar')
+                    // ->options(Seminar::all()->pluck('judul', 'id'))
+                    // ->searchable(),
             ])
             ->actions([
                 // Tidak ada edit action karena dinonaktifkan
-            ])
-            ->bulkActions([
-                // Tidak ada bulk action karena delete dinonaktifkan
+                Action::make('Hadirkan Manual')
+                        ->label('Hadirkan')
+                        ->icon('heroicon-o-check-circle')
+                        ->color('success')
+                        ->visible(fn (Karcis $record) => $record->status !== 'used') // hanya muncul jika belum hadir
+                        ->requiresConfirmation()
+                        ->action(function (Karcis $record) {
+                            // Update kehadiran
+                            $record->update([
+                                'status' => 'used',
+                                'waktu_sqan' => now(),
+                            ]);
+
+                            // Buat sertifikat jika belum ada
+                            if (!$record->pendaftaran->sertifikat) {
+                            Sertifikat::create([
+                                'pendaftaran_id' => $record->pendaftaran_id,
+                            ]);
+                        }
+
+                        Notification::make()
+                        ->title('Peserta berhasil ditandai hadir.')
+                        ->success()
+                        ->send();
+                        }),
+                    ])
+                        ->bulkActions([
+                        // Tidak ada bulk action karena delete dinonaktifkan
             ]);
     }
 

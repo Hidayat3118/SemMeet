@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PembicaraController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\SertifikatController;
 
 // Route::get('/tes', function () {
 //     return view('welcome');
@@ -161,7 +162,7 @@ Route::get('/pembayaran/gagal/{id}', [PaymentController::class, 'gagal'])->name(
 Route::get('/generate-tiket/{pendaftaran_id}', [KarcisController::class, 'generate'])->name('karcis.generate');
 
 // Scan QR oleh panitia
-Route::post('/scan-qr', [KarcisController::class, 'scan'])->name('karcis.scan');
+Route::post('/sqan', [KarcisController::class, 'scan'])->name('karcis.scan');
 
 //Show tiket
 Route::get('/tiket/{karcis_id}', [KarcisController::class, 'show'])->name('karcis.show');
@@ -174,8 +175,23 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/riwayat-pendaftaran', [PesertaController::class, 'riwayatPendaftaran'])->name('riwayat-pendaftaran');
 });
 
+// //Sertifikat
+// Route::get('/sertifikat/{id}/view', [SertifikatController::class, 'view'])->name('sertifikat.view');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/sertifikat', [SertifikatController::class, 'index'])->name('sertifikat.index');
+    Route::get('/sertifikat/{id}', [SertifikatController::class, 'view'])->name('sertifikat.view');
+    Route::get('/sertifikat/{id}/download', [SertifikatController::class, 'download'])->name('sertifikat.download');
+});
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/riwayat-tiket', [KarcisController::class, 'riwayatTiket'])->name('riwayat-tiket');
+});
+
+Route::middleware(['auth'])->group(function () {
+//upload ttd
+Route::post('/tanda-tangan', [PembicaraController::class, 'uploadTandaTangan'])->name('tanda-tangan');
+});
 
 
 require __DIR__ . '/auth.php';

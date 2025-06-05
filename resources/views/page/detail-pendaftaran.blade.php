@@ -70,8 +70,9 @@
                     <div class="flex items-start">
                         <i class="fa-regular fa-credit-card text-xl text-gray-700 mr-3"></i>
                         <div>
-                            <p class="text-blue-400 font-semibold">Metode Pembayaran</p>
-                            <p>Transfer Bank</p>
+                            <p class="text-blue-400 font-semibold">Voucher</p>
+                            <p> <input type="text" name="kode_voucher" placeholder="Kode Voucher (opsional)"
+                                    class="form-input mb-2"></p>
                         </div>
                     </div>
 
@@ -110,7 +111,7 @@
                             <i class="fa-solid fa-cart-shopping"></i>
                             <span class="pl-2">Bayar</span>
                         </a>
-                    @elseif ($pendaftaran->status === 'pain')
+                    @elseif ($pendaftaran->status === 'paid')
                         <div class="mt-10 text-green-600 font-semibold text-lg">
                             <i class="fa-solid fa-circle-check"></i><span class="pl-2">Sudah dibayar</span>
                         </div>

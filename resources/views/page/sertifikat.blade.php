@@ -21,15 +21,27 @@
                             </tr>
                         </thead>
                         <tbody class="text-gray-700">
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="py-3 px-4 border-b">1</td>
-                                <td class="py-3 px-4 border-b">Anurchan Ghozali</td>
-                                <td class="py-3 px-4 border-b">Cara Membuat Tampilan Web yang Modern</td>
-                                <td class="py-3 px-4 border-b">Ahmad Biawak Ramadan</td>
-                                <td class="py-3 px-4 border-b">23 Juni 2025 - 08:00 WIB</td>
-                                <td class="py-3 px-4 border-b"> <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a></td>
-                            </tr>
-
+                            @forelse ($sertifikats as $index => $sertifikat)
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
+                                    <td class="py-3 px-4 border-b">
+                                        {{ $sertifikat->pendaftaran->peserta->user->name }}</td>
+                                    <td class="py-3 px-4 border-b">{{ $sertifikat->pendaftaran->seminar->judul }}</td>
+                                    <td class="py-3 px-4 border-b">
+                                        {{ $sertifikat->pendaftaran->seminar->pembicara->user->name }}
+                                    </td>
+                                    <td class="py-3 px-4 border-b">
+                                        {{ \Carbon\Carbon::parse($sertifikat->pendaftaran->seminar->waktu)->translatedFormat('d F Y - H:i') }}
+                                        WITA</td>
+                                    <td class="py-3 px-4 border-b"> <a
+                                            href="{{ route('sertifikat.view', $sertifikat->id) }}"><i
+                                                class="fa-solid fa-eye cursor-pointer"></i></a></td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-gray-500">Belum ada sertifikat.</td>
+                                </tr>
+                            @endforelse
                             <!-- Tambahkan baris lainnya di sini jika perlu -->
                         </tbody>
                     </table>

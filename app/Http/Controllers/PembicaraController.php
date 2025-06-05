@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Kategori;
 use App\Models\Pembicara;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PembicaraController extends Controller
 {
@@ -40,6 +42,59 @@ class PembicaraController extends Controller
 
         return view('page.pembicara', compact('pembicaras', 'kategoris', 'kategori'));
     }
+
+    public function uploadTandaTangan(Request $request)
+{
+    $request->validate([
+        'tanda_tangan' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+    ]);
+
+    $pembicara = Pembicara::where('user_id', Auth::id())->first();
+    if (!$pembicara) {
+        return back()->withErrors(['message' => 'Pembicara tidak ditemukan.']);
+    }
+
+    if ($request->hasFile('tanda_tangan')) {
+        // Hapus tanda tangan lama jika ada
+        if ($pembicara->tanda_tangan && Storage::disk('public')->exists($pembicara->tanda_tangan)) {
+            Storage::disk('public')->delete($pembicara->tanda_tangan);
+        }
+
+        // Simpan tanda tangan baru
+        $file = $request->file('tanda_tangan');
+        $path = $file->store('tanda_tangan', 'public');
+
+        // Update kolom di database
+        $pembicara->update([
+            'tanda_tangan' => $path
+        ]);
+
+        return redirect()->back()->with('success', 'Tanda tangan berhasil diupload!');
+    }
+
+    return back()->withErrors(['message' => 'Gagal mengunggah file.']);
+}
+
+    //     public function uploadTandaTangan(Request $request)
+    // {
+    //     $request->validate([
+    //         'tanda_tangan' => 'required|image|mimes:png,jpg,jpeg|max:2048'
+    //     ]);
+
+    //     $pembicara = Pembicara::where('user_id', Auth::id())->first();
+    //     if (!$pembicara) {
+    //         return back()->withErrors(['message' => 'Pembicara tidak ditemukan.']);
+    //     }
+
+    //     $file = $request->file('signature');
+    //     $path = $file->store('tanda_tangan', 'public');
+
+    //     $pembicara->update([
+    //         'tanda_tangan' => $path
+    //     ]);
+
+    //     return redirect()->back()->with('success', 'Tanda tangan berhasil diupload!');
+    // }
     
     // public function byKategori($id)
     // {

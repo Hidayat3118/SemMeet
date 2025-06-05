@@ -26,19 +26,32 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="py-3 px-4 border-b">1</td>
-                            <td class="py-3 px-4 border-b">Cara Membuat Tampilan web yang Modern</td>
-                            <td class="py-3 px-4 border-b">23 Juni 2025</td>
-                            <td class="py-3 px-4 border-b">08:00</td>
-                            <td class="py-3 px-4 border-b">10:00</td>
-                            <td class="py-3 px-4 border-b">Transfer Bank</td>
-                            <td class="py-3 px-4 border-b">Online via Zoom</td>
-                            <td class="py-3 px-4 border-b">Budi Santoso</td>
-                            <td class="py-3 px-4 border-b">Ahmad Biawak Ramadan</td>
-                            <td class="py-3 px-4 border-b"> <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a></td>
-                        </tr>
-
+                        @forelse ($karcis as $index => $item)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->judul }}</td>
+                                <td class="py-3 px-4 border-b">
+                                    {{ \Carbon\Carbon::parse($item->pendaftaran->seminar->tanggal)->format('d M Y') }}
+                                </td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->jam_mulai }}</td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->jam_selesai }}</td>
+                                <td class="py-3 px-4 border-b">
+                                    {{ $item->pendaftaran->seminar->metode_pembayaran ?? '-' }}</td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->lokasi }}</td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->moderator->nama ?? '-' }}
+                                </td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->pembicara->nama ?? '-' }}
+                                </td>
+                                <td class="py-3 px-4 border-b"> <a href="{{ route('karcis.show', $item->id) }}"><i
+                                            class="fa-solid fa-eye cursor-pointer"></i></a></td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="10" class="py-4 px-4 text-center text-gray-500">
+                                    Tidak ada tiket tersedia.
+                                </td>
+                            </tr>
+                        @endforelse
                         <!-- Tambahkan baris lainnya di sini jika perlu -->
                     </tbody>
 

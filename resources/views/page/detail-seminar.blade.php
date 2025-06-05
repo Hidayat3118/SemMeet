@@ -134,14 +134,23 @@
                         <p class="text-sm text-gray-600 mb-4">Silakan daftar ke acara seminar untuk mendapatkan pengalaman
                             belajar yang berharga.</p>
                         @auth
-                            <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    <p>Daftar</p>
+                            @if ($sisa_kouta > 0)
+                                <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit"
+                                        class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                        <p>Daftar</p>
+                                    </button>
+                                </form>
+                            @else
+                                <button type="button"
+                                    class="w-full bg-gray-400 text-white py-2 rounded-full cursor-not-allowed font-semibold flex justify-center items-center gap-4"
+                                    disabled>
+                                    <i class="fa-solid fa-circle-xmark"></i>
+                                    <p>Kuota Penuh</p>
                                 </button>
-                            </form>
+                            @endif
                         @else
                             <a href="{{ route('login') }}">
                                 <button
@@ -168,13 +177,14 @@
                             <div class="flex">
                                 <div class="w-28 font-medium text-gray-700">Mulai</div>
                                 <div class="flex items-baseline"><span class="mr-2">:</span>
-                                    <span>{{ \Carbon\Carbon::parse($seminar->waktu_mulai)->format('H:i') }}</span>
+                                    <span>{{ \Carbon\Carbon::parse($seminar->waktu_mulai)->format('H:i') }} WITA</span>
                                 </div>
                             </div>
                             <div class="flex">
                                 <div class="w-28 font-medium text-gray-700">Selesai</div>
                                 <div class="flex items-baseline"><span class="mr-2">:</span> <span>
-                                        {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }}</span></div>
+                                        {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }} WITA</span>
+                                </div>
                             </div>
                         </div>
                     </div>
