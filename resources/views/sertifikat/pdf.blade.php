@@ -26,7 +26,7 @@
             padding: 40px 50px;
             border: 15px solid #3D90D7;
             margin: auto;
-            background-color: #fff;
+            background-color: #F2F2F2;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -40,7 +40,7 @@
             padding: 40px 50px;
             border: 3px solid #3D90D7;
             margin: auto;
-            background-color: #fff;
+            background-color: #F2F2F2;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
