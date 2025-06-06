@@ -31,6 +31,14 @@ class PendaftaranResource extends Resource
     {
         return $table
             ->columns([
+                TextColumn::make('peserta.user.name')
+                    ->label('Peserta')
+                    ->searchable(),
+
+                TextColumn::make('seminar.judul')
+                    ->label('Seminar')
+                    ->searchable(),
+
                 TextColumn::make('jumlah')
                     ->label('Jumlah')
                     ->searchable(),
@@ -48,21 +56,15 @@ class PendaftaranResource extends Resource
                     ->searchable()
                     ->toggleable(),
 
-                TextColumn::make('seminar.judul')
-                    ->label('Seminar')
-                    ->searchable(),
 
-                TextColumn::make('peserta.user.name')
-                    ->label('Peserta')
-                    ->searchable(),
 
                 TextColumn::make('created_at')
-                    ->label('Dibuat')
+                    ->label('Waktu Pendaftaran')
                     ->dateTime(),
 
-                TextColumn::make('updated_at')
-                    ->label('Diubah')
-                    ->dateTime(),
+                // TextColumn::make('updated_at')
+                //     ->label('Diubah')
+                //     ->dateTime(),
             ])
             ->filters([
                 SelectFilter::make('seminar_id')
