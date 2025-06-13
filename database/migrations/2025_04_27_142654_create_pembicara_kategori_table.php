@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('pembicara_id')->constrained()->onDelete('cascade');
-            $table->foreignId('seminar_id')->constrained()->onDelete('cascade');
+            $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
         });
     }
 

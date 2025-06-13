@@ -56,12 +56,12 @@ class RegisteredUserController extends Controller
             case 'pembicara':
                 $user->pembicara()->create();
                 break;
-            case 'moderator':
-                $user->moderator()->create();
-                break;
-            case 'penitia':
-                $user->penitia()->create();
-                break;
+            // case 'moderator':
+            //     $user->moderator()->create();
+            //     break;
+            // case 'penitia':
+            //     $user->penitia()->create();
+            //     break;
         }
 
         event(new Registered($user));

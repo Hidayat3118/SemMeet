@@ -63,7 +63,7 @@ class SeminarSeeder extends Seeder
                 'panitia_id' => null,
                 'moderator_id' => rand(1, 5),
                 'pembicara_id' => rand(1, 5),
-                'kategori_id' => rand(1, 5),
+                
             ]);
         }
     }

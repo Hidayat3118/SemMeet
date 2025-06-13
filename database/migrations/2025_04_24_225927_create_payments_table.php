@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('jumlah_pembayaran')->nullable();
             $table->enum('status_pembayaran', ['pending', 'completed', 'failed', 'cenceled', 'refunden']);
             $table->string('invoice_url')->nullable();
+            $table->integer('diskon')->default(0);
+            $table->string('snap_token')->nullable();
             $table->foreignId('pendaftaran_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

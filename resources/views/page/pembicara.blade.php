@@ -17,8 +17,8 @@
                     </p>
                 </div>
                 {{-- tombol --}}
-                <div class="flex justify-between flex-col lg:flex-row gap-y-7">
-                    <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
+                <div class="flex justify-between flex-col lg:flex-row gap-y-7 ">
+                    <div class="flex  flex-wrap  lg:justify-start gap-2  w-2/3">
                         {{-- Tombol All --}}
                         <a href="{{ route('pembicara.index') }}">
                             <button
@@ -37,8 +37,8 @@
                         @endforeach
                     </div>
                     {{-- serch --}}
-                    <form action="{{ route('pembicara.index') }}" method="GET" class="flex gap-6 mx-6 w-full">
-                        <div class="flex gap-6 lg:gap-10 mx-6">
+                    <form action="{{ route('pembicara.index') }}" method="GET" class="flex gap-6 mx-6  w-1/2">
+                        <div class="flex gap-6 lg:gap-10 mx-6 ">
                             <div class="flex w-full mx-auto ">
                                 <div class=" w-full">
                                     <div class="relative">

@@ -29,7 +29,6 @@ return new class extends Migration
             $table->foreignId('panitia_id')->nullable()->constrained()->onDelete('set null');
             $table->foreignId('moderator_id')->constrained()->onDelete('cascade');
             $table->foreignId('pembicara_id')->constrained()->onDelete('cascade');
-            $table->foreignId('kategori_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
