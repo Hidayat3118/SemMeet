@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Pendaftaran;
+use App\Models\Seminar;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -160,4 +162,62 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+        public function riwayatSeminar()
+    {
+        $user = Auth::user();
+
+        // Seminar yang diikuti sebagai peserta
+        $riwayatPeserta = Pendaftaran::with(['seminar', 'seminar.pembicara.user', 'seminar.moderator.user'])
+                            ->where('peserta_id', $user->id)
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        // Seminar yang dibawakan sebagai pembicara
+        $riwayatPembicara = Seminar::where('pembicara_id', $user->id)
+                            ->with(['moderator.user', 'pembicara.user'])
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        // Seminar yang dimoderatori
+        $riwayatModerator = Seminar::where('moderator_id', $user->id)
+                            ->with(['moderator.user', 'pembicara.user'])
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+
+        return view('page.riwayat-seminar', compact('riwayatPeserta', 'riwayatPembicara', 'riwayatModerator'));
+    }
+
+//     public function riwayatSeminar()
+// {
+//     $user = Auth::user();
+
+//     // Riwayat sebagai peserta (via pendaftaran)
+//     $riwayatPeserta = Pendaftaran::with('seminar.moderator.user', 'seminar.pembicara.user')
+//         ->where('peserta_id', $user->id)
+//         ->get()
+//         ->map(function ($pendaftaran) {
+//             return $pendaftaran->seminar;
+//         });
+
+//     // Riwayat sebagai pembicara langsung dari seminar
+//     $riwayatPembicara = Seminar::with('moderator.user', 'pembicara.user')
+//         ->whereHas('pembicara', function ($q) use ($user) {
+//             $q->where('user_id', $user->id);
+//         })
+//         ->get();
+
+//     // Riwayat sebagai moderator langsung dari seminar
+//     $riwayatModerator = Seminar::with('moderator.user', 'pembicara.user')
+//         ->whereHas('moderator', function ($q) use ($user) {
+//             $q->where('user_id', $user->id);
+//         })
+//         ->get();
+
+//     return view('page.riwayat-seminar', compact('riwayatPeserta', 'riwayatPembicara', 'riwayatModerator'));
+// }
+
+
+
 }

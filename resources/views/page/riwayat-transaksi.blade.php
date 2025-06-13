@@ -26,16 +26,17 @@
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
+                        @foreach ($riwayat as $index => $data)
                         <tr class="hover:bg-gray-50 transition">
-                            <td class="py-3 px-4 border-b">1</td>
-                            <td class="py-3 px-4 border-b">Cara Membuat Tampilan web yang Modern</td>
-                            <td class="py-3 px-4 border-b">23 Juni 2025</td>
-                            <td class="py-3 px-4 border-b">08:00</td>
-                            <td class="py-3 px-4 border-b">10:00</td>
-                            <td class="py-3 px-4 border-b">Transfer Bank</td>
-                            <td class="py-3 px-4 border-b">Online via Zoom</td>
-                            <td class="py-3 px-4 border-b">Budi Santoso</td>
-                            <td class="py-3 px-4 border-b">Ahmad Biawak Ramadan</td>
+                            <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->judul ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->tanggal ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->waktu_mulai  ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->waktu_selesai ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->lokasi ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->moderator->user->name ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->pembicara->user->name ?? '-' }}</td>
+                            <td class="py-3 px-4 border-b">{{ $data->seminar->j ?? '-' }}</td>
                             <td class="py-3 px-4 border-b"> <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a></td>
                         </tr>
 

@@ -10,10 +10,16 @@
 
 
             <div class="text-center space-y-1">
-                <span
+                {{-- <span
                     class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-500 text-xs font-medium rounded-full">
                     {{ $pembicara->kategori->nama ?? 'Tanpa Kategori' }}
-                </span>
+                </span> --}}
+                @foreach ($pembicara->kategoris as $kategori)
+                    <span
+                        class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-500 text-xs font-medium rounded-full">
+                        {{ $kategori->nama }}
+                    </span>
+                @endforeach
                 <h3 class="text-xl font-bold text-gray-900">{{ $pembicara->user->name ?? '-' }}</h3>
                 <p class="text-sm text-gray-500">{{ $pembicara->jabatan }} <span class="text-blue-500 font-medium">@
                         {{ $pembicara->instansi }}</span></p>

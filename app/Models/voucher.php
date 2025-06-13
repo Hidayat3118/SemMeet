@@ -19,5 +19,11 @@ class voucher extends Model
         return $this->belongsTo(Seminar::class);
     }
 
+    public function payments()
+{
+    return $this->hasMany(Payment::class);
+}
+
+
    
 }

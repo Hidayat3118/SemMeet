@@ -19,42 +19,47 @@
                 {{-- tombol --}}
                 <div class="flex justify-between flex-col lg:flex-row gap-y-7">
                     <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
-                       
+
                     </div>
                     {{-- serch --}}
-                    <div class="flex gap-6 lg:gap-10  mx-6">
-                        <div class="flex items-center w-full mx-auto ">
-                            <div class="relative w-full">
-                                <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                                    <i class="fas fa-search"></i>
-                                </span>
-                                <input type="text" placeholder="Cari Pembicara Anda..."
-                                    class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 placeholder-gray-400" />
+                    <form action="{{ route('moderator.index') }}" method="GET" class="flex gap-6 mx-6 w-full">
+                        <div class="flex gap-6 lg:gap-10 mx-6">
+                            <div class="flex w-full mx-auto ">
+                                <div class=" w-full">
+                                    <div class="relative">
+                                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                        <input type="text" name="q" value="{{ request('q') }}"
+                                            placeholder="Cari Pembicara..."
+                                            class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 placeholder-gray-400" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        {{-- drop down --}}
-                        <div>
-                            <select
-                                class="px-4 pr-8 py-2 border bg-gray-100 border-gray-300 rounded-full shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option>Default</option>
-                                <option value="1">Opsi 1</option>
-                                <option value="2">Opsi 2</option>
-                                <option value="3">Opsi 3</option>
-                            </select>
-                        </div>
+                    </form>
+                    {{-- drop down --}}
+                    <div>
+                        <select
+                            class="px-4 pr-8 py-2 border bg-gray-100 border-gray-300 rounded-full shadow-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option>Default</option>
+                            <option value="1">Opsi 1</option>
+                            <option value="2">Opsi 2</option>
+                            <option value="3">Opsi 3</option>
+                        </select>
                     </div>
                 </div>
-                {{-- card pembicara --}}
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
-                    @forelse ($moderators as $moderator)
-                        <div class="swiper-slide px-4">
-                            <x-card-moderator :moderator="$moderator" />
-                        </div>
-                        @empty
-                        <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>
-                        @endforelse
+        </div>
+        {{-- card pembicara --}}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-8 gap-10">
+            @forelse ($moderators as $moderator)
+                <div class="swiper-slide px-4">
+                    <x-card-moderator :moderator="$moderator" />
                 </div>
-            </section>
+            @empty
+                <p class="text-center col-span-3 text-gray-500">Belum ada data moderator.</p>
+            @endforelse
+        </div>
+        </section>
         </div>
         {{-- Footer --}}
         <x-footer></x-footer>

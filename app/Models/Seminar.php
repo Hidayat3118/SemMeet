@@ -28,8 +28,8 @@ class Seminar extends Model
         return $this->hasMany(Voucher::class);
     }
 // perubahan
-    public function kategori(){
-        return $this->belongsTo(Kategori::class);
+    public function kategoris(){
+        return $this->belongsToMany(Kategori::class, 'seminar_kategori');
     }
 
     public function keuangan(){

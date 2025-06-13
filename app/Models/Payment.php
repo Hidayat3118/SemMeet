@@ -12,4 +12,10 @@ class Payment extends Model
     public function pendaftaran(){
         return $this->belongsTo(Pendaftaran::class);
     }
+
+    public function voucher()
+{
+    return $this->belongsTo(Voucher::class);
+}
+
 }

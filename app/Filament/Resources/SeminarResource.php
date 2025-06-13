@@ -135,10 +135,18 @@ class SeminarResource extends Resource
                     ->searchable()
                     ->required(),
 
-                Select::make('kategori_id')
-                    ->label('Kategori')
-                    ->relationship('kategori', 'nama')
-                    ->required(),
+                // Select::make('kategori_id')
+                //     ->label('Kategori')
+                //     ->relationship('kategori', 'nama')
+                //     ->required(),
+
+                   Select::make('kategoris') // gunakan nama relasi many-to-many
+                       ->label('Kategori')
+                       ->multiple() // aktifkan pilihan banyak
+                       ->relationship('kategoris', 'nama') // sesuaikan dengan nama relasi di model
+                       ->preload()
+                       ->searchable()
+                       ->required(),
 
                 FileUpload::make('foto')
                     ->image()

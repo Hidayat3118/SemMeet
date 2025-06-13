@@ -23,7 +23,7 @@ class Pembicara extends Model
         return $this->hasMany(Seminar::class);
     }
 
-    public function kategori(){
-        return $this->belongsTo(Kategori::class);
+    public function kategoris(){
+        return $this->belongsToMany(Kategori::class, 'pembicara_kategori');
     }
 }

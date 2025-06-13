@@ -47,31 +47,31 @@ class KarcisResource extends Resource
             ])
             ->actions([
                 // Tidak ada edit action karena dinonaktifkan
-                // Action::make('Hadirkan Manual')
-                //     ->label('Hadirkan')
-                //     ->icon('heroicon-o-check-circle')
-                //     ->color('success')
-                //     ->visible(fn(Karcis $record) => $record->status !== 'used') // hanya muncul jika belum hadir
-                //     ->requiresConfirmation()
-                //     ->action(function (Karcis $record) {
-                //         // Update kehadiran
-                //         $record->update([
-                //             'status' => 'used',
-                //             'waktu_sqan' => now(),
-                //         ]);
+                Action::make('Hadirkan Manual')
+                    ->label('Hadirkan')
+                    ->icon('heroicon-o-check-circle')
+                    ->color('success')
+                    ->visible(fn(Karcis $record) => $record->status !== 'used') // hanya muncul jika belum hadir
+                    ->requiresConfirmation()
+                    ->action(function (Karcis $record) {
+                        // Update kehadiran
+                        $record->update([
+                            'status' => 'used',
+                            'waktu_sqan' => now(),
+                        ]);
 
-                //         // Buat sertifikat jika belum ada
-                //         if (!$record->pendaftaran->sertifikat) {
-                //             Sertifikat::create([
-                //                 'pendaftaran_id' => $record->pendaftaran_id,
-                //             ]);
-                //         }
+                        // Buat sertifikat jika belum ada
+                        if (!$record->pendaftaran->sertifikat) {
+                            Sertifikat::create([
+                                'pendaftaran_id' => $record->pendaftaran_id,
+                            ]);
+                        }
 
-                //         Notification::make()
-                //             ->title('Peserta berhasil ditandai hadir.')
-                //             ->success()
-                //             ->send();
-                //     }),
+                        Notification::make()
+                            ->title('Peserta berhasil ditandai hadir.')
+                            ->success()
+                            ->send();
+                    }),
             ])
             ->bulkActions([
                 // Tidak ada bulk action karena delete dinonaktifkan

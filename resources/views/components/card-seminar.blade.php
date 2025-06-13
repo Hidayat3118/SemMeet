@@ -1,7 +1,7 @@
 @props(['seminar'])
 
 <a href="{{ route('seminar.show', $seminar->id) }}"
-   class="block overflow-hidden rounded-2xl shadow-md bg-white transition duration-300 hover:shadow-xl group border border-slate-300">
+    class="block overflow-hidden rounded-2xl shadow-md bg-white transition duration-300 hover:shadow-xl group border border-slate-300">
     <div class="relative overflow-hidden">
         {{-- ini yang ubah --}}
         <img src="{{ $seminar->foto ? asset('storage/' . $seminar->foto) : asset('images/default.jpg') }}"
@@ -11,16 +11,23 @@
     <div class="p-5">
         {{-- Kategori dan Waktu --}}
         <div class="flex items-center gap-2 mb-3">
-            <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-500 text-xs font-medium rounded-full">
+            {{-- <span class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-500 text-xs font-medium rounded-full">
                 {{ $seminar->kategori->nama ?? 'Tanpa Kategori' }}
-            </span>
+            </span> --}}
+            @foreach ($seminar->kategoris as $kategori)
+                <span
+                    class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-500 text-xs font-medium rounded-full">
+                    {{ $kategori->nama }}
+                </span>
+            @endforeach
             <time datetime="{{ $seminar->waktu }}" class="text-xs text-gray-400">
                 {{ \Carbon\Carbon::parse($seminar->waktu)->format('d M Y') }}
             </time>
         </div>
 
         {{-- Judul --}}
-        <h3 class="text-lg md:text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1">
+        <h3
+            class="text-lg md:text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 line-clamp-1">
             {{ $seminar->judul }}
         </h3>
 

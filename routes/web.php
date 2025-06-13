@@ -11,9 +11,14 @@ use App\Http\Controllers\PembicaraController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SertifikatController;
+use App\Http\Controllers\VoucherController;
 
 // Route::get('/tes', function () {
 //     return view('welcome');
+// });
+
+// Route::get('/snap', function () {
+//     return view('page.snap');
 // });
 
 Route::get('/dashboard', function () {
@@ -150,13 +155,21 @@ Route::middleware(['auth'])->group(function () {
 // Route::get('/pembayaran/sukses/{id}', [PaymentController::class, 'sukses'])->name('pembayaran.sukses');
 // Route::get('/pembayaran/gagal/{id}', [PaymentController::class, 'gagal'])->name('pembayaran.gagal');
 // Halaman untuk mulai bayar (setelah daftar)
-Route::get('/bayar/{id}', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+// Route::post('/bayar/{id}', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+
+// Route::get('/pembayaran/{id}/bayar', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+
 
 // Redirect setelah sukses bayar (sementara pakai ini, nanti akan disempurnakan dengan webhook)
 Route::get('/pembayaran/sukses/{id}', [PaymentController::class, 'sukses'])->name('pembayaran.sukses');
 
 // Redirect jika gagal atau dibatalkan
 Route::get('/pembayaran/gagal/{id}', [PaymentController::class, 'gagal'])->name('pembayaran.gagal');
+
+// Cek Voucher
+Route::post('/voucher/cek', [VoucherController::class, 'cek'])->name('voucher.cek');
+
+
 
 // Generate tiket setelah bayar
 Route::get('/generate-tiket/{pendaftaran_id}', [KarcisController::class, 'generate'])->name('karcis.generate');
@@ -175,6 +188,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/riwayat-pendaftaran', [PesertaController::class, 'riwayatPendaftaran'])->name('riwayat-pendaftaran');
 });
 
+//Riwayat Seminar Peserta
+Route::middleware(['auth'])->group(function () {
+    Route::get('/riwayat-seminar', [PesertaController::class, 'riwayatSeminar'])->name('riwayat-seminar');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/riwayat-seminar', [SeminarController::class, 'riwayat'])->name('riwayat-seminar');
+});
+
+
 // //Sertifikat
 // Route::get('/sertifikat/{id}/view', [SertifikatController::class, 'view'])->name('sertifikat.view');
 
@@ -192,6 +215,17 @@ Route::middleware(['auth'])->group(function () {
 //upload ttd
 Route::post('/tanda-tangan', [PembicaraController::class, 'uploadTandaTangan'])->name('tanda-tangan');
 });
+
+//midtrans
+// Route::post('/midtrans/get-snap-token/{id}', [PaymentController::class, 'bayar'])->name('midtrans.getSnapToken');
+
+Route::post('/bayar/{id}', [PaymentController::class, 'bayar'])->name('pembayaran.bayar');
+
+// Route::get('/test-midtrans', [\App\Http\Controllers\TestController::class, 'testMidtrans']);
+
+Route::delete('/pembayaran/hapus/{id}', [PaymentController::class, 'hapusDanUlang'])
+    ->name('pembayaran.hapusDanUlang');
+
 
 
 require __DIR__ . '/auth.php';

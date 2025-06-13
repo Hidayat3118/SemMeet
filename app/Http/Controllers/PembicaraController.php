@@ -10,17 +10,35 @@ use Illuminate\Support\Facades\Storage;
 
 class PembicaraController extends Controller
 {
-    public function index()
-    {
-        $pembicaras = Pembicara::latest()->get();
+    // public function index()
+    // {
+    //     $pembicaras = Pembicara::latest()->get();
 
-        $kategoris = Kategori::all();
+    //     $kategoris = Kategori::all();
         
-        $pembicaras = Pembicara::with('kategori')->latest()->get();
+    //     $pembicaras = Pembicara::with('kategori')->latest()->get();
 
-        return view('page.pembicara', compact('pembicaras', 'kategoris'));
+    //     return view('page.pembicara', compact('pembicaras', 'kategoris'));
 
-    }
+    // }
+
+    public function index(Request $request)
+{
+    $query = $request->input('q'); // Ambil input dari form pencarian
+
+    $kategoris = Kategori::all();
+
+     $pembicaras = Pembicara::with(['user', 'kategoris'])
+        ->when($query, function ($qBuilder) use ($query) {
+            $qBuilder->whereHas('user', function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%');
+            });
+        })
+        ->latest()
+        ->get();
+
+    return view('page.pembicara', compact('pembicaras', 'kategoris'));
+}
 
      public function show($id)
     {
@@ -35,7 +53,10 @@ class PembicaraController extends Controller
         $kategori = Kategori::findOrFail($id);
 
         // Mengambil seminar yang terkait dengan kategori tersebut
-        $pembicaras = $kategori->pembicaras()->latest()->get();
+        // $pembicaras = $kategori->pembicaras()->latest()->get();
+        $pembicaras = Pembicara::whereHas('kategoris', function ($query) use ($id) {
+        $query->where('kategori_id', $id);
+        })->latest()->get();
 
         // Mengambil semua kategori untuk filter tombol
         $kategoris = Kategori::all();

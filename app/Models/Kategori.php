@@ -13,7 +13,7 @@ class Kategori extends Model
 
     public function seminars()
     {
-        return $this->hasMany(Seminar::class);
+        return $this->belongsToMany(Seminar::class, 'seminar_kategori');
     }
 
     // public function moderator(){
@@ -21,7 +21,7 @@ class Kategori extends Model
     // }
 
     public function pembicaras(){
-        return $this->hasMany(Pembicara::class);
+        return $this->belongsToMany(Pembicara::class, 'pembicara_kategori');
     }
 
 
