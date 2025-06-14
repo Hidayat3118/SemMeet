@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('otp')->nullable();
+            // Registrasi otp
+            $table->timestamp('otp_expires_at')->nullable();
+            $table->boolean('is_verified')->default(false);
+            // end
+            // forgot password
+            $table->string('reset_otp')->nullable();
+            $table->timestamp('reset_otp_expires_at')->nullable();
+            // end
             $table->rememberToken();
             $table->timestamps();
         });

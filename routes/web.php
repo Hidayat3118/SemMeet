@@ -12,19 +12,33 @@ use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\PesertaController;
 use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\VoucherController;
+use App\Http\Controllers\Auth\OtpController;
 
-// Route::get('/tes', function () {
-//     return view('welcome');
-// });
 
-// Route::get('/snap', function () {
-//     return view('page.snap');
-// });
+// otp
+Route::get('/otp/verifikasi', [OtpController::class, 'showForm'])->name('otp.verifikasi');
+Route::post('/otp/verifikasi', [OtpController::class, 'verifikasiOtp'])->name('otp.submit');
+
+// forgot password
+use App\Http\Controllers\Auth\ForgotPasswordOtpController;
+
+Route::get('/forgot-password', [ForgotPasswordOtpController::class, 'showForm'])->name('password.request');
+Route::post('/forgot-password', [ForgotPasswordOtpController::class, 'sendOtp'])->name('password.otp.send');
+
+Route::get('/verify-otp', [ForgotPasswordOtpController::class, 'showVerifyOtpForm'])->name('password.otp.verify');
+Route::post('/verify-otp', [ForgotPasswordOtpController::class, 'verifyOtp'])->name('password.otp.check');
+
+Route::get('/reset-password-otp', [ForgotPasswordOtpController::class, 'showResetForm'])->name('password.reset.form');
+Route::post('/reset-password-otp', [ForgotPasswordOtpController::class, 'resetPassword'])->name('password.reset.save');
+
+
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
     // , 'verified'
-})->middleware(['auth'])->name('dashboard');
+})->middleware(['auth', 'otp.verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -78,32 +92,32 @@ Route::get('/tiket', function () {
 
 // riwayat seminar
 
-Route::get('/riwayat-seminar', function (){
+Route::get('/riwayat-seminar', function () {
     return view('page.riwayat-seminar');
 })->name('riwayat-seminar');
 
-Route::get('/riwayat-pendaftaran', function (){
+Route::get('/riwayat-pendaftaran', function () {
     return view('page.riwayat-pendaftaran');
 })->name('riwayat-pendaftaran');
 
-Route::get('/riwayat-transaksi', function (){
+Route::get('/riwayat-transaksi', function () {
     return view('page.riwayat-transaksi');
 })->name('riwayat-transaksi');
 
 // ku tambahi
-Route::get('/riwayat-tiket', function (){
+Route::get('/riwayat-tiket', function () {
     return view('page.riwayat-tiket');
 })->name('riwayat-tiket');
 
-Route::get('/sertifikat', function (){
+Route::get('/sertifikat', function () {
     return view('page.sertifikat');
 })->name('sertifikat');
 
-Route::get('/tanda-tangan', function (){
+Route::get('/tanda-tangan', function () {
     return view('page.tanda-tangan');
 })->name('tanda-tangan');
 
-Route::get('/sqan', function (){
+Route::get('/sqan', function () {
     return view('page.sqan');
 })->name('sqan');
 
@@ -212,8 +226,8 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['auth'])->group(function () {
-//upload ttd
-Route::post('/tanda-tangan', [PembicaraController::class, 'uploadTandaTangan'])->name('tanda-tangan');
+    //upload ttd
+    Route::post('/tanda-tangan', [PembicaraController::class, 'uploadTandaTangan'])->name('tanda-tangan');
 });
 
 //midtrans

@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OtpMail; // Gantilah sesuai nama file Mailable OTP kamu
+
 class RegisteredUserController extends Controller
 {
     /**
@@ -36,10 +39,16 @@ class RegisteredUserController extends Controller
             'role' => ['required', 'in:peserta,pembicara,moderator,penitia,keuangan'],
         ]);
 
+        // Generate OTP dan simpan ke user
+        $otp = random_int(100000, 999999);
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'otp' => $otp,
+            'otp_expires_at' => now()->addMinutes(10),
+            'is_verified' => false,
         ]);
 
         // Assign role dari input
@@ -47,27 +56,29 @@ class RegisteredUserController extends Controller
 
         // Isi tabel relasi berdasarkan role
         switch ($request->role) {
-            case 'keuangan':
-                $user->keuangan()->create();
-                break;
             case 'peserta':
                 $user->peserta()->create();
                 break;
             case 'pembicara':
                 $user->pembicara()->create();
                 break;
-            // case 'moderator':
-            //     $user->moderator()->create();
-            //     break;
-            // case 'penitia':
-            //     $user->penitia()->create();
-            //     break;
+            case 'moderator':
+                $user->moderator()->create();
+                break;
+                // case 'penitia':
+                //     $user->penitia()->create();
+                //     break;
+                // case 'keuangan':
+                //     $user->keuangan()->create();
+                //     break;
         }
 
-        event(new Registered($user));
+        // Kirim email OTP
+        Mail::to($user->email)->send(new OtpMail($otp));
 
+        // Login dulu dan redirect ke halaman verifikasi OTP
         Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        session(['email' => $user->email]);
+        return redirect()->route('otp.verifikasi')->with('status', 'Kode OTP telah dikirim ke email Anda.');
     }
 }

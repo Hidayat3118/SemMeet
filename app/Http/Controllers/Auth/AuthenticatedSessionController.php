@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
     
         if ($user->hasRole('peserta')) {
             return redirect()->route('home');
-        } elseif ($user->hasRole('pembicara')) {
+        } elseif ($user->hasRole('pembicara')) { 
             return redirect()->route('dashboard');
         } elseif ($user->hasRole('moderator')) {
             return redirect()->route('dashboard');
