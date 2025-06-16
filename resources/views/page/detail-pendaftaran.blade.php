@@ -66,15 +66,16 @@
                         </div>
                     </div>
 
-                    {{-- <!-- Metode Pembayaran -->
-                    <div class="flex items-start">
-                        <i class="fa-regular fa-credit-card text-xl text-gray-700 mr-3"></i>
-                        <div>
-                            <p class="text-blue-400 font-semibold">Voucher</p>
-                            <p> <input type="text" name="kode_voucher" placeholder="Kode Voucher (opsional)"
-                                    class="form-input mb-2"></p>
+                    @if ($pendaftaran->status === 'paid' && $pendaftaran->seminar->mode === 'online')
+                        <!-- Metode Pembayaran -->
+                        <div class="flex items-start">
+                            <i class="fa-regular fa-credit-card text-xl text-gray-700 mr-3"></i>
+                            <div>
+                                <p class="text-blue-400 font-semibold">Link Meeting</p>
+                                <p>{{ $pendaftaran->seminar->metting_link }}</p>
+                            </div>
                         </div>
-                    </div> --}}
+                    @endif
 
                     <!-- Jumlah Biaya -->
                     <div class="flex items-start">

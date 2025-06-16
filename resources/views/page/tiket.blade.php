@@ -33,7 +33,7 @@
                             <div>
                                 <div class="text-xs font-bold text-gray-500 uppercase">Lokasi</div>
                                 <div class="text-base font-semibold text-gray-800 tracking-wide">
-                                    {{ $pendaftaran->seminar->lokasi }}</div>
+                                    {{ $pendaftaran->seminar->lokasi ?? '-' }}</div>
                             </div>
                             {{-- <div class="">
                                 <div class="text-xs font-bold text-gray-500 uppercase">Name of Passenger</div>

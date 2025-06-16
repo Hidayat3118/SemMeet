@@ -13,7 +13,7 @@ use Xendit\Configuration;
 use Xendit\Invoice\InvoiceApi;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Str;
-use Midtrans\Snap;
+use App\Midtrans\Snap;
 use Midtrans\Config;
 
 class PaymentController extends Controller
