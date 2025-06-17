@@ -18,10 +18,7 @@
                             <th class="py-3 px-4 border-b">Tanggal</th>
                             <th class="py-3 px-4 border-b">Waktu Mulai</th>
                             <th class="py-3 px-4 border-b">Waktu Selesai</th>
-                            <th class="py-3 px-4 border-b">Metode Pembayaran</th>
                             <th class="py-3 px-4 border-b">Lokasi</th>
-                            <th class="py-3 px-4 border-b">Moderator</th>
-                            <th class="py-3 px-4 border-b">Pembicara</th>
                             <th class="py-3 px-4 border-b">Detail</th>
                         </tr>
                     </thead>
@@ -31,16 +28,17 @@
                                 <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
                                 <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->judul }}</td>
                                 <td class="py-3 px-4 border-b">
-                                    {{ \Carbon\Carbon::parse($item->pendaftaran->seminar->tanggal)->format('d M Y') }}
+                                    {{ \Carbon\Carbon::parse($item->pendaftaran->seminar->tanggal) }}
                                 </td>
-                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->jam_mulai }}</td>
-                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->jam_selesai }}</td>
                                 <td class="py-3 px-4 border-b">
-                                    {{ $item->pendaftaran->seminar->metode_pembayaran ?? '-' }}</td>
-                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->lokasi }}</td>
-                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->moderator->nama ?? '-' }}
+                                    {{ \Carbon\Carbon::parse($item->pendaftaran->seminar->waktu_mulai)->format('H:i') }}
+                                    WITA
                                 </td>
-                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->pembicara->nama ?? '-' }}
+                                <td class="py-3 px-4 border-b">
+                                    {{ \Carbon\Carbon::parse($item->pendaftaran->seminar->waktu_selesai)->format('H:i') }}
+                                    WITA
+                                </td>
+                                <td class="py-3 px-4 border-b">{{ $item->pendaftaran->seminar->lokasi ?? 'Online' }}
                                 </td>
                                 <td class="py-3 px-4 border-b"> <a href="{{ route('karcis.show', $item->id) }}"><i
                                             class="fa-solid fa-eye cursor-pointer"></i></a></td>

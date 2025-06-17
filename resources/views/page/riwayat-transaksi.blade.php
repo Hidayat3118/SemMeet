@@ -16,30 +16,32 @@
                             <th class="py-3 px-4 border-b">No</th>
                             <th class="py-3 px-4 border-b">Judul Seminar</th>
                             <th class="py-3 px-4 border-b">Tanggal</th>
-                            <th class="py-3 px-4 border-b">Waktu Mulai</th>
-                            <th class="py-3 px-4 border-b">Waktu Selesai</th>
-                            <th class="py-3 px-4 border-b">Metode Pembayaran</th>
-                            <th class="py-3 px-4 border-b">Lokasi</th>
-                            <th class="py-3 px-4 border-b">Moderator</th>
-                            <th class="py-3 px-4 border-b">Pembicara</th>
+                            <th class="py-3 px-4 border-b">Jumlah Pembayaran</th>
+                            <th class="py-3 px-4 border-b">Status Pembayaran</th>
                             <th class="py-3 px-4 border-b">Detail</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-700">
-                        @foreach ($riwayat as $index => $data)
-                        <tr class="hover:bg-gray-50 transition">
-                            <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->judul ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->tanggal ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->waktu_mulai  ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->waktu_selesai ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->lokasi ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->moderator->user->name ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->pembicara->user->name ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b">{{ $data->seminar->j ?? '-' }}</td>
-                            <td class="py-3 px-4 border-b"> <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a></td>
-                        </tr>
 
+                        @forelse($riwayat as $index => $data)
+                            <tr class="hover:bg-gray-50 transition">
+                                <td class="py-3 px-4 border-b">{{ $index + 1 }}</td>
+                                <td class="py-3 px-4 border-b">{{ $data->seminar->judul ?? '-' }}</td>
+                                <td class="py-3 px-4 border-b">
+                                    {{ \Carbon\Carbon::parse($data->seminar->created_at ?? '-')->format('d-M-Y') }}
+                                </td>
+                                <td class="py-3 px-4 border-b">Rp.
+                                    {{ number_format($data->payment->first()->jumlah_pembayaran ?? '-', 0, ',', '.') }}
+                                </td>
+                                <td class="py-3 px-4 border-b">{{ $data->status ?? '-' }}</td>
+                                <td class="py-3 px-4 border-b"> <a href=""><i
+                                            class="fa-solid fa-eye cursor-pointer"></i></a></td>
+                            </tr>
+                        @empty
+                            <tr class="hover:bg-gray-50 transition">
+                                <td colspan="5" class="py-3 px-4 border-b">Belum ada transaksi.</td>
+                            </tr>
+                        @endforelse
                         <!-- Tambahkan baris lainnya di sini jika perlu -->
                     </tbody>
 

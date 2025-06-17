@@ -9,6 +9,12 @@
                 class="w-32 h-32 object-cover rounded-full border-4 border-blue-100 shadow-sm transition duration-300 hover:scale-105" />
 
             <div class="text-center space-y-1">
+                @foreach ($moderator->kategoris as $kategori)
+                    <span
+                        class="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-500 text-xs font-medium rounded-full">
+                        {{ $kategori->nama }}
+                    </span>
+                @endforeach
                 <h3 class="text-xl font-bold text-gray-900">{{ $moderator->user->name ?? '-' }}</h3>
                 <p class="text-sm text-gray-500">{{ $moderator->jabatan }} <span class="text-blue-500 font-medium">@
                         {{ $moderator->instansi }}</span></p>

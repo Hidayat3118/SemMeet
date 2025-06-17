@@ -42,7 +42,7 @@
                                 <td class="py-3 px-4 border-b">
                                     {{ \Carbon\Carbon::parse($seminar->waktu_selesai)->format('H:i') }} WITA
                                 </td>
-                                <td class="py-3 px-4 border-b">{{ $seminar->lokasi }}</td>
+                                <td class="py-3 px-4 border-b">{{ $seminar->lokasi ?? 'Online' }}</td>
                                 <td class="py-3 px-4 border-b">
                                     {{ $seminar->moderator->user->name ?? '-' }}
                                 </td>

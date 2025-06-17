@@ -22,7 +22,7 @@ class Moderator extends Model
         return $this->hasMany(Seminar::class);
     }
 
-    // public function kategori(){
-    //     return $this->belongsToMany(Kategori::class);
-    // }
+    public function kategoris(){
+        return $this->belongsToMany(Kategori::class, 'moderator_kategori');
+    }
 }

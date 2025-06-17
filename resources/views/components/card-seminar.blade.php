@@ -20,8 +20,8 @@
                     {{ $kategori->nama }}
                 </span>
             @endforeach
-            <time datetime="{{ $seminar->waktu }}" class="text-xs text-gray-400">
-                {{ \Carbon\Carbon::parse($seminar->waktu)->format('d M Y') }}
+            <time datetime="{{ $seminar->created_at }}" class="text-xs text-gray-400">
+                {{ \Carbon\Carbon::parse($seminar->created_at)->format('d M Y') }}
             </time>
         </div>
 

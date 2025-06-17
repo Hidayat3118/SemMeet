@@ -47,6 +47,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/profile/extended', [ProfileController::class, 'editExtended'])->name('profile.editExtended');   // Form untuk profil tambahan
     Route::patch('/profile/extended', [ProfileController::class, 'updateExtended'])->name('profile.update.extended'); // Update profil tambahan
+    // Form edit & simpan kategori
+    // Route::get('/profile', [ProfileController::class, 'editKategori'])->name('profile.editKategori');
+    // Route::patch('/profile/kategori', [ProfileController::class, 'updateKategori'])->name('profile.update.kategori');
+     Route::get('/profile/kategori', [ProfileController::class, 'editKategori'])->name('profile.kategoriExtended');
+    Route::patch('/profile/kategori', [ProfileController::class, 'updateKategori'])->name('profile.kategoriExtended');
 });
 
 
@@ -137,6 +142,9 @@ Route::get('/seminar/kategori/{id}', [SeminarController::class, 'byKategori'])->
 //moderator
 Route::get('/moderator', [ModeratorController::class, 'index'])->name('moderator.index');
 
+//kategori moderator
+Route::get('/moderator/kategori/{id}', [ModeratorController::class, 'byKategori'])->name('moderator.kategori');
+
 //detail-moderator
 Route::get('/moderator/{id}', [ModeratorController::class, 'show'])->name('moderator.show');
 
@@ -200,6 +208,11 @@ Route::get('/tiket/{karcis_id}', [KarcisController::class, 'show'])->name('karci
 //Riwayat Pendaftaran Peserta
 Route::middleware(['auth'])->group(function () {
     Route::get('/riwayat-pendaftaran', [PesertaController::class, 'riwayatPendaftaran'])->name('riwayat-pendaftaran');
+});
+
+//Riwayat Transaksi Peserta
+Route::middleware(['auth'])->group(function () {
+    Route::get('/riwayat-transaksi', [PesertaController::class, 'riwayatTransaksi'])->name('riwayat-transaksi');
 });
 
 //Riwayat Seminar Peserta

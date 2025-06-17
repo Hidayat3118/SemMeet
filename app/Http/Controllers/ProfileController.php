@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Kategori;
 use App\Models\Pendaftaran;
 use App\Models\Seminar;
 use Illuminate\Http\RedirectResponse;
@@ -18,15 +19,26 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        // return view('profile.edit', [
+        //     'user' => $request->user(),
+        // ]);
+        $user = $request->user()->load([
+        'pembicara.kategoris',
+        'moderator.kategoris'
+    ]);
+    $semuaKategori = Kategori::all();
+
+    return view('profile.edit', compact('user', 'semuaKategori'));
     }
 
     public function editExtended(Request $request): View
     {
-        $user = $request->user()->load(['peserta', 'pembicara', 'moderator']);
-        return view('profile.edit', compact('user'));
+          $user = $request->user()->load(['peserta', 'pembicara', 'moderator', 'pembicara.kategoris', 'moderator.kategoris']);
+    $semuaKategori = Kategori::all();
+
+    return view('profile.edit', compact('user', 'semuaKategori'));
+        // $user = $request->user()->load(['peserta', 'pembicara', 'moderator']);
+        // return view('profile.edit', compact('user'));
     }
 
 
@@ -141,6 +153,40 @@ class ProfileController extends Controller
         return Redirect::route('profile.editExtended')->with('status', 'profile-updated');
 
     }
+
+    public function editKategori(Request $request): View
+{
+    $user = $request->user()->load([
+        'pembicara.kategoris', 
+        'moderator.kategoris'
+    ]);
+
+    $semuaKategori = Kategori::all();
+
+    return view('profile.edit', compact('user', 'semuaKategori'));
+}
+
+    public function updateKategori(Request $request): RedirectResponse
+{
+    $user = $request->user();
+
+    $request->validate([
+        'kategori_id' => 'array',
+        'kategori_id.*' => 'exists:kategoris,id',
+    ]);
+
+    if ($user->hasRole('pembicara') && $user->pembicara) {
+        $user->pembicara->kategoris()->sync($request->kategori_id);
+    }
+
+    if ($user->hasRole('moderator') && $user->moderator) {
+        $user->moderator->kategoris()->sync($request->kategori_id);
+    }
+
+        return Redirect::route('profile.kategoriExtended')->with('status', 'Kategori berhasil diperbarui');
+}
+
+
 
     /**
      * Delete the user's account.

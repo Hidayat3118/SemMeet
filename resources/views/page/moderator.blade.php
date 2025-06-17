@@ -18,11 +18,26 @@
                 </div>
                 {{-- tombol --}}
                 <div class="flex justify-between flex-col lg:flex-row gap-y-7">
-                    <div class="flex  flex-wrap justify-center lg:justify-start gap-2">
-
+                    <div class="flex  flex-wrap lg:justify-start gap-2/3">
+                        {{-- Tombol All --}}
+                        <a href="{{ route('moderator.index') }}">
+                            <button
+                                class="px-4 py-2 {{ request()->routeIs('moderator.index') ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full border border-gray-300 shadow-sm">
+                                All
+                            </button>
+                        </a>
+                        {{-- Tombol per kategori --}}
+                        @foreach ($kategoris as $kategori)
+                            <a href="{{ route('moderator.kategori', $kategori->id) }}">
+                                <button
+                                    class="px-4 py-2 {{ request()->is('moderator/kategori/' . $kategori->id) ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700' }} rounded-full border border-gray-300 shadow-sm">
+                                    {{ $kategori->nama }}
+                                </button>
+                            </a>
+                        @endforeach
                     </div>
                     {{-- serch --}}
-                    <form action="{{ route('moderator.index') }}" method="GET" class="flex gap-6 mx-6 w-full">
+                    <form action="{{ route('moderator.index') }}" method="GET" class="flex gap-6 mx-6 w-1/2">
                         <div class="flex gap-6 lg:gap-10 mx-6">
                             <div class="flex w-full mx-auto ">
                                 <div class=" w-full">

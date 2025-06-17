@@ -17,7 +17,7 @@
                             <th class="py-3 px-4 border-b">Email</th>
                             <th class="py-3 px-4 border-b">Judul Seminar</th>
                             <th class="py-3 px-4 border-b">Status Pendaftaran</th>
-                            <th class="py-3 px-4 border-b">Metode Pembayaran</th>
+                            <th class="py-3 px-4 border-b">Lokasi</th>
                             <th class="py-3 px-4 border-b">Jumlah Biaya</th>
                             <th class="py-3 px-4 border-b">Waktu Pendaftaran</th>
                             <th class="py-3 px-4 border-b">Detail</th>
@@ -30,14 +30,23 @@
                                 <td class="py-3 px-4 border-b">{{ $item->peserta->user->name }}</td>
                                 <td class="py-3 px-4 border-b">{{ $item->peserta->user->email }}</td>
                                 <td class="py-3 px-4 border-b">{{ $item->seminar->judul }}</td>
-                                <td class="py-3 px-4 border-b">{{ $item->status }}</td>
                                 <td class="py-3 px-4 border-b">
                                     <span
-                                        class="inline-block px-2 py-1 bg-yellow-200 text-yellow-800 rounded text-sm font-medium">None</span>
+                                        class="inline-block px-2 py-1 bg-yellow-200 text-yellow-800 rounded text-sm font-medium">{{ $item->status }}</span>
                                 </td>
-                                <td class="py-3 px-4 border-b">{{ $item->seminar->harga }}</td>
+
+                                @if ($item->status === 'paid' && $item->seminar->mode === 'online')
+                                    <td class="py-3 px-4 border-b">
+                                        {{ $item->seminar->metting_link ?? 'Online' }}</td>
+                                @else
+                                    <td class="py-3 px-4 border-b">{{ $item->seminar->lokasi ?? 'Online' }}
+                                    </td>
+                                @endif
+                                <td class="py-3 px-4 border-b">Rp.
+                                    {{ number_format($item->payment->first()->jumlah_pembayaran, 0, ',', '.') }}</td>
                                 <td class="py-3 px-4 border-b">{{ $item->created_at->format('d M Y H:i') }} WITA</td>
-                                 <td class="py-3 px-4 border-b"> <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a></td>
+                                <td class="py-3 px-4 border-b"> <a href=""><i
+                                            class="fa-solid fa-eye cursor-pointer"></i></a></td>
                             </tr>
 
                         @empty

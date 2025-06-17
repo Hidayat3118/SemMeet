@@ -38,7 +38,7 @@
                         <div class="flex">
                             <div class="w-28 font-medium text-gray-600">Tanggal</div>
                             <div class="flex items-baseline"><span class="mr-2">:</span>
-                                <span>{{ \Carbon\Carbon::parse($seminar->tanggal)->format('d M Y') }}</span>
+                                <span>{{ \Carbon\Carbon::parse($seminar->created_at)->format('d M Y') }}</span>
                             </div>
                         </div>
 

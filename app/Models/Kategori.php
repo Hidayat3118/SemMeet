@@ -16,9 +16,9 @@ class Kategori extends Model
         return $this->belongsToMany(Seminar::class, 'seminar_kategori');
     }
 
-    // public function moderator(){
-    //     return $this->belongsToMany(Moderator::class);
-    // }
+    public function moderators(){
+        return $this->belongsToMany(Moderator::class, 'moderator_kategori');
+    }
 
     public function pembicaras(){
         return $this->belongsToMany(Pembicara::class, 'pembicara_kategori');
