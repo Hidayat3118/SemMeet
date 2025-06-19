@@ -109,61 +109,70 @@
                     </div>
                 </div>
 
-                <div class="flex justify-between md:px-24 pt-4">
-                    <!-- Tombol Kembali -->
-                    <div class="mt-10 flex justify-start font-bold">
-                        <a href="{{ route('home') }}"
-                            class="inline-flex items-center bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition">
-                            <i class="fa-solid fa-arrow-left mr-2 "></i> Kembali
-                        </a>
+                <div class=" px-4 md:px-24 pt-8 pb-6">
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 justify-between items-start md:items-end">
+
+                        <!-- Tombol Kembali -->
+                        <div class="w-full md:w-auto">
+                            <a href="{{ route('home') }}"
+                                class="inline-flex items-center justify-center bg-green-500 text-white px-6 py-3 rounded-full hover:bg-green-600 transition-colors duration-200 font-semibold w-full md:w-auto min-w-[140px]">
+                                <i class="fa-solid fa-arrow-left mr-2"></i>
+                                Kembali
+                            </a>
+                        </div>
+
+                        <!-- Status & Action Section -->
+                        <div class="w-full md:w-auto flex-shrink-0">
+                            @if ($pendaftaran->status === 'pending')
+                                <!-- Form Voucher & Tombol Bayar -->
+                                <form action="{{ route('pembayaran.bayar', $pendaftaran->id) }}" method="POST"
+                                    class="flex flex-col gap-4">
+                                    @csrf
+
+                                    <!-- Input Voucher -->
+                                    <div class="w-full">
+                                        <label for="code_voucher" class="block text-white font-semibold mb-2">
+                                            Kode Voucher
+                                        </label>
+                                        <input type="text" id="code_voucher" name="code_voucher"
+                                            value="{{ old('code_voucher') }}"
+                                            placeholder="kode voucher (opsional)"
+                                            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200" />
+                                    </div>
+
+                                    <!-- Hidden Input -->
+                                    <input type="hidden" name="harga_akhir" id="input-harga-akhir"
+                                        value="{{ $pendaftaran->seminar->harga }}">
+
+                                    <!-- Tombol Bayar -->
+                                    <button type="submit"
+                                        class="inline-flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-full transition-colors duration-200 w-full min-h-[48px]">
+                                        <i class="fa-solid fa-cart-shopping mr-2"></i>
+                                        Bayar Sekarang
+                                    </button>
+                                </form>
+                            @elseif ($pendaftaran->status === 'paid')
+                                <!-- Status Sudah Dibayar -->
+                                <div class="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
+                                    <div class="flex items-center justify-center text-green-100 font-semibold text-lg">
+                                        <i class="fa-solid fa-circle-check mr-3 text-xl"></i>
+                                        <span>Pembayaran Berhasil</span>
+                                    </div>
+                                </div>
+                            @elseif ($pendaftaran->status === 'attended')
+                                <!-- Status Sudah Hadir -->
+                                <div class="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-4 border border-white/20">
+                                    <div class="flex items-center justify-center text-blue-100 font-semibold text-lg">
+                                        <i class="fa-solid fa-user-check mr-3 text-xl"></i>
+                                        <span>Sudah Hadir & Lunas</span>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
                     </div>
-
-
-                    @if ($pendaftaran->status === 'pending')
-                        <!-- Form Voucher & Tombol Bayar -->
-                        <form action="{{ route('pembayaran.bayar', $pendaftaran->id) }}" method="POST"
-                            class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                            @csrf
-                            <div class="w-full md:w-auto">
-                                <label for="code_voucher" class="text-blue-400 font-semibold">Kode Voucher</label>
-                                <input type="text" id="code_voucher" name="code_voucher"
-                                    value="{{ old('code_voucher') }}" placeholder="Kode Voucher (opsional)"
-                                    class="form-input mt-1 w-full md:w-64 border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
-                            </div>
-                            <input type="hidden" name="harga_akhir" id="input-harga-akhir"
-                                value="{{ $pendaftaran->seminar->harga }}">
-                            <button type="submit"
-                                class="flex items-center justify-center bg-blue-500 py-2 px-5 rounded-full text-white font-bold hover:bg-blue-600 transition">
-                                <i class="fa-solid fa-cart-shopping"></i>
-                                <span class="pl-2">Bayar</span>
-                            </button>
-                        </form>
-
-                        {{-- // Tanpa Voucher
-                        <button type="button" id="btn-bayar" class="btn btn-primary">Bayar Sekarang</button> --}}
-
-
-                        {{-- <a href="{{ route('pembayaran.bayar', $pendaftaran->id) }}"
-                            class="mt-10 flex items-center justify-center bg-blue-500 py-2 px-4 rounded-full text-white font-bold w-32  cursor-pointer hover:bg-blue-600">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="pl-2">Bayar</span>
-                        </a> --}}
-                    @elseif ($pendaftaran->status === 'paid')
-                        <div class="mt-10 text-green-600 font-semibold text-lg">
-                            <i class="fa-solid fa-circle-check"></i><span class="pl-2">Sudah dibayar</span>
-                        </div>
-                    @elseif ($pendaftaran->status === 'attended')
-                        <div class="mt-10 text-blue-600 font-semibold text-lg">
-                            <i class="fa-solid fa-user-check"></i><span class="pl-2">Sudah hadir & lunas</span>
-                        </div>
-                    @endif
-                    {{-- <a href="{{ route('pembayaran.bayar', $pendaftaran->id) }}">
-                        <i class="fa-solid fa-cart-shopping"></i>
-                        <span class="pl-2">Daftar</span>
-                        </a> --}}
-
-
                 </div>
+
             </div>
 
 
@@ -343,7 +352,7 @@
             });
         });
     </script>
-    // Tanpa Voucher
+
     {{-- <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
 <script>
     $(document).ready(function () {
