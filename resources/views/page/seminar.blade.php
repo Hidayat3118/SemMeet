@@ -23,7 +23,7 @@
                 
                 {{-- Tombol Kategori dengan scrolling horizontal di mobile --}}
                 <div class="w-full lg:w-auto ">
-                    <div class="flex overflow-x-auto scrollbar-hide gap-2 sm:gap-3 p-2 sm:p-4 
+                    <div class="flex overflow-x-auto scrollbar-hide gap-2 sm:gap-3 p-2 sm:p-4   
                         lg:flex-wrap lg:justify-start lg:overflow-visible ">
                         {{-- Tombol All --}}
                         <a href="{{ route('seminar.index') }}" class="flex-shrink-0">
@@ -143,6 +143,8 @@
         opacity: 0.7;
         pointer-events: none;
     }
+
+   
 </style>
 
 {{-- JavaScript untuk UX yang lebih baik --}}

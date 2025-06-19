@@ -13,9 +13,9 @@
                 <!-- Navigation Links -->
                 <div class="hidden sm:flex sm:ms-10 space-x-8 sm:-my-px">
                     @if (Auth::user()->hasRole('peserta'))
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{-- <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
-                        </x-nav-link>
+                        </x-nav-link> --}}
                         <x-nav-link :href="route('riwayat-pendaftaran')" :active="request()->routeIs('riwayat-pendaftaran')">
                             {{ __('Riwayat Pendaftaran') }}
                         </x-nav-link>
@@ -98,9 +98,9 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             @if (Auth::user()->hasRole('peserta'))
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                {{-- <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
                 <x-responsive-nav-link :href="route('riwayat-pendaftaran')" :active="request()->routeIs('riwayat-pendaftaran')">
                     {{ __('Riwayat Pendaftaran') }}
                 </x-responsive-nav-link>

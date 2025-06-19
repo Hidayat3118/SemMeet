@@ -132,7 +132,7 @@
             <section class="mt-20">
                 <div class="py-12 md:py-16 text-center">
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-400 ">
-                        Pembicara Top
+                        Pembicara Terbaru
                     </h1>
                     <p class="text-gray-600 text-lg md:py-2">
                         Dapatkan wawasan eksklusif dari para ahli dan tokoh inspiratif di bidangnya
@@ -160,7 +160,7 @@
             <section class="mt-20">
                 <div class="py-12 md:py-16 text-center">
                     <h1 class="text-2xl md:text-3xl font-bold text-center text-blue-400 ">
-                        moderator Top
+                        Moderator Terbaru
                     </h1>
                     <p class="text-gray-600 text-lg md:py-2">
                         Dipandu oleh moderator berpengalaman untuk menjaga diskusi tetap menarik dan informatif

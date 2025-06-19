@@ -23,7 +23,7 @@
                 
                 {{-- Tombol Kategori dengan scrolling horizontal di mobile --}}
                 <div class="w-full lg:w-auto lg:flex-1">
-                    <div class="flex overflow-x-auto scrollbar-hide gap-2 sm:gap-3 p-2 sm:p-4 
+                    <div class="flex overflow-x-auto  gap-2 sm:gap-3 p-2 sm:p-4 
                         lg:flex-wrap lg:justify-start lg:overflow-visible">
                         {{-- Tombol All --}}
                         <a href="{{ route('moderator.index') }}" class="flex-shrink-0">
@@ -82,7 +82,7 @@
             </div>
 
             {{-- Card Moderator dengan grid responsif yang lebih baik --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 my-6 sm:my-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 my-6 sm:my-8">
                 @forelse ($moderators as $moderator)
                     <div class="w-full">
                         <x-card-moderator :moderator="$moderator" />
@@ -129,22 +129,7 @@
                 </div>
             @endif
 
-            {{-- Call to Action Section --}}
-            {{-- <div class="mt-12 sm:mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 sm:p-8 text-center">
-                <div class="max-w-2xl mx-auto">
-                    <h3 class="text-lg sm:text-xl font-semibold text-gray-800 mb-2">
-                        Tertarik menjadi moderator?
-                    </h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4">
-                        Bergabunglah dengan tim moderator kami dan bantu fasilitasi diskusi yang produktif
-                    </p>
-                    <button class="inline-flex items-center px-6 py-3 bg-blue-500 text-white rounded-full 
-                        hover:bg-blue-600 transition-colors duration-200 text-sm font-medium">
-                        <i class="fas fa-user-plus mr-2"></i>
-                        Daftar Sebagai Moderator
-                    </button>
-                </div>
-            </div> --}}
+        
         </section>
     </div>
 

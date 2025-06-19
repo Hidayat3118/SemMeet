@@ -36,12 +36,9 @@
                 </li>
                 <li>
                     <a href="/moderator"
-                        class="block py-2 text-sm md:text-base  px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('moderator') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Moderator</a>
+                        class="block py-2 text-sm md:text-base px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('moderator') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Moderator</a>
                 </li>
-                {{-- <li>
-            <a href="/profile" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('moderator') ? 'underline decoration-2 decoration-blue-500 text-blue-40 text-lg' : '' }}">Moderator</a>
-          </li> --}}
-
+               
                 {{-- button --}}
                 @if (Route::has('login'))
                     <div class="md:flex grid gap-4 md:gap-8">
@@ -53,7 +50,7 @@
                             @if ($user->hasRole('panitia'))
                                 {{-- Sqan Kehadiran --}}
                                 <a href="/sqan"
-                                    class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('sqan') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Sqan Kehadiran</a>
+                                    class="block py-2  text-sm md:text-base px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('sqan') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Sqan Kehadiran</a>
                                 {{-- dashboard --}}
                                 <a href="{{ route('filament.panitia.pages.dashboard') }}"
                                     class="group relative inline-block text-sm font-medium text-white focus:ring-3 focus:outline-hidden">
@@ -88,7 +85,7 @@
                                 <span
                                     class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-full"></span>
                                 <span
-                                    class="relative block border border-current bg-white px-8 py-3 rounded-full">Login</span>
+                                    class="relative block border border-current bg-white px-6 md:px-7 py-2 md:py-3 rounded-full">Login</span>
                             </a>
 
                             @if (Route::has('register'))
@@ -97,7 +94,7 @@
                                     <span
                                         class="absolute inset-0 translate-x-0.5 translate-y-0.5 bg-blue-500 transition-transform group-hover:translate-x-0 group-hover:translate-y-0 rounded-full"></span>
                                     <span
-                                        class="relative block border border-current bg-blue-500 px-8 py-3 rounded-full">Registrasi</span>
+                                        class="relative block border border-current bg-blue-500 px-6 md:px-7 py-2 md:py-3 rounded-full">Registrasi</span>
                                 </a>
                             @endif
                         @endauth

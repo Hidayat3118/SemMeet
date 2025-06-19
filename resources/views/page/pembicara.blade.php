@@ -23,7 +23,7 @@
                 
                 {{-- Tombol Kategori dengan scrolling horizontal di mobile --}}
                 <div class="w-full lg:w-auto lg:flex-1">
-                    <div class="flex overflow-x-auto scrollbar-hide gap-2 sm:gap-3 p-2 sm:p-4 
+                    <div class="flex overflow-x-auto gap-2 sm:gap-3 p-2 sm:p-4 
                         lg:flex-wrap lg:justify-start lg:overflow-visible">
                         {{-- Tombol All --}}
                         <a href="{{ route('pembicara.index') }}" class="flex-shrink-0">
@@ -82,7 +82,7 @@
             </div>
 
             {{-- Card Pembicara dengan grid responsif yang lebih baik --}}
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 my-6 sm:my-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 xl:gap-10 my-6 sm:my-8">
                 @forelse ($pembicaras as $pembicara)
                     <div class="w-full">
                         <x-card-pembicara :pembicara="$pembicara" />
