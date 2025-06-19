@@ -35,10 +35,7 @@
                                 <div class="text-base font-semibold text-gray-800 tracking-wide">
                                     {{ $pendaftaran->seminar->lokasi ?? '-' }}</div>
                             </div>
-                            {{-- <div class="">
-                                <div class="text-xs font-bold text-gray-500 uppercase">Name of Passenger</div>
-                                <div class="text-base font-semibold text-gray-800 tracking-wide">James Doe</div>
-                            </div> --}}
+                        
                         </div>
 
                         <div class="grid grid-cols-2 ">
