@@ -134,15 +134,28 @@
                         <p class="text-sm text-gray-600 mb-4">Silakan daftar ke acara seminar untuk mendapatkan pengalaman
                             belajar yang berharga.</p>
                         @auth
+                            @php
+                                $pesertaId = auth()->user()->peserta->id ?? null;
+                                $sudahTerdaftar = $seminar->pendaftaran()->where('peserta_id', $pesertaId)->exists();
+                            @endphp
                             @if ($sisa_kouta > 0)
-                                <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
-                                    @csrf
-                                    <button type="submit"
+                                @if ($sudahTerdaftar)
+                                    {{-- Jika sudah terdaftar, langsung submit tanpa modal --}}
+                                    <form action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                            <p>Sudah Terdaftar</p>
+                                        </button>
+                                    </form>
+                                @else
+                                    <button type="button" id="btn-konfirmasi-daftar"
                                         class="w-full bg-blue-500 text-white py-2 rounded-full cursor-pointer font-semibold flex justify-center items-center gap-4 hover:bg-blue-600">
                                         <i class="fa-solid fa-cart-shopping"></i>
                                         <p>Daftar</p>
                                     </button>
-                                </form>
+                                @endif
                             @else
                                 <button type="button"
                                     class="w-full bg-gray-400 text-white py-2 rounded-full cursor-not-allowed font-semibold flex justify-center items-center gap-4"
@@ -205,7 +218,45 @@
 
                 </div>
             </div>
+            {{-- Modal Konfirmasi --}}
+            <div id="modal-konfirmasi-daftar"
+                class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+                <div class="bg-white rounded-xl shadow-xl w-full max-w-md mx-auto p-6">
+                    <h2 class="text-xl font-bold mb-4 text-gray-800">Konfirmasi Pendaftaran</h2>
+                    <p class="text-gray-600 mb-6">Apakah kamu yakin ingin mendaftar pada seminar ini?<br><span
+                            class="text-red-600"> Tindakan ini tidak dapat dibatalkan</span></p>
+                    <div class="flex justify-end gap-3">
+                        <button id="batalDaftar" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded-lg">
+                            Batal
+                        </button>
+                        <form id="form-daftar" action="{{ route('pendaftaran.daftar', $seminar->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg">
+                                Ya, Daftar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
 
     </main>
     <x-footer></x-footer>
+    {{-- Script Konfirmasi Modal --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tombolDaftar = document.getElementById('btn-konfirmasi-daftar');
+            const modal = document.getElementById('modal-konfirmasi-daftar');
+            const batal = document.getElementById('batalDaftar');
+
+            tombolDaftar?.addEventListener('click', function() {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            });
+
+            batal?.addEventListener('click', function() {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            });
+        });
+    </script>
 @endsection

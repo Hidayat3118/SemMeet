@@ -112,337 +112,7 @@ class PaymentController extends Controller
 //         }
 //     }
 
-//     public function bayar(Request $request, $id)
-// {
-//     $pendaftaran = Pendaftaran::findOrFail($id);
-//     $voucherCode = $request->input('voucher_code');
 
-//     // Cek payment aktif
-//     $existingPayment = $pendaftaran->payment()
-//         ->whereIn('status_pembayaran', ['pending', 'paid'])
-//         ->latest()
-//         ->first();
-
-//     if ($existingPayment) {
-//         if ($existingPayment->status_pembayaran === 'completed') {
-//             return redirect()->route('pembayaran.sukses', $existingPayment->id);
-//         }
-
-//         if ($existingPayment->status_pembayaran === 'pending' && $existingPayment->invoice_url) {
-//             return redirect($existingPayment->invoice_url);
-//         }
-
-//         return redirect()->route('pembayaran.gagal', $existingPayment->id)
-//             ->with('info', 'Kamu masih memiliki pembayaran yang belum selesai.');
-//     }
-
-//     $harga = $pendaftaran->seminar->harga ?? 0;
-//     $diskon = 0;
-//     $voucher_id = null;
-
-//     if ($voucherCode) {
-//         $voucher = voucher::where('code_voucher', $voucherCode)
-//             ->where('seminar_id', $pendaftaran->seminar_id)
-//             ->where('status', 'aktif')
-//             ->where('tanggal_mulai', '<=', now())
-//             ->where('tanggal_berakhir', '>=', now())
-//             ->first();
-
-//         if ($voucher) {
-//             if ($voucher->penggunaan_voucher >= $voucher->maksimal_pemakaian) {
-//                 return back()->withErrors(['voucher' => 'Kuota voucher telah habis.']);
-//             }
-
-//             $diskon = min($voucher->diskon_harga, $harga); // pastikan diskon tidak lebih besar dari harga
-//             $voucher_id = $voucher->id;
-//         } else {
-//             return back()->withErrors(['voucher' => 'Voucher tidak valid atau tidak berlaku untuk seminar ini.']);
-//         }
-//     }
-
-//     $totalBayar = $harga - $diskon;
-
-//     // Simpan payment
-//     $payment = Payment::create([
-//         'jumlah_pembayaran' => $totalBayar,
-//         'status_pembayaran' => 'pending',
-//         'pendaftaran_id' => $pendaftaran->id,
-//         'voucher_id' => $voucher_id,
-//         'diskon' => $diskon,
-//     ]);
-
-//     $params = [
-//         'external_id' => 'order-' . $payment->id,
-//         'payer_email' => $pendaftaran->peserta->user->email ?? 'dummy@email.com',
-//         'description' => 'Pembayaran Seminar: ' . $pendaftaran->seminar->judul,
-//         'amount' => $payment->jumlah_pembayaran,
-//         'success_redirect_url' => route('pembayaran.sukses', $payment->id),
-//         'failure_redirect_url' => route('pembayaran.gagal', $payment->id),
-//     ];
-
-//     try {
-//         $invoice = $this->xendit->createInvoice($params);
-//         $payment->invoice_url = $invoice['invoice_url'];
-//         $payment->save();
-
-//         // Tambah penggunaan voucher jika dipakai
-//         if ($voucher_id) {
-//             $voucher->increment('penggunaan_voucher');
-//         }
-
-//         return redirect($invoice['invoice_url']);
-//     } catch (Exception $e) {
-//         return back()->withErrors(['xendit' => 'Gagal membuat invoice: ' . $e->getMessage()]);
-//     }
-// }
-
-//  public function bayar(Request $request, $id)
-//     {
-//         $pendaftaran = Pendaftaran::findOrFail($id);
-//         $voucherCode = $request->input('voucher_code');
-
-//         // Cek payment aktif
-//         $existingPayment = $pendaftaran->payment()
-//             ->whereIn('status_pembayaran', ['pending', 'completed'])
-//             ->latest()
-//             ->first();
-
-//         if ($existingPayment) {
-//             if ($existingPayment->status_pembayaran === 'completed') {
-//                 return redirect()->route('pembayaran.sukses', $existingPayment->id);
-//             }
-
-//             if ($existingPayment->status_pembayaran === 'pending' && $existingPayment->invoice_url) {
-//                 return redirect($existingPayment->invoice_url);
-//             }
-
-//             return redirect()->route('pembayaran.gagal', $existingPayment->id)
-//                 ->with('info', 'Kamu masih memiliki pembayaran yang belum selesai.');
-//         }
-
-//         $harga = $pendaftaran->seminar->harga ?? 0;
-//         $diskon = 0;
-//         $voucher_id = null;
-
-//         if ($voucherCode) {
-//             $voucher = voucher::where('code_voucher', $voucherCode)
-//                 ->where('seminar_id', $pendaftaran->seminar_id)
-//                 ->where('status', 'aktif')
-//                 ->where('tanggal_mulai', '<=', now())
-//                 ->where('tanggal_berakhir', '>=', now())
-//                 ->first();
-
-//             if (!$voucher) {
-//                 return back()->withErrors(['voucher' => 'Voucher tidak valid atau tidak berlaku.']);
-//             }
-
-//             if ($voucher->penggunaan_voucher >= $voucher->maksimal_pemakaian) {
-//                 return back()->withErrors(['voucher' => 'Kuota voucher telah habis.']);
-//             }
-
-//             $diskon = min($voucher->diskon_harga, $harga);
-//             $voucher_id = $voucher->id;
-//         }
-
-//         $totalBayar = $harga - $diskon;
-
-//         $payment = Payment::create([
-//             'jumlah_pembayaran' => $totalBayar,
-//             'status_pembayaran' => 'pending',
-//             'pendaftaran_id' => $pendaftaran->id,
-//             'voucher_id' => $voucher_id,
-//             'diskon' => $diskon,
-//         ]);
-
-//         $params = [
-//             'external_id' => 'order-' . $payment->id,
-//             'payer_email' => $pendaftaran->peserta->user->email ?? 'dummy@email.com',
-//             'description' => 'Pembayaran Seminar: ' . $pendaftaran->seminar->judul,
-//             'amount' => $totalBayar,
-//             'success_redirect_url' => route('pembayaran.sukses', $payment->id),
-//             'failure_redirect_url' => route('pembayaran.gagal', $payment->id),
-//         ];
-
-//         try {
-//             $invoice = $this->xendit->createInvoice($params);
-//             $payment->invoice_url = $invoice['invoice_url'];
-//             $payment->save();
-
-//             if ($voucher_id) {
-//                 $voucher->increment('penggunaan_voucher');
-//             }
-
-//             return redirect($invoice['invoice_url']);
-//         } catch (Exception $e) {
-//             return back()->withErrors(['xendit' => 'Gagal membuat invoice: ' . $e->getMessage()]);
-//         }
-//     }
-
-// public function bayar(Request $request, $id)
-// {
-//     $pendaftaran = Pendaftaran::findOrFail($id);
-//     $voucherCode = $request->input('code_voucher');
-
-//     // Cek jika ada payment aktif
-//     $existingPayment = $pendaftaran->payment()
-//         ->whereIn('status_pembayaran', ['pending', 'completed'])
-//         ->latest()
-//         ->first();
-
-//     if ($existingPayment) {
-//         if ($existingPayment->status_pembayaran === 'completed') {
-//             return redirect()->route('pembayaran.sukses', $existingPayment->id);
-//         }
-
-//         if ($existingPayment->status_pembayaran === 'pending' && $existingPayment->invoice_url) {
-//             return redirect($existingPayment->invoice_url);
-//         }
-
-//         return redirect()->route('pembayaran.gagal', $existingPayment->id)
-//             ->with('info', 'Kamu masih memiliki pembayaran yang belum selesai.');
-//     }
-
-//     $harga = $pendaftaran->seminar->harga ?? 0;
-//     $diskon = 0;
-//     $voucher_id = null;
-
-//     // Validasi voucher jika ada
-//     if ($voucherCode) {
-//         $voucher = Voucher::where('code_voucher', $voucherCode)
-//             ->where('seminar_id', $pendaftaran->seminar_id)
-//             ->where('status', 'aktif')
-//             ->where('tanggal_mulai', '<=', now())
-//             ->where('tanggal_berakhir', '>=', now())
-//             ->first();
-
-//         if (!$voucher) {
-//             return back()->withErrors(['voucher' => 'Voucher tidak valid atau tidak berlaku.']);
-//         }
-
-//         if ($voucher->penggunaan_voucher >= $voucher->maksimal_pemakaian) {
-//             return back()->withErrors(['voucher' => 'Kuota voucher telah habis.']);
-//         }
-
-//         $diskon = min($voucher->diskon_harga, $harga);
-//         $voucher_id = $voucher->id;
-//     }
-
-//     $totalBayar = $harga - $diskon;
-
-//     // Buat record payment baru
-//     $payment = Payment::create([
-//         'jumlah_pembayaran'   => $totalBayar,
-//         'status_pembayaran'   => 'pending',
-//         'pendaftaran_id'      => $pendaftaran->id,
-//         'voucher_id'          => $voucher_id,
-//         'diskon'              => $diskon,
-//     ]);
-
-//     $params = [
-//         'external_id'           => 'order-' . $payment->id,
-//         'payer_email'           => $pendaftaran->peserta->user->email ?? 'dummy@email.com',
-//         'description'           => 'Pembayaran Seminar: ' . $pendaftaran->seminar->judul,
-//         'amount'                => $totalBayar,
-//         'success_redirect_url'  => route('pembayaran.sukses', $payment->id),
-//         'failure_redirect_url'  => route('pembayaran.gagal', $payment->id),
-//     ];
-
-//     try {
-//         $invoice = $this->xendit->createInvoice($params);
-
-//         $payment->invoice_url = $invoice['invoice_url'];
-//         $payment->save();
-
-//         if ($voucher_id) {
-//             $voucher->increment('penggunaan_voucher');
-//         }
-
-//         return redirect($invoice['invoice_url']);
-//     } catch (Exception $e) {
-//         return back()->withErrors(['xendit' => 'Gagal membuat invoice: ' . $e->getMessage()]);
-//     }
-// }
-
-// public function bayar(Request $request, $id)
-// {
-//     $pendaftaran = Pendaftaran::with(['seminar', 'peserta.user'])->findOrFail($id);
-//     $kodeVoucher = $request->input('code_voucher');
-//     $diskon = 0;
-//     $voucher = null;
-
-//     // Cek apakah sudah ada payment yang aktif
-//     $existingPayment = $pendaftaran->payment()
-//         ->whereIn('status_pembayaran', ['pending', 'completed'])
-//         ->latest()
-//         ->first();
-
-//     if ($existingPayment) {
-//         if ($existingPayment->status_pembayaran === 'completed') {
-//             return redirect()->route('pembayaran.sukses', $existingPayment->id);
-//         }
-
-//         if ($existingPayment->status_pembayaran === 'pending' && $existingPayment->invoice_url) {
-//             return redirect($existingPayment->invoice_url);
-//         }
-
-//         return back()->with('info', 'Kamu masih memiliki pembayaran yang belum diselesaikan.');
-//     }
-
-//     // Validasi kode voucher
-//     if ($kodeVoucher) {
-//         $voucher = Voucher::where('code_voucher', $kodeVoucher)
-//             ->where('seminar_id', $pendaftaran->seminar_id)
-//             ->where('status', 'aktif')
-//             ->whereDate('tanggal_mulai', '<=', now())
-//             ->whereDate('tanggal_berakhir', '>=', now())
-//             ->whereColumn('penggunaan_voucher', '<', 'maksimal_pemakaian')
-//             ->first();
-
-//         if (!$voucher) {
-//             return back()->withErrors(['voucher' => 'Kode voucher tidak valid, kadaluarsa, atau sudah habis.']);
-//         }
-
-//         $diskon = $voucher->diskon_harga;
-//     }
-
-//     // Hitung jumlah pembayaran
-//     $hargaAsli = $pendaftaran->seminar->harga ?? 0;
-//     $jumlahBayar = max(0, $hargaAsli - $diskon);
-
-//     // Simpan data pembayaran
-//     $payment = Payment::create([
-//         'jumlah_pembayaran' => $jumlahBayar,
-//         'status_pembayaran' => 'pending',
-//         'pendaftaran_id' => $pendaftaran->id,
-//         'voucher_id' => $voucher?->id,
-//     ]);
-
-//     // Simpan penggunaan voucher
-//     if ($voucher) {
-//         $voucher->increment('penggunaan_voucher');
-//     }
-
-//     // Buat invoice Xendit
-//     $params = [
-//         'external_id' => 'order-' . $payment->id,
-//         'payer_email' => $pendaftaran->peserta->user->email ?? 'dummy@email.com',
-//         'description' => 'Pembayaran Seminar: ' . $pendaftaran->seminar->judul,
-//         'amount' => $jumlahBayar,
-//         'success_redirect_url' => route('pembayaran.sukses', $payment->id),
-//         'failure_redirect_url' => route('pembayaran.gagal', $payment->id),
-//     ];
-
-//     try {
-//         $invoice = $this->xendit->createInvoice($params);
-
-//         $payment->invoice_url = $invoice['invoice_url'];
-//         $payment->save();
-
-//         return redirect($invoice['invoice_url']);
-//     } catch (\Exception $e) {
-//         return back()->withErrors(['xendit' => 'Gagal membuat invoice: ' . $e->getMessage()]);
-//     }
-// }
 
 //voucher
 // public function bayar(Request $request, $id)
@@ -716,114 +386,17 @@ class PaymentController extends Controller
 //         'diskon' => $voucher->diskon_harga,
 //     ]);
 // }
-//midtrans
-public function bayar(Request $request, $id)
-{
-    $pendaftaran = Pendaftaran::findOrFail($id);
 
-    $request->validate([
-        'code_voucher' => 'nullable|string|max:50',
-    ]);
-
-    $voucherCode = $request->input('code_voucher');
-
-    // Cek payment aktif
-    $existingPayment = $pendaftaran->payment()
-        ->whereIn('status_pembayaran', ['pending', 'completed'])
-        ->latest()->first();
-
-    if ($existingPayment) {
-        if ($existingPayment->status_pembayaran === 'completed') {
-            return response()->json(['redirect' => route('pembayaran.sukses', $existingPayment->id)]);
-        }
-
-        if ($existingPayment->status_pembayaran === 'pending' && $existingPayment->snap_token) {
-            return response()->json(['snap_token' => $existingPayment->snap_token]);
-        }
-
-        return response()->json([
-            'error' => 'Kamu masih memiliki pembayaran yang belum selesai.',
-            'redirect' => route('pembayaran.gagal', $existingPayment->id),
-        ]);
-    }
-
-    $harga = $pendaftaran->seminar->harga ?? 0;
-    $diskon = 0;
-    $voucher_id = null;
-
-    if ($voucherCode) {
-        $voucher = Voucher::where('code_voucher', $voucherCode)
-            ->where('seminar_id', $pendaftaran->seminar_id)
-            ->where('status', 'active')
-            ->where('tanggal_mulai', '<=', now())
-            ->where('tanggal_berakhir', '>=', now())
-            ->whereColumn('penggunaan_voucher', '<', 'maksimal_pemakaian')
-            ->first();
-
-        if (!$voucher) {
-            return response()->json(['error' => 'Kode voucher tidak valid atau kuota habis.'], 422);
-        }
-
-        $diskon = min($voucher->diskon_harga, $harga);
-        $voucher_id = $voucher->id;
-    }
-
-    $totalBayar = max(0, $harga - $diskon);
-
-    // Simpan ke DB
-    $payment = Payment::create([
-        'jumlah_pembayaran' => $totalBayar,
-        'status_pembayaran' => 'pending',
-        'pendaftaran_id' => $pendaftaran->id,
-        'voucher_id' => $voucher_id,
-        'diskon' => $diskon,
-    ]);
-
-    // Konfigurasi Midtrans
-    Config::$serverKey = config('midtrans.server_key');
-    Config::$isProduction = config('midtrans.is_production');
-    Config::$isSanitized = true;
-    Config::$is3ds = true;
-
-    $snapPayload = [
-        'transaction_details' => [
-            'order_id' => 'SEM-' . $payment->id,
-            'gross_amount' => $totalBayar,
-        ],
-        'customer_details' => [
-            'first_name' => $pendaftaran->peserta->user->name,
-            'email' => $pendaftaran->peserta->user->email,
-        ],
-        'callbacks' => [
-            'finish' => route('pembayaran.sukses', $payment->id),
-        ],
-    ];
-
-    try {
-         \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYPEER] = false;
-    \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYHOST] = false;
-        $snapToken = Snap::getSnapToken($snapPayload);
-        $payment->snap_token = $snapToken;
-        $payment->save();
-
-        if ($voucher_id) {
-            $voucher->increment('penggunaan_voucher');
-        }
-
-        return response()->json(['snap_token' => $snapToken]);
-    } catch (\Exception $e) {
-        return response()->json(['error' => 'Gagal membuat Snap Token: ' . $e->getMessage()], 500);
-    }
-}
-
+//midtrans fix
 // public function bayar(Request $request, $id)
 // {
 //     $pendaftaran = Pendaftaran::findOrFail($id);
 
+//     $request->validate([
+//         'code_voucher' => 'nullable|string|max:50',
+//     ]);
+
 //     $voucherCode = $request->input('code_voucher');
-//     $harga = $pendaftaran->seminar->harga ?? 0;
-//     $diskon = 0;
-//     $voucher_id = null;
 
 //     // Cek payment aktif
 //     $existingPayment = $pendaftaran->payment()
@@ -845,7 +418,10 @@ public function bayar(Request $request, $id)
 //         ]);
 //     }
 
-//     // Jika kode voucher dikirim
+//     $harga = $pendaftaran->seminar->harga ?? 0;
+//     $diskon = 0;
+//     $voucher_id = null;
+
 //     if ($voucherCode) {
 //         $voucher = Voucher::where('code_voucher', $voucherCode)
 //             ->where('seminar_id', $pendaftaran->seminar_id)
@@ -865,26 +441,24 @@ public function bayar(Request $request, $id)
 
 //     $totalBayar = max(0, $harga - $diskon);
 
-        
+//     // Simpan ke DB
+//     $payment = Payment::create([
+//         'jumlah_pembayaran' => $totalBayar,
+//         'status_pembayaran' => 'pending',
+//         'pendaftaran_id' => $pendaftaran->id,
+//         'voucher_id' => $voucher_id,
+//         'diskon' => $diskon,
+//     ]);
 
-//     // // Konfigurasi Midtrans
-//     // Config::$serverKey = config('midtrans.server_key');
-//     // Config::$isProduction = config('midtrans.is_production', false);
-//     // Config::$isSanitized = true;
-//     // Config::$is3ds = true;
-
-//     \Midtrans\Config::$serverKey = 'SB-Mid-server-dld95cA8j5PZ6_8cPoc-oxPh';
-//     \Midtrans\Config::$isProduction = false;
-//     \Midtrans\Config::$isSanitized = true;
-//     \Midtrans\Config::$is3ds = true;
-
-//     if (!Config::$serverKey) {
-//         return response()->json(['error' => 'ServerKey Midtrans belum disetting di .env atau config.'], 500);
-//     }
+//     // Konfigurasi Midtrans
+//     Config::$serverKey = config('midtrans.server_key');
+//     Config::$isProduction = config('midtrans.is_production');
+//     Config::$isSanitized = true;
+//     Config::$is3ds = true;
 
 //     $snapPayload = [
 //         'transaction_details' => [
-//             'order_id' => 'SEM-' . uniqid(),
+//             'order_id' => 'SEM-' . $payment->id,
 //             'gross_amount' => $totalBayar,
 //         ],
 //         'customer_details' => [
@@ -892,28 +466,14 @@ public function bayar(Request $request, $id)
 //             'email' => $pendaftaran->peserta->user->email,
 //         ],
 //         'callbacks' => [
-//             'finish' => route('pembayaran.sukses', $id),
+//             'finish' => route('pembayaran.sukses', $payment->id),
 //         ],
 //     ];
 
 //     try {
-
-//           \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYPEER] = false;
+//          \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYPEER] = false;
 //     \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYHOST] = false;
-
-
-
 //         $snapToken = Snap::getSnapToken($snapPayload);
-
-//         $payment = Payment::create([
-//             'jumlah_pembayaran' => $totalBayar,
-//             'status_pembayaran' => 'pending',
-//             'pendaftaran_id' => $pendaftaran->id,
-//             'voucher_id' => $voucher_id,
-//             'diskon' => $diskon,
-//             'snap_token' => $snapToken,
-//         ]);
-
 //         $payment->snap_token = $snapToken;
 //         $payment->save();
 
@@ -926,6 +486,105 @@ public function bayar(Request $request, $id)
 //         return response()->json(['error' => 'Gagal membuat Snap Token: ' . $e->getMessage()], 500);
 //     }
 // }
+
+// Auto Update
+public function bayar(Request $request, $id)
+{
+    $pendaftaran = Pendaftaran::findOrFail($id);
+
+    $request->validate([
+        'code_voucher' => 'nullable|string|max:50',
+    ]);
+
+    $voucherCode = $request->input('code_voucher');
+    $harga = $pendaftaran->seminar->harga ?? 0;
+    $diskon = 0;
+    $voucher_id = null;
+    $voucher = null;
+
+    // Cek voucher jika ada
+    if ($voucherCode) {
+        $voucher = Voucher::where('code_voucher', $voucherCode)
+            ->where('seminar_id', $pendaftaran->seminar_id)
+            ->where('status', 'active')
+            ->where('tanggal_mulai', '<=', now())
+            ->where('tanggal_berakhir', '>=', now())
+            ->whereColumn('penggunaan_voucher', '<', 'maksimal_pemakaian')
+            ->first();
+
+        if (!$voucher) {
+            return response()->json(['error' => 'Kode voucher tidak valid atau kuota habis.'], 422);
+        }
+
+        $diskon = min($voucher->diskon_harga, $harga);
+        $voucher_id = $voucher->id;
+    }
+
+    $totalBayar = max(0, $harga - $diskon);
+
+    // Cek apakah sudah ada payment pending yang sesuai (jumlah & voucher)
+    $existingPayment = $pendaftaran->payment()
+        ->where('status_pembayaran', 'pending')
+        ->orderByDesc('created_at')
+        ->get()
+        ->first(function ($payment) use ($totalBayar, $voucher_id) {
+            return $payment->jumlah_pembayaran == $totalBayar &&
+                   $payment->voucher_id == $voucher_id &&
+                   $payment->snap_token;
+        });
+
+    if ($existingPayment) {
+        return response()->json(['snap_token' => $existingPayment->snap_token]);
+    }
+
+    // Buat payment baru
+    $payment = Payment::create([
+        'jumlah_pembayaran' => $totalBayar,
+        'status_pembayaran' => 'pending',
+        'pendaftaran_id' => $pendaftaran->id,
+        'voucher_id' => $voucher_id,
+        'diskon' => $diskon,
+    ]);
+
+    // Konfigurasi Midtrans
+    \Midtrans\Config::$serverKey = config('midtrans.server_key');
+    \Midtrans\Config::$isProduction = config('midtrans.is_production');
+    \Midtrans\Config::$isSanitized = true;
+    \Midtrans\Config::$is3ds = true;
+    \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYPEER] = false;
+    \Midtrans\Config::$curlOptions[CURLOPT_SSL_VERIFYHOST] = false;
+
+    $snapPayload = [
+        'transaction_details' => [
+            'order_id' => 'SEM-' . $payment->id,
+            'gross_amount' => $totalBayar,
+        ],
+        'customer_details' => [
+            'first_name' => $pendaftaran->peserta->user->name,
+            'email' => $pendaftaran->peserta->user->email,
+        ],
+        'callbacks' => [
+            'finish' => route('pembayaran.sukses', $payment->id),
+        ],
+    ];
+
+    try {
+        $snapToken = \Midtrans\Snap::getSnapToken($snapPayload);
+        $payment->snap_token = $snapToken;
+        $payment->save();
+
+        if ($voucher_id && $voucher) {
+            $voucher->increment('penggunaan_voucher');
+        }
+
+        return response()->json(['snap_token' => $snapToken]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => 'Gagal membuat Snap Token: ' . $e->getMessage()
+        ], 500);
+    }
+}
+
 
 
 public function sukses($id)

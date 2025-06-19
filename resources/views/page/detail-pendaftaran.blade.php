@@ -83,13 +83,59 @@
                         <div>
 
                             <p class="text-blue-400 font-semibold">Jumlah Biaya</p>
+
+                            @php
+                                $hargaAsli = $pendaftaran->seminar->harga;
+                                $paymentPaid = $pendaftaran
+                                    ->payment()
+                                    ->where('status_pembayaran', 'completed')
+                                    ->latest()
+                                    ->first();
+                            @endphp
+
+                            @if ($pendaftaran->status === 'paid' && $paymentPaid)
+                                {{-- Sudah bayar: tampilkan total pembayaran --}}
+                                <p class="text-gray-800 font-bold text-lg">
+                                    Rp.{{ number_format($paymentPaid->jumlah_pembayaran, 0, ',', '.') }}
+                                </p>
+
+                                @if ($paymentPaid->diskon > 0)
+                                    <p class="text-sm text-gray-400 line-through">
+                                        Harga Asli: Rp.{{ number_format($hargaAsli, 0, ',', '.') }}
+                                    </p>
+                                    <p class="text-green-500 text-sm font-medium">
+                                        Diskon: Rp.{{ number_format($paymentPaid->diskon, 0, ',', '.') }}
+                                    </p>
+                                @endif
+                            @else
+                                {{-- Belum bayar: tampilkan harga bisa berubah oleh voucher --}}
+                                <p id="harga-asli" class="line-through text-gray-400 hidden">
+                                    Rp.{{ number_format($hargaAsli, 0, ',', '.') }}
+                                </p>
+                                <p id="harga-akhir">
+                                    Rp.{{ number_format($hargaAsli, 0, ',', '.') }}
+                                </p>
+                                <p id="potongan-harga" class="text-green-500 text-sm font-semibold hidden">
+                                    - Rp.<span id="nilai-potongan">0</span>
+                                </p>
+                                <small id="voucher_error" class="text-red-500 font-medium"></small>
+                                <input type="hidden" name="harga_akhir" id="input-harga-akhir"
+                                    value="{{ $hargaAsli }}">
+                            @endif
+
+                            {{-- <p class="text-blue-400 font-semibold">Jumlah Biaya</p>
                             <p id="harga-asli" class="line-through text-gray-400 hidden">
                                 Rp.{{ number_format($pendaftaran->seminar->harga, 0, ',', '.') }}
                             </p>
                             <p id="harga-akhir">
                                 Rp.{{ number_format($pendaftaran->seminar->harga, 0, ',', '.') }}
                             </p>
+                            <p id="potongan-harga" class="text-green-500 text-sm font-semibold hidden">
+                                - Rp.<span id="nilai-potongan">0</span>
+                            </p>
                             <small id="voucher_error" class="text-red-500 font-medium"></small>
+                            <input type="hidden" name="harga_akhir" id="input-harga-akhir"
+                                value="{{ $pendaftaran->seminar->harga }}"> --}}
 
                             {{-- <p class="text-blue-400 font-semibold">Jumlah Biaya</p>
                             <p id="harga-akhir">Rp.{{ number_format($pendaftaran->seminar->harga, 0, ',', '.') }}</p>
@@ -135,14 +181,13 @@
                                             Kode Voucher
                                         </label>
                                         <input type="text" id="code_voucher" name="code_voucher"
-                                            value="{{ old('code_voucher') }}"
-                                            placeholder="kode voucher (opsional)"
+                                            value="{{ old('code_voucher') }}" placeholder="kode voucher (opsional)"
                                             class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all duration-200" />
                                     </div>
 
                                     <!-- Hidden Input -->
-                                    <input type="hidden" name="harga_akhir" id="input-harga-akhir"
-                                        value="{{ $pendaftaran->seminar->harga }}">
+                                    {{-- <input type="hidden" name="harga_akhir" id="input-harga-akhir"
+                                        value="{{ $pendaftaran->seminar->harga }}"> --}}
 
                                     <!-- Tombol Bayar -->
                                     <button type="submit"
@@ -298,7 +343,8 @@
         });
     </script> --}}
     <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-RD3KKeI97G7BJInj"></script>
-    <script>
+    // Fix
+    {{-- <script>
         $(document).ready(function() {
             $('form').on('submit', function(e) {
                 e.preventDefault();
@@ -351,48 +397,146 @@
                 });
             });
         });
-    </script>
+    </script> --}}
+    <script>
+        $(document).ready(function() {
+            const hargaAwal = {{ $pendaftaran->seminar->harga }};
+            let voucherAjax = null; // Menyimpan AJAX request saat ini
 
-    {{-- <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ env('MIDTRANS_CLIENT_KEY') }}"></script>
-<script>
-    $(document).ready(function () {
-        $('#btn-bayar').on('click', function (e) {
-            e.preventDefault();
+            // Fungsi untuk reset harga dan menyembunyikan pesan error
+            function resetHarga() {
+                $('#harga-asli').addClass('hidden');
+                $('#potongan-harga').addClass('hidden');
+                $('#nilai-potongan').text(0);
+                $('#harga-akhir').text('Rp.' + hargaAwal.toLocaleString('id-ID'));
+                $('#input-harga-akhir').val(hargaAwal);
+                $('#voucher_error').text('');
+            }
 
-            $.ajax({
-                url: "{{ route('pembayaran.bayar', $pendaftaran->id) }}",
-                method: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function (res) {
-                    if (res.redirect) {
-                        window.location.href = res.redirect;
-                    } else if (res.snap_token) {
-                        window.snap.pay(res.snap_token, {
-                            onSuccess: function (result) {
-                                window.location.href = "{{ route('pembayaran.sukses', '') }}/{{ $pendaftaran->id }}";
-                            },
-                            onPending: function (result) {
-                                alert("Menunggu pembayaran selesai.");
-                            },
-                            onError: function (result) {
-                                alert("Terjadi kesalahan saat memproses pembayaran.");
-                            },
-                            onClose: function () {
-                                alert("Kamu menutup tanpa menyelesaikan pembayaran.");
-                            }
-                        });
-                    }
-                },
-                error: function (xhr) {
-                    const res = xhr.responseJSON;
-                    if (res?.error) {
-                        alert(res.error);
-                    }
+            // Event ketika voucher diinput
+            $('#code_voucher').on('input', function() {
+                const kode = $(this).val().trim();
+
+                // Jika kosong, batalkan request dan reset tampilan
+                if (kode.length === 0) {
+                    if (voucherAjax) voucherAjax.abort();
+                    resetHarga();
+                    return;
                 }
+
+                // Batalkan request sebelumnya
+                if (voucherAjax) voucherAjax.abort();
+
+                // Kirim AJAX baru
+                voucherAjax = $.ajax({
+                    url: "{{ route('voucher.cek') }}",
+                    type: "POST",
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        voucher_code: kode,
+                        seminar_id: {{ $pendaftaran->seminar_id }}
+                    },
+                    success: function(res) {
+                        if (res.success) {
+                            const diskon = parseInt(res.diskon);
+                            const hargaBaru = hargaAwal - diskon;
+
+                            $('#harga-asli').removeClass('hidden');
+                            $('#potongan-harga').removeClass('hidden');
+                            $('#nilai-potongan').text(diskon.toLocaleString('id-ID'));
+                            $('#harga-akhir').text('Rp.' + hargaBaru.toLocaleString('id-ID'));
+                            $('#input-harga-akhir').val(hargaBaru);
+                            $('#voucher_error').text('');
+                        } else {
+                            resetHarga();
+                            $('#voucher_error').text(res.message);
+                        }
+                    },
+                    error: function(xhr, status) {
+                        // Jika request dibatalkan, jangan tampilkan error
+                        if (status === 'abort') return;
+
+                        resetHarga();
+                        const kodeSekarang = $('#code_voucher').val().trim();
+                        if (kodeSekarang.length === 0) {
+                            $('#voucher_error').text('');
+                        } else {
+                            const res = xhr.responseJSON;
+                            $('#voucher_error').text(res?.message ?? 'Gagal mengecek voucher.');
+                        }
+                    }
+                });
+            });
+
+            // Saat klik tombol bayar
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+
+                const $form = $(this);
+                const $btn = $form.find('button[type="submit"]');
+
+                // Disable tombol dan ubah teks
+                $btn.prop('disabled', true).html(`
+        <i class="fa-solid fa-spinner fa-spin mr-2"></i>
+        Memproses...
+    `);
+
+                const kode = $('#code_voucher').val();
+                const hargaAkhir = $('#input-harga-akhir').val();
+
+                $.ajax({
+                    url: "{{ route('pembayaran.bayar', $pendaftaran->id) }}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        code_voucher: kode,
+                        harga_akhir: hargaAkhir
+                    },
+                    success: function(res) {
+                        if (res.snap_token) {
+                            window.snap.pay(res.snap_token, {
+                                onSuccess: function(result) {
+                                    window.location.href = '/pembayaran/sukses/' +
+                                        result.order_id.replace('SEM-', '');
+                                },
+                                onPending: function() {
+                                    alert("Menunggu pembayaran selesai.");
+                                },
+                                onError: function(result) {
+                                    const id = result.order_id?.replace('SEM-', '');
+                                    if (id) {
+                                        window.location.href =
+                                            '/pembayaran/gagal/' + id;
+                                    } else {
+                                        alert("Terjadi kesalahan saat pembayaran.");
+                                    }
+                                },
+                                onClose: function() {
+                                    alert(
+                                        "Kamu menutup tanpa menyelesaikan pembayaran."
+                                    );
+                                    $btn.prop('disabled', false).html(`
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>
+                            Bayar Sekarang
+                        `);
+                                }
+                            });
+                        }
+                    },
+                    error: function(xhr) {
+                        const res = xhr.responseJSON;
+                        if (res?.error) {
+                            $('#voucher_error').text(res.error);
+                        }
+                        // Aktifkan kembali tombol saat gagal
+                        $btn.prop('disabled', false).html(`
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>
+                            Bayar Sekarang
+                        `);
+                    }
+                });
             });
         });
-    });
-</script> --}}
+    </script>
+
 @endsection
