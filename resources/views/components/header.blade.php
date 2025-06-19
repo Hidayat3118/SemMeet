@@ -20,23 +20,23 @@
 
                 <li>
                     <a href="#"
-                        class=" py-2 px-3 text-gray-900 rounded-sm hidden hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
+                        class=" py-2 text-sm md:text-base  px-3 text-gray-900 rounded-sm hidden hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</a>
                 </li>
                 <li>
                     <a href="/"
-                        class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent   {{ Request::is('/') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-400 text-lg' : '' }}">Home</a>
+                        class="block py-2 text-sm md:text-base  px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent   {{ Request::is('/') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-400 text-lg' : '' }}">Home</a>
                 </li>
                 <li>
                     <a href="/seminar"
-                        class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('seminar') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-400 text-lg' : '' }}">Seminar</a>
+                        class="block py-2 text-sm md:text-base  px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('seminar') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-400 text-lg' : '' }}">Seminar</a>
                 </li>
                 <li>
                     <a href="/pembicara"
-                        class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('pembicara') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-400 text-lg' : '' }}">Pembicara</a>
+                        class="block py-2 text-sm md:text-base  px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('pembicara') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-400 text-lg' : '' }}">Pembicara</a>
                 </li>
                 <li>
                     <a href="/moderator"
-                        class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('moderator') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Moderator</a>
+                        class="block py-2 text-sm md:text-base  px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('moderator') ? 'underline decoration-2 underline-offset-8 decoration-blue-500 text-blue-40 text-lg' : '' }}">Moderator</a>
                 </li>
                 {{-- <li>
             <a href="/profile" class="block py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent {{ Request::is('moderator') ? 'underline decoration-2 decoration-blue-500 text-blue-40 text-lg' : '' }}">Moderator</a>

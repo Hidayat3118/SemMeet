@@ -63,8 +63,8 @@ class SeminarResource extends Resource
                         'selesai' => 'Selesai',
                     ])
                     ->required()
-                    ->default('draft')
-                    ->disabled(),
+                    ->default('draft'),
+                    // ->disabled(),
 
                 Select::make('mode')
                     ->label('Mode Seminar')
