@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSinar</title>
-    {{-- tailwind --}}
-    {{-- csn --}}
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- icon tab --}}
+    <link rel="icon" href="{{ asset('img/icon-tab.png') }}" type="image/x-icon">
     {{-- Install --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     {{-- flowbite --}}
