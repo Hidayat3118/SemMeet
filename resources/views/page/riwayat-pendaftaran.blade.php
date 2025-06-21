@@ -31,32 +31,44 @@
                                 <td class="py-3 px-4 border-b">{{ $item->peserta->user->email }}</td>
                                 <td class="py-3 px-4 border-b">{{ $item->seminar->judul }}</td>
                                 <td class="py-3 px-4 border-b">
-                                    <span
-                                        class="inline-block px-2 py-1 bg-yellow-200 text-yellow-800 rounded text-sm font-medium">{{ $item->status }}</span>
+                                    <span class="inline-block px-2 py-1 bg-yellow-200 text-yellow-800 rounded text-sm font-medium">
+                                        {{ $item->status }}
+                                    </span>
                                 </td>
 
                                 @if ($item->status === 'paid' && $item->seminar->mode === 'online')
                                     <td class="py-3 px-4 border-b">
-                                        {{ $item->seminar->metting_link ?? 'Online' }}</td>
+                                        {{ $item->seminar->metting_link ?? 'Online' }}
+                                    </td>
                                 @else
-                                    <td class="py-3 px-4 border-b">{{ $item->seminar->lokasi ?? 'Online' }}
+                                    <td class="py-3 px-4 border-b">
+                                        {{ $item->seminar->lokasi ?? 'Online' }}
                                     </td>
                                 @endif
-                                <td class="py-3 px-4 border-b">Rp.
-                                    {{ number_format($item->payment->first()->jumlah_pembayaran, 0, ',', '.') }}</td>
-                                <td class="py-3 px-4 border-b">{{ $item->created_at->format('d M Y H:i') }} WITA</td>
-                                <td class="py-3 px-4 border-b"> <a href=""><i
-                                            class="fa-solid fa-eye cursor-pointer"></i></a></td>
-                            </tr>
 
+                                @php
+                                    $pembayaran = $item->payment->first();
+                                @endphp
+                                <td class="py-3 px-4 border-b">
+                                    @if ($pembayaran)
+                                        Rp. {{ number_format($pembayaran->jumlah_pembayaran, 0, ',', '.') }}
+                                    @else
+                                        <span class="text-gray-400 italic">Belum membayar</span>
+                                    @endif
+                                </td>
+
+                                <td class="py-3 px-4 border-b">{{ $item->created_at->format('d M Y H:i') }} WITA</td>
+                                <td class="py-3 px-4 border-b">
+                                    <a href=""><i class="fa-solid fa-eye cursor-pointer"></i></a>
+                                </td>
+                            </tr>
                         @empty
                             <tr class="hover:bg-gray-50 transition">
-                                <td colspan="5" class="py-3 px-4 border-b">Belum ada pendaftaran.</td>
+                                <td colspan="9" class="py-3 px-4 border-b text-center text-gray-500">
+                                    Belum ada pendaftaran.
+                                </td>
                             </tr>
                         @endforelse
-
-                        <!-- Duplikasi baris jika ingin menampilkan data lainnya -->
-                        <!-- <tr>...</tr> -->
                     </tbody>
                 </table>
             </div>

@@ -33,7 +33,7 @@
 
             <div>
                 <button type="submit"
-                    class="px-5 py-3 rounded-full w-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none text-sm font-semibold">
+                    class="px-5 py-4 rounded-xl w-full bg-blue-500 text-white  hover:bg-blue-600 focus:outline-none text-sm font-semibold">
                     Simpan Kategori
                 </button>
             </div>

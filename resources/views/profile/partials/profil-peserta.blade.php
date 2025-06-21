@@ -47,7 +47,7 @@
                 <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
                 <input type="text" id="alamat" name="alamat"
                     value="{{ old('alamat', $user->peserta->alamat ?? '') }}"
-                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
         @endif
 
@@ -56,7 +56,7 @@
             <label for="instansi" class="block text-sm font-medium text-gray-700 mb-1">Instansi</label>
             <input type="text" id="instansi" name="instansi"
                 value="{{ old('instansi', $user->peserta->instansi ?? ($user->pembicara->instansi ?? ($user->moderator->instansi ?? ''))) }}"
-                class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
         </div>
 
         {{-- Hanya moderator dan pembicara --}}
@@ -65,26 +65,26 @@
                 <label for="pengalaman" class="block text-sm font-medium text-gray-700 mb-1">Pengalaman</label>
                 <input type="text" id="pengalaman" name="pengalaman"
                     value="{{ old('pengalaman', $user->pembicara->pengalaman ?? ($user->moderator->pengalaman ?? '')) }}"
-                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div>
                 <label for="linkedin" class="block text-sm font-medium text-gray-700 mb-1">LinkedIn</label>
                 <input type="url" id="linkedin" name="linkedin"
                     value="{{ old('linkedin', $user->pembicara->linkedin ?? ($user->moderator->linkedin ?? '')) }}"
-                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
             </div>
 
             <div>
                 <label for="bio" class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
                 <textarea id="bio" name="bio" rows="4"
-                    class="w-full border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('bio', $user->pembicara->bio ?? ($user->moderator->bio ?? '')) }}</textarea>
+                    class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('bio', $user->pembicara->bio ?? ($user->moderator->bio ?? '')) }}</textarea>
             </div>
         @endif
 
         <div>
             <button type="submit"
-                class="px-5 py-3 w-full rounded-full bg-blue-500 text-white hover:bg-blue-600 focus:outline-none text-xs font-semibold">
+                class="px-5 py-4 w-full rounded-xl bg-blue-500 text-white hover:bg-blue-600 focus:outline-none text-xs font-semibold">
                 SAVE
             </button>
         </div>
