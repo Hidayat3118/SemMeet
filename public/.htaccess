@@ -19,3 +19,17 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+    Header set Content-Security-Policy "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://app.sandbox.midtrans.com https://*.midtrans.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://code.jquery.com https://unpkg.com; object-src 'none';"
+</IfModule>
+
+<FilesMatch "\.(pdf|jpg|jpeg|png|gif|svg)$">
+    Require all granted
+</FilesMatch>
+
+
+
+
+
+

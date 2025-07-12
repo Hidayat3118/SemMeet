@@ -33,9 +33,7 @@ class KeuanganPanelProvider extends PanelProvider
             ])
             ->discoverResources(in: app_path('Filament/Keuangan/Resources'), for: 'App\\Filament\\Keuangan\\Resources')
             ->discoverPages(in: app_path('Filament/Keuangan/Pages'), for: 'App\\Filament\\Keuangan\\Pages')
-            ->pages([
-                Pages\Dashboard::class,
-            ])
+            ->pages([])
             ->discoverWidgets(in: app_path('Filament/Keuangan/Widgets'), for: 'App\\Filament\\Keuangan\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,

@@ -17,7 +17,7 @@ use Filament\Tables\Columns\ImageColumn;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\DateTimePicker;
 use App\Filament\Resources\SeminarResource\Pages;
-
+use PHPUnit\Framework\Reorderable;
 
 class SeminarResource extends Resource
 {
@@ -64,7 +64,7 @@ class SeminarResource extends Resource
                     ])
                     ->required()
                     ->default('draft'),
-                    // ->disabled(),
+                // ->disabled(),
 
                 Select::make('mode')
                     ->label('Mode Seminar')
@@ -135,27 +135,37 @@ class SeminarResource extends Resource
                     ->searchable()
                     ->required(),
 
-                // Select::make('kategori_id')
-                //     ->label('Kategori')
-                //     ->relationship('kategori', 'nama')
-                //     ->required(),
-
-                   Select::make('kategoris') // gunakan nama relasi many-to-many
-                       ->label('Kategori')
-                       ->multiple() // aktifkan pilihan banyak
-                       ->relationship('kategoris', 'nama') // sesuaikan dengan nama relasi di model
-                       ->preload()
-                       ->searchable()
-                       ->required(),
 
                 FileUpload::make('foto')
                     ->image()
                     ->disk('public')
                     ->imagePreviewHeight('100')
-                    //  ->previewable(false) // ini akan nonaktifkan preview muter terus
                     ->directory('foto-seminar')
                     ->required(false)
                     ->maxSize(2048),
+
+                Select::make('kategoris') // gunakan nama relasi many-to-many
+                    ->label('Kategori')
+                    ->multiple() // aktifkan pilihan banyak
+                    ->relationship('kategoris', 'nama') // sesuaikan dengan nama relasi di model
+                    ->preload()
+                    ->searchable()
+                    ->required(),
+
+                    // file tambahan logo sertifikat
+                FileUpload::make('foto_multi') // nama field harus valid untuk Livewire
+                    ->label('Foto logo Sertifikat')
+                    ->multiple() // aktifkan upload banyak file
+                    ->reorderable()
+                    ->image() // hanya gambar
+                    ->directory('foto-seminar') // simpan di storage/app/public/foto-seminar
+                    ->disk('public')
+                    ->imagePreviewHeight('100')
+                    ->maxSize(2048) // dalam KB (2MB)
+                    ->preserveFilenames() // opsional
+                    ->nullable(),
+
+
             ]);
     }
 

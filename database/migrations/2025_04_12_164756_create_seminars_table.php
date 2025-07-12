@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('seminars', function (Blueprint $table) {
             $table->id();  
             $table->string('foto')->nullable(); 
+            $table->string('foto_multi')->nullable(); 
             $table->enum('mode', ['online', 'offline']);
             $table->string('judul')->nullable();
             $table->text('deskripsi')->nullable(); 
