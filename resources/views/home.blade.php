@@ -10,7 +10,7 @@
                     <h1 class="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-700">Selamat Datang Di <span
                             class="text-blue-400">SemMeet</span></h1>
                     <p class="text-md md:text-xl mt-4 text-justify">
-                        SemMet platform informasi dan edukasi bantu Anda terhubung di berbagai
+                        SemMeet platform informasi dan edukasi bantu Anda terhubung di berbagai
                         seminar dan acara inspiratif. Temukan wawasan baru, kembangkan diri, dan jadilah bagian dari
                         komunitas yang terus bersinar.
                     </p>

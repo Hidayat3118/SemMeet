@@ -8,101 +8,91 @@ use App\Models\Seminar;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PendaftaranController extends Controller
 {
-//     public function daftar(Seminar $seminar)
-// {
-//     $user = Auth::user();
 
-//     $peserta = Peserta::where('user_id', $user->id)->first();
-//     if (!$peserta) {
-//         return redirect('/')->with('error', 'Data peserta tidak ditemukan.');
-//     }
 
-//     // Cek apakah sudah mendaftar seminar ini
-//     $existing = Pendaftaran::where('peserta_id', $peserta->id)
-//         ->where('seminar_id', $seminar->id)
-//         ->first();
+    // functio upload gambar
 
-//     if ($existing) {
-//         return redirect()->route('pendaftaran.show', ['id' => $existing->id])
-//                          ->with('info', 'Kamu sudah mendaftar seminar ini.');
-//     }
-
-//     // Simpan pendaftaran baru
-//     $pendaftaran = Pendaftaran::create([
-//         'peserta_id' => $peserta->id,
-//         'seminar_id' => $seminar->id,
-//         'status' => 'pending'
-//     ]);
-
-//     return redirect()->route('pendaftaran.show', ['id' => $pendaftaran->id])
-//                      ->with('success', 'Pendaftaran berhasil.');
-// }
-
-// public function show($id)
-// {
-//     $user = Auth::user();
-
-//     $pendaftaran = Pendaftaran::with(['seminar', 'peserta.user'])
-//         ->where('id', $id)
-//         ->whereHas('peserta', function ($query) use ($user) {
-//                 $query->where('user_id', $user->id);
-//             })
-//         ->first();
-
-//     if (!$pendaftaran) {
-//         return redirect('/')->with('error', 'Data pendaftaran tidak ditemukan.');
-//     }
-
-//     return view('page.detail-pendaftaran', ['pendaftaran' => $pendaftaran]);
-// }
-
-public function daftar(Seminar $seminar)
+   public function uploadFoto(Request $request, $id)
 {
-    $user = Auth::user();
+    $request->validate([
+        'foto_validasi' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-    $peserta = Peserta::where('user_id', $user->id)->first();
-    if (!$peserta) {
-        return redirect('/')->with('error', 'Data peserta tidak ditemukan.');
+    $pendaftaran = Pendaftaran::where('id', $id)
+        ->whereHas('peserta', function ($query) {
+            $query->where('user_id', Auth::id());
+        })->firstOrFail();
+
+    // Hapus foto lama jika ada
+    if ($pendaftaran->foto_validasi) {
+        Storage::disk('public')->delete($pendaftaran->foto_validasi);
     }
 
-    $existing = Pendaftaran::where('peserta_id', $peserta->id)
-        ->where('seminar_id', $seminar->id)
-        ->first();
+    // Simpan foto baru
+    $file = $request->file('foto_validasi');
 
-    if ($existing) {
-        return redirect()->route('pendaftaran.show', ['id' => $existing->id])
-                         ->with('info', 'Kamu sudah mendaftar seminar ini.');
-    }
+    // Nama file dengan folder-nya
+    $namaFile = 'foto_pendaftaran/user_' . Auth::id() . '_pendaftaran_' . $pendaftaran->id . '.' . $file->getClientOriginalExtension();
 
-    $pendaftaran = new Pendaftaran();
-    $pendaftaran->peserta_id = $peserta->id;
-    $pendaftaran->seminar_id = $seminar->id;
-    $pendaftaran->status = 'pending'; // bisa disesuaikan jika pakai status
+    // Simpan ke folder public/foto_pendaftaran
+    $file->storeAs('public/foto_pendaftaran', basename($namaFile));
+
+    // Simpan nama file (dengan folder) ke DB
+    $pendaftaran->foto_validasi = $namaFile;
     $pendaftaran->save();
 
-    return redirect()->route('pendaftaran.show', ['id' => $pendaftaran->id])
-                     ->with('success', 'Pendaftaran berhasil.');
+    return back()->with('success', 'Bukti pendaftaran berhasil diupload!');
 }
 
-public function show($id)
-{
-    $user = Auth::user();
 
-    $pendaftaran = Pendaftaran::with(['seminar', 'peserta.user', 'payment']) // tambah relasi payment
-        ->where('id', $id)
-        ->whereHas('peserta', function ($query) use ($user) {
-            $query->where('user_id', $user->id);
-        })
-        ->first();
 
-    if (!$pendaftaran) {
-        return redirect('/')->with('error', 'Data pendaftaran tidak ditemukan.');
+    public function daftar(Seminar $seminar)
+    {
+        $user = Auth::user();
+
+        $peserta = Peserta::where('user_id', $user->id)->first();
+        if (!$peserta) {
+            return redirect('/')->with('error', 'Data peserta tidak ditemukan.');
+        }
+
+        $existing = Pendaftaran::where('peserta_id', $peserta->id)
+            ->where('seminar_id', $seminar->id)
+            ->first();
+
+        if ($existing) {
+            return redirect()->route('pendaftaran.show', ['id' => $existing->id])
+                ->with('info', 'Kamu sudah mendaftar seminar ini.');
+        }
+
+        $pendaftaran = new Pendaftaran();
+        $pendaftaran->peserta_id = $peserta->id;
+        $pendaftaran->seminar_id = $seminar->id;
+        $pendaftaran->status = 'pending'; // bisa disesuaikan jika pakai status
+        $pendaftaran->save();
+
+        return redirect()->route('pendaftaran.show', ['id' => $pendaftaran->id])
+            ->with('success', 'Pendaftaran berhasil.');
     }
 
-    return view('page.detail-pendaftaran', ['pendaftaran' => $pendaftaran]);
-}
+    public function show($id)
+    {
+        $user = Auth::user();
 
+        $pendaftaran = Pendaftaran::with(['seminar', 'peserta.user', 'payment']) // tambah relasi payment
+            ->where('id', $id)
+            ->whereHas('peserta', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })
+            ->first();
+
+        if (!$pendaftaran) {
+            return redirect('/')->with('error', 'Data pendaftaran tidak ditemukan.');
+        }
+
+        return view('page.detail-pendaftaran', ['pendaftaran' => $pendaftaran]);
+    }
 }

@@ -2,15 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Pendaftaran;
 use App\Models\Seminar;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
+use App\Models\Pendaftaran;
+use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\BadgeColumn;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Tables\Columns\BadgeColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Resources\PendaftaranResource\Pages;
 
 class PendaftaranResource extends Resource
@@ -61,6 +62,7 @@ class PendaftaranResource extends Resource
                 TextColumn::make('created_at')
                     ->label('Waktu Pendaftaran')
                     ->dateTime(),
+              
 
                 // TextColumn::make('updated_at')
                 //     ->label('Diubah')

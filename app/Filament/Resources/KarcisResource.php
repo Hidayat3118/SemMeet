@@ -5,15 +5,16 @@ namespace App\Filament\Resources;
 use App\Models\Karcis;
 use App\Models\Seminar;
 use Filament\Forms\Form;
+use App\Models\Sertifikat;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Model;
 use Filament\Resources\Resource;
+use Filament\Tables\Actions\Action;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Model;
+use Filament\Notifications\Notification;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\SelectFilter;
 use App\Filament\Resources\KarcisResource\Pages;
-use Filament\Tables\Actions\Action;
-use Filament\Notifications\Notification;
-use App\Models\Sertifikat;
 
 class KarcisResource extends Resource
 {
@@ -36,6 +37,14 @@ class KarcisResource extends Resource
                 TextColumn::make('pendaftaran.seminar.judul')->label('Seminar')->searchable(),
                 TextColumn::make('status')->label('Status')->badge(),
                 TextColumn::make('waktu_sqan')->label('Waktu Kehadiran')->dateTime(),
+                ImageColumn::make('pendaftaran.foto_validasi')
+                    ->label('Bukti Pembayaran')
+                    ->disk('public') // karena disimpan di storage/app/public
+                    ->visibility('visible')
+                    ->width(80) // opsional
+                    ->height(80)
+                    ->url(fn($record) => asset('storage/' . $record->pendaftaran->foto_validasi)) // gambar dibuka di tab baru
+                    ->openUrlInNewTab(), // biar klik-nya di tab // opsional
             ])
 
             ->filters([

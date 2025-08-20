@@ -14,6 +14,10 @@ use App\Http\Controllers\SertifikatController;
 use App\Http\Controllers\VoucherController;
 use App\Http\Controllers\Auth\OtpController;
 
+// bukti pendaftaran
+
+Route::post('/pendaftaran/{id}/upload-foto', [PendaftaranController::class, 'uploadFoto'])->name('pendaftaran.upload');
+
 
 // otp
 Route::get('/otp/verifikasi', [OtpController::class, 'showForm'])->name('otp.verifikasi');
