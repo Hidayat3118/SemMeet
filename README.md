@@ -38,10 +38,10 @@ Sistem ini memudahkan pengelolaan data seminar mulai dari pendaftaran peserta, p
 ### 📊 Dashboard
 ![Tampilan Dashboard](./github/dashboard.jpg)
 
-### 🗓️ Manajemen Seminar
+### 🗓️ Detail seminar
 ![Tampilan Seminar](./github/seminar.PNG)
 
-### 🧑‍🎓 Peserta
+### 📝 Pendaftaran
 ![Tampilan Peserta](./github/pendaftaran.PNG)
 
 ---
