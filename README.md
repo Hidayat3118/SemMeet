@@ -29,7 +29,7 @@ Sistem ini memudahkan pengelolaan data seminar mulai dari pendaftaran peserta, p
 
 ## 📸 Screenshots
 
-### 🎤 Narasumber
+### 🏠 Home
 ![Tampilan Narasumber](./github/home.jpg)
 
 ### 🔐 Login
