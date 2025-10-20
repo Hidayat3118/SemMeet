@@ -7,48 +7,66 @@
 <p align="center">
   <a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
   <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+ <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
   <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# 🎓 Sistem Manajemen Seminar
 
-Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun dengan **Laravel** dan **Filament Admin**.  
-Sistem ini memudahkan pengelolaan data seminar mulai dari pendaftaran peserta, pengelolaan jadwal, hingga pencatatan narasumber.  
+# Sistem Manajemen Seminar
 
----
-
-## ✨ Fitur Utama
-- 🧑‍🎓 **Manajemen Peserta Seminar** (pendaftaran, daftar hadir, dan status keikutsertaan)  
-- 🗓️ **Manajemen Jadwal Seminar** (tanggal, tempat, dan sesi seminar)  
-- 🎤 **Manajemen Narasumber / Pemateri**  
-- 📂 **Dokumentasi & Arsip Seminar**  
-- 📈 **Dashboard interaktif** menggunakan **Filament Admin**  
+Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun dengan **Laravel** dan **Filament Admin** Sistem ini memudahkan pendaftaran online serta pengelolaan data seminar mulai dari pendaftaran peserta, pengelolaan jadwal, hingga pencatatan narasumber.
 
 ---
 
-## 📸 Screenshots
+## Fitur Utama
 
-### 🏠 Home
-![Tampilan Narasumber](./github/home.jpg)
-
-### 🔐 Login
-![Tampilan Login](./github/login.PNG)
-
-### 📊 Dashboard
-![Tampilan Dashboard](./github/dashboard.jpg)
-
-### 🗓️ Detail seminar
-![Tampilan Seminar](./github/seminar.PNG)
-
-### 📝 Pendaftaran
-![Tampilan Peserta](./github/pendaftaran.PNG)
+- **Manajemen Peserta Seminar** (pendaftaran, daftar hadir, dan status keikutsertaan)
+- **Manajemen Jadwal Seminar** (tanggal, tempat, dan sesi seminar)
+- **Manajemen Narasumber / Pemateri**
+- **Dokumentasi & Arsip Seminar**
+- **Dashboard interaktif** menggunakan **Filament Admin**
 
 ---
 
-## ⚙️ Instalasi & Setup
+## Tampilan Aplikasi
+
+<div align="center">
+  <figure style="display:inline-block; width:45%; margin:10px;">
+    <img src="./github/home.jpg" width="100%" alt="Tampilan Home">
+    <figcaption><strong>Home</strong></figcaption>
+  </figure>
+
+  <figure style="display:inline-block; width:45%; margin:10px;">
+    <img src="./github/login.PNG" width="100%" alt="Tampilan Login">
+    <figcaption><strong>Login</strong> </figcaption>
+  </figure>
+</div>
+
+<div align="center">
+  <figure style="display:inline-block; width:45%; margin:10px;">
+    <img src="./github/dashboard.jpg" width="100%" alt="Tampilan Dashboard">
+    <figcaption><strong>Dashboard</strong> </figcaption>
+  </figure>
+
+  <figure style="display:inline-block; width:45%; margin:10px;">
+    <img src="./github/seminar.PNG" width="100%" alt="Tampilan Seminar">
+    <figcaption><strong>Detail Seminar</strong> .</figcaption>
+  </figure>
+</div>
+
+<div align="center">
+  <figure style="display:inline-block; width:45%; margin:10px;">
+    <img src="./github/pendaftaran.PNG" width="100%" alt="Tampilan Pendaftaran">
+    <figcaption><strong>Pendaftaran</strong></figcaption>
+  </figure>
+</div>
+
+---
+
+##  Instalasi & Setup
 
 1. Clone repository
-   ```bash
-   git clone https://github.com/username/nama-repo.git
-   cd nama-repo
+    ```bash
+    git clone https://github.com/username/nama-repo.git
+    cd nama-repo
+    ```

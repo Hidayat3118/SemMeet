@@ -62,6 +62,11 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('home');
 });
+
+Route::get('/testing', function () {
+    return view('testing');
+});
+
 Route::get('/pembicara', function () {
     return view('page.pembicara');
 });
