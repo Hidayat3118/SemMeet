@@ -21,8 +21,10 @@ Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun d
 ## Fitur Utama
 
 - **Manajemen Peserta Seminar** (pendaftaran, daftar hadir, dan status keikutsertaan)
+- **Pendaftaran Payment Gatway** (Pembayaran terintegrasi dana, bank dll)
 - **Manajemen Jadwal Seminar** (tanggal, tempat, dan sesi seminar)
 - **Manajemen Narasumber / Pemateri**
+- **Generate Sertifikat** 
 - **Dokumentasi & Arsip Seminar**
 - **Dashboard interaktif** menggunakan **Filament Admin**
 
@@ -43,7 +45,7 @@ Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun d
   </tr>
   <tr>
     <td align="center" width="50%">
-      <strong>Dashboard</strong><br><br>
+      <strong>Dashboard Panitia</strong><br><br>
       <img src="./github/dashboard.jpg" width="95%" alt="Dashboard">
     </td>
     <td align="center" width="50%">
