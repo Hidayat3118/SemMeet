@@ -57,22 +57,34 @@ Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun d
       <img src="./github/pendaftaran.PNG" width="95%" alt="Pendaftaran">
     </td>
     <td align="center" width="50%">
-      <strong>Pendaftaran</strong><br><br>
+      <strong>Sqan Absen Kehadiran</strong><br><br>
       <img src="./github/absen.jpg" width="95%" alt="Pendaftaran">
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <strong>Pendaftaran</strong><br><br>
-      <img src="./github/dashboard-peserta.png" width="95%" alt="Pendaftaran">
+      <strong>Dashboard Peserta</strong><br><br>
+      <img src="./github/dahsboard-peserta.png" width="95%" alt="Pendaftaran">
     </td>
     <td align="center" width="50%">
-      <strong>Pendaftaran</strong><br><br>
+      <strong>Forgot Password</strong><br><br>
       <img src="./github/forgotPassword.png" width="95%" alt="Pendaftaran">
     </td>
   </tr>
 </table>
 
+
+---
+
+
+## Teknologi yang Digunakan
+
+**Backend**      PHP 8.2           
+**Frontend**     TailwindCss 3           
+**Framework**    Laravel 11        
+**Admin Panel**  Filament 3.3      
+**Frontend**     ailwind CSS 3    
+**Database**     MySQL / MariaDB   
 
 ---
 
