@@ -64,11 +64,11 @@ Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun d
   <tr>
     <td align="center" width="50%">
       <strong>Pendaftaran</strong><br><br>
-      <img src="./github/dashboard-peserta.PNG" width="95%" alt="Pendaftaran">
+      <img src="./github/dashboard-peserta.png" width="95%" alt="Pendaftaran">
     </td>
     <td align="center" width="50%">
       <strong>Pendaftaran</strong><br><br>
-      <img src="./github/forgotPassword.jpg" width="95%" alt="Pendaftaran">
+      <img src="./github/forgotPassword.png" width="95%" alt="Pendaftaran">
     </td>
   </tr>
 </table>
