@@ -30,36 +30,35 @@ Aplikasi ini merupakan sistem **manajemen seminar** berbasis web yang dibangun d
 
 ## Tampilan Aplikasi
 
-<div align="center">
-  <figure style="display:inline-block; width:45%; margin:10px;">
-    <img src="./github/home.jpg" width="100%" alt="Tampilan Home">
-    <figcaption><strong>Home</strong></figcaption>
-  </figure>
+<table align="center">
+  <tr>
+    <td align="center" width="50%">
+      <strong>Home</strong><br><br>
+      <img src="./github/home.jpg" width="95%" alt="Home">
+    </td>
+    <td align="center" width="50%">
+      <strong>Login</strong><br><br>
+      <img src="./github/login.PNG" width="95%" alt="Login">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Dashboard</strong><br><br>
+      <img src="./github/dashboard.jpg" width="95%" alt="Dashboard">
+    </td>
+    <td align="center" width="50%">
+      <strong>Detail Seminar</strong><br><br>
+      <img src="./github/seminar.PNG" width="95%" alt="Detail Seminar">
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <strong>Pendaftaran</strong><br><br>
+      <img src="./github/pendaftaran.PNG" width="95%" alt="Pendaftaran">
+    </td>
+  </tr>
+</table>
 
-  <figure style="display:inline-block; width:45%; margin:10px;">
-    <img src="./github/login.PNG" width="100%" alt="Tampilan Login">
-    <figcaption><strong>Login</strong> </figcaption>
-  </figure>
-</div>
-
-<div align="center">
-  <figure style="display:inline-block; width:45%; margin:10px;">
-    <img src="./github/dashboard.jpg" width="100%" alt="Tampilan Dashboard">
-    <figcaption><strong>Dashboard</strong> </figcaption>
-  </figure>
-
-  <figure style="display:inline-block; width:45%; margin:10px;">
-    <img src="./github/seminar.PNG" width="100%" alt="Tampilan Seminar">
-    <figcaption><strong>Detail Seminar</strong> .</figcaption>
-  </figure>
-</div>
-
-<div align="center">
-  <figure style="display:inline-block; width:45%; margin:10px;">
-    <img src="./github/pendaftaran.PNG" width="100%" alt="Tampilan Pendaftaran">
-    <figcaption><strong>Pendaftaran</strong></figcaption>
-  </figure>
-</div>
 
 ---
 
